@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SwiftUI Online Exam</title>
+<style>
+:root {
+  /* Meta Design System Tokens */
+  --meta-primary: #0064e0;
+  --meta-primary-deep: #0457cb;
+  --meta-primary-soft: #0091ff;
+  --meta-ink-button: #000000;
+  --meta-on-ink-button: #ffffff;
+  --meta-charcoal: #444950;
+  --meta-fb-blue: #1876f2;
+  --meta-radio-active: #0143b5;
+  --meta-canvas: #ffffff;
+  --meta-surface-soft: #f1f4f7;
+  --meta-ink-deep: #0a1317;
+  --meta-ink: #1c1e21;
+  --meta-slate: #4b4c4f;
+  --meta-steel: #5d6c7b;
+  --meta-stone: #8595a4;
+  --meta-hairline: #ced0d4;
+  --meta-hairline-soft: #dee3e9;
+  --meta-disabled-text: #bcc0c4;
+  --meta-success: #31a24c;
+  --meta-warning: #f7b928;
+  --meta-critical-strong: #f0284a;
+
+  /* Spacing & Radii */
+  --r-lg: 8px;
+  --r-xl: 16px;
+  --r-xxl: 24px;
+  --r-xxxl: 32px;
+  --r-full: 100px;
+  --r-circle: 9999px;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+  background-color: var(--meta-surface-soft);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--meta-surface-soft);
+  color: var(--meta-ink);
+  font-family: "Optimistic VF", -apple-system, BlinkMacSystemFont, "Sarabun", "Thonburi", "Leelawadee UI", "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header Navigation Bar */
+nav {
+  background: var(--meta-canvas);
+  color: var(--meta-ink-deep);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--meta-hairline-soft);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+#app > h1,
+#app > .lead,
+#app > .card,
+#app > .tile,
+#app > .fine {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--meta-ink-deep);
+  margin: 0 0 10px;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+.lead {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--meta-steel);
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+/* Feature Cards */
+.card {
+  background: var(--meta-canvas);
+  border: 1px solid var(--meta-hairline-soft);
+  border-radius: var(--r-xxxl);
+  padding: 36px 32px;
+  box-shadow: 0 4px 16px rgba(10, 19, 23, 0.04);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--meta-slate);
+  margin: 0 0 8px;
+  letter-spacing: -0.14px;
+}
+
+input {
+  width: 100%;
+  height: 46px;
+  border: 1px solid var(--meta-hairline);
+  border-radius: var(--r-lg);
+  padding: 0 16px;
+  font-size: 15px;
+  background: var(--meta-canvas);
+  color: var(--meta-ink);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  border: 2px solid var(--meta-fb-blue);
+  padding: 0 15px;
+}
+
+.f { margin-bottom: 20px; }
+
+/* Buttons */
+.btn {
+  background: var(--meta-ink-button);
+  color: var(--meta-on-ink-button);
+  border: 0;
+  border-radius: var(--r-full);
+  padding: 13px 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  letter-spacing: -0.14px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  width: 100%;
+}
+
+.btn:active {
+  background: var(--meta-charcoal);
+  transform: scale(0.98);
+}
+
+.btn[disabled] {
+  background: var(--meta-disabled-text);
+  color: var(--meta-canvas);
+  opacity: 1;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn.btn-primary-blue {
+  background: var(--meta-primary);
+}
+.btn.btn-primary-blue:active {
+  background: var(--meta-primary-deep);
+}
+
+.btn.btn-green {
+  background: var(--meta-success);
+}
+.btn.btn-green:active {
+  background: #248a3d;
+}
+
+.btn.btn-orange {
+  background: #f06a00;
+}
+.btn.btn-orange:active {
+  background: #d45d00;
+}
+
+.btn.btn-purple {
+  background: #8b2ec6;
+}
+.btn.btn-purple:active {
+  background: #7323a6;
+}
+
+.lnk {
+  background: transparent;
+  border: 2px solid rgba(10, 19, 23, 0.12);
+  color: var(--meta-ink-deep);
+  border-radius: var(--r-full);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 24px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.lnk:active {
+  background: rgba(10, 19, 23, 0.05);
+}
+
+.lnk[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: var(--meta-hairline-soft);
+}
+
+/* Progress Bar */
+.bar {
+  height: 6px;
+  background: var(--meta-hairline-soft);
+  border-radius: var(--r-full);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--meta-primary);
+  border-radius: var(--r-full);
+  transition: width 0.3s ease;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--meta-steel);
+  margin-bottom: 12px;
+}
+
+.q {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.4;
+  color: var(--meta-ink-deep);
+  margin: 0 0 16px;
+  letter-spacing: -0.2px;
+}
+
+pre {
+  background: var(--meta-surface-soft);
+  border: 1px solid var(--meta-hairline-soft);
+  border-radius: var(--r-xl);
+  padding: 16px 20px;
+  overflow-x: auto;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--meta-ink-deep);
+  margin: 0 0 20px;
+}
+
+/* Choice Options (Meta Radio Style) */
+.opt {
+  display: flex;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  background: var(--meta-canvas);
+  color: var(--meta-ink);
+  border: 1px solid rgba(10, 19, 23, 0.12);
+  border-radius: var(--r-xl);
+  padding: 14px 20px;
+  margin-bottom: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  align-items: center;
+  transition: all 0.15s ease;
+}
+
+.opt:active {
+  transform: scale(0.99);
+}
+
+.opt.on {
+  border: 2px solid var(--meta-radio-active);
+  background: #f4f8ff;
+  padding: 13px 19px;
+}
+
+.opt b {
+  color: var(--meta-steel);
+  font-weight: 700;
+  font-size: 15px;
+  min-width: 24px;
+}
+
+.opt.on b {
+  color: var(--meta-primary);
+}
+
+.opt span {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.opt code {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 14px;
+}
+
+.nv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  gap: 16px;
+}
+
+.nv .btn {
+  width: auto;
+  min-width: 130px;
+}
+
+.exam-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  grid-template-areas: "question navigator";
+  align-items: start;
+  gap: 20px;
+}
+
+.exam-question { grid-area: question; }
+
+.question-nav {
+  grid-area: navigator;
+  position: sticky;
+  top: 80px;
+  min-width: 0;
+  padding: 20px;
+  background: var(--meta-canvas);
+  border: 1px solid var(--meta-hairline-soft);
+  border-radius: var(--r-xxl);
+  box-shadow: 0 4px 16px rgba(10, 19, 23, 0.04);
+}
+
+.question-nav h2 {
+  margin: 0;
+  color: var(--meta-ink-deep);
+  font-size: 17px;
+}
+
+.question-nav-summary {
+  margin: 4px 0 14px;
+  color: var(--meta-steel);
+  font-size: 13px;
+}
+
+.question-map {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  max-height: min(55vh, 500px);
+  overflow-y: auto;
+  padding: 2px;
+}
+
+.question-map button {
+  min-width: 0;
+  min-height: 42px;
+  border: 1px solid var(--meta-hairline);
+  border-radius: var(--r-lg);
+  background: var(--meta-canvas);
+  color: var(--meta-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.question-map button.answered {
+  border-color: var(--meta-success);
+  background: #eaf6ed;
+  color: #176b2c;
+}
+
+.question-map button.current {
+  outline: 3px solid rgba(0, 100, 224, 0.24);
+  border-color: var(--meta-primary);
+  color: var(--meta-primary);
+}
+
+.question-map button:focus-visible {
+  outline: 3px solid var(--meta-primary-soft);
+  outline-offset: 2px;
+}
+
+.submit-exam-mobile { display: none; }
+
+/* Result Showcase Card */
+.tile {
+  background: var(--meta-canvas);
+  color: var(--meta-ink-deep);
+  border: 1px solid var(--meta-hairline-soft);
+  border-radius: var(--r-xxxl);
+  padding: 48px 32px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(10, 19, 23, 0.05);
+}
+
+.tile .big {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--meta-ink-deep);
+  margin-bottom: 6px;
+  letter-spacing: -1px;
+}
+
+.result-summary {
+  max-width: 440px;
+  margin: 24px auto;
+  padding: 18px 20px;
+  border: 1px solid var(--meta-hairline-soft);
+  border-radius: var(--r-xl);
+  background: var(--meta-surface-soft);
+  text-align: left;
+}
+
+.result-summary h2 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  color: var(--meta-ink-deep);
+}
+
+.result-summary p {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.result-summary p span:first-child { color: var(--meta-steel); }
+.result-summary p span:last-child { font-weight: 700; text-align: right; }
+.result-summary .result-status-passed { color: var(--meta-success); }
+.result-summary .result-status-failed { color: var(--meta-critical-strong); }
+
+.pill {
+  display: inline-block;
+  border-radius: var(--r-full);
+  padding: 6px 18px;
+  background: var(--meta-surface-soft);
+  color: var(--meta-slate);
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  border: 1px solid var(--meta-hairline-soft);
+}
+
+.fine {
+  font-size: 13px;
+  color: var(--meta-steel);
+  text-align: center;
+  margin-top: 24px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 440px;
+  margin: 28px auto;
+}
+
+/* Modal Popup */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 19, 23, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+}
+
+.modal-card {
+  background: var(--meta-canvas);
+  color: var(--meta-ink-deep);
+  border-radius: var(--r-xxxl);
+  max-width: 640px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(10, 19, 23, 0.2);
+  border: 1px solid var(--meta-hairline-soft);
+}
+
+.modal-header {
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--meta-hairline-soft);
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.modal-close {
+  background: var(--meta-surface-soft);
+  border: 0;
+  color: var(--meta-steel);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-circle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 400;
+  transition: all 0.15s ease;
+}
+
+.modal-close:active {
+  background: var(--meta-hairline);
+  color: var(--meta-ink-deep);
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  text-align: center;
+  background: var(--meta-surface-soft);
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--r-xl);
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.modal-frame {
+  width: 100%;
+  height: 70vh;
+  border: 0;
+  border-radius: var(--r-xl);
+  background: #ffffff;
+}
+
+#print-container { display: none; }
+
+/* Print PDF Styling */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
+  }
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  nav, main, #app, .modal-overlay {
+    display: none !important;
+  }
+  #print-container {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  #report-template {
+    background: #ffffff !important;
+    color: #1c1e21 !important;
+    padding: 28px !important;
+    width: 100% !important;
+    max-width: 680px !important;
+    margin: 0 auto !important;
+    border-radius: 20px !important;
+    border: 1px solid #ced0d4 !important;
+    font-family: system-ui, -apple-system, sans-serif !important;
+    line-height: 1.6 !important;
+    page-break-inside: avoid !important;
+  }
+  #report-template h2 {
+    margin: 0 0 6px !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #0064e0 !important;
+    text-align: center !important;
+  }
+  #report-template .sub {
+    color: #5d6c7b !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    margin-bottom: 22px !important;
+  }
+  #report-template .score-banner {
+    background: #f1f4f7 !important;
+    border-radius: 16px !important;
+    padding: 18px !important;
+    text-align: center !important;
+    margin: 18px 0 !important;
+  }
+  #report-template .score-banner .val {
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: #31a24c !important;
+    line-height: 1.2 !important;
+  }
+  #report-template .table-box {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 22px 0 !important;
+  }
+  #report-template .table-box td {
+    padding: 12px 14px !important;
+    border-bottom: 1px solid #dee3e9 !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
+  #report-template .table-box td.label {
+    font-weight: 600 !important;
+    color: #5d6c7b !important;
+    width: 40% !important;
+  }
+  #report-template .footer {
+    text-align: center !important;
+    font-size: 12px !important;
+    color: #8595a4 !important;
+    margin-top: 26px !important;
+    line-height: 1.6 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 28px; }
+  .tile .big { font-size: 44px; }
+  .card, .tile { padding: 24px 20px; }
+  .row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 800px) {
+  main { padding: 28px 16px 100px; }
+
+  .exam-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "navigator"
+      "question";
+    gap: 16px;
+  }
+
+  .question-nav {
+    position: sticky;
+    top: 68px;
+    z-index: 20;
+    padding: 14px;
+  }
+
+  .question-nav-summary { margin-bottom: 8px; }
+  .question-map {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    max-height: min(22vh, 180px);
+    gap: 6px;
+  }
+  .question-map button { min-height: 40px; }
+
+  .submit-exam-desktop { display: none; }
+  .submit-exam-mobile {
+    display: flex;
+    position: fixed;
+    z-index: 90;
+    right: 16px;
+    bottom: max(12px, env(safe-area-inset-bottom, 0px));
+    left: 16px;
+    width: auto;
+    box-shadow: 0 4px 16px rgba(10, 19, 23, 0.24);
+  }
+}
+
+@media (max-width: 380px) {
+  .meta { font-size: 12px; }
+  .question-nav { padding: 12px; }
+  .question-map { gap: 5px; }
+}
+</style>
+</head>
+<body>
+<nav id="nav-title">SwiftUI Online Exam</nav>
+<main id="app"></main>
+<div id="modal-container"></div>
+<div id="print-container"></div>
+
+<!-- รองรับ CommonJS (module.exports) บนเบราว์เซอร์ ไม่ติด Error และไม่ติด CORS -->
+<script>var module = { exports: {} };</script>
+<!-- เรียกไฟล์ข้อสอบ React Native ที่ต้องการ -->
+<script src="questions.js"></script>
+<script>
+
+document.addEventListener("contextmenu", event => event.preventDefault());
+document.addEventListener("keydown", event => {
+  if (event.key === "F12" || event.keyCode === 123) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+});
+
+/* ==========================================================================
+   CONFIG: ตั้งค่าชุดข้อสอบ ไฟล์ และเกณฑ์คะแนนตรงนี้ได้อย่างง่ายดาย
+   ========================================================================== */
+const examTitle       = "ข้อสอบ พ.ร.บ.คอมพิวเตอร์"; 
+const exam            = "questions.js";   
+const examMode        = "single"; // "single" = สอบรอบเดียว, "qualification-practical" = สอบผ่านแล้วสอบปฏิบัติ
+const percentPass     = 90;                            
+const examPractice1   = "Exam1View.png";               
+const examPractice2   = "Exam2View.png";               
+const assetsFile      = "pic.zip";                     
+const questionsCount  = 100;                            
+
+
+function normalizeQuestions(data) {
+  if (!Array.isArray(data) || data.length === 0) return null;
+  return data.map(item => {
+    if (Array.isArray(item)) return item;
+    const wrongs = (item.choices || []).filter(c => c !== item.answer);
+    return [
+      item.type || "m",
+      item.question || "",
+      item.code || "",
+      item.answer || "",
+      wrongs[0] || "", wrongs[1] || "", wrongs[2] || "", wrongs[3] || ""
+    ];
+  });
+}
+
+async function loadExamData() {
+  const jsData = (module && module.exports && module.exports.length)
+    ? module.exports
+    : (window.reactNativeQuestions || window.EXAM_DATA || null);
+
+  if (jsData) {
+    const parsed = normalizeQuestions(jsData);
+    if (parsed) {
+      Q = parsed;
+      console.log(`โหลดข้อสอบสำเร็จจากสคริปต์ JS จำนวน ${Q.length} ข้อ`);
+      return;
+    }
+  }
+
+  if (exam && exam.endsWith(".json")) {
+    try {
+      const res = await fetch(exam);
+      if (!res.ok) throw new Error("Fetch error: " + res.status);
+      const data = await res.json();
+      const parsed = normalizeQuestions(data);
+      if (parsed) {
+        Q = parsed;
+        console.log(`โหลดข้อสอบสำเร็จจาก ${exam} จำนวน ${Q.length} ข้อ`);
+      }
+    } catch (err) {
+      console.warn(`ไม่สามารถโหลด ${exam} ผ่าน fetch ได้ (ใช้คลังข้อสอบสำรองแทน):`, err.message);
+    }
+  }
+}
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const sh = a => {
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
+const L = "ก ข ค ง จ".split(" ");
+const $ = document.getElementById("app");
+let S = { info: null, qs: [], i: 0, set: null };
+
+function start() {
+  document.getElementById("nav-title").textContent = examTitle;
+  document.title = examTitle;
+  
+  $.innerHTML = `<h1>${esc(examTitle)}</h1>
+  <p class="lead">สุ่ม ${questionsCount} ข้อจากคลัง ${Q.length} ข้อ · เกณฑ์ผ่าน ${percentPass}% ขึ้นไป</p>
+  <div class="card">
+    <div class="row">
+      <div class="f"><label>ชื่อ</label><input id="fn" autocomplete="off" placeholder="เช่น สมชาย"></div>
+      <div class="f"><label>สกุล</label><input id="ln" autocomplete="off" placeholder="เช่น ใจดี"></div>
+    </div>
+    <div class="row">
+      <div class="f"><label>ห้อง</label><input id="rm" autocomplete="off" placeholder="เช่น ม.5/1"></div>
+      <div class="f"><label>เลขที่</label><input id="no" inputmode="numeric" autocomplete="off" placeholder="เช่น 12"></div>
+    </div>
+    <button class="btn" id="go" disabled>เริ่มทำข้อสอบ</button>
+  </div>
+  <p class="fine">สลับตัวเลือกและสุ่มโจทย์ใหม่ทุกครั้ง · ไม่แสดงเฉลยระหว่างหรือหลังสอบ</p>`;
+
+  const ids = ["fn", "ln", "rm", "no"];
+  const chk = () => {
+    document.getElementById("go").disabled = !ids.every(i => document.getElementById(i).value.trim());
+  };
+  ids.forEach(i => document.getElementById(i).addEventListener("input", chk));
+  document.getElementById("go").onclick = () => {
+    S.info = ids.map(i => document.getElementById(i).value.trim());
+    begin();
+  };
+}
+
+function begin() {
+  S.seen = S.seen || new Set();
+  let ids = Q.map((_, k) => k);
+  let fresh = sh(ids.filter(k => !S.seen.has(k)));
+  if (fresh.length < questionsCount) {
+    S.seen = new Set();
+    fresh = sh(ids);
+  }
+  fresh = fresh.slice(0, questionsCount);
+  fresh.forEach(k => S.seen.add(k));
+  S.qs = fresh.map(k => {
+    const q = Q[k];
+    const o = sh([q[3], q[4], q[5], q[6], q[7]]);
+    return { t: q[0], q: q[1], c: q[2], o, a: o.indexOf(q[3]), s: -1 };
+  });
+  S.i = 0;
+  quiz();
+}
+
+function quiz() {
+  const q = S.qs[S.i], n = S.qs.length, last = S.i === n - 1;
+  const tag = { f: "เติมโค้ด", b: "จับจุดผิด", m: "ทฤษฎี" }[q.t] || "คำถาม";
+  const answeredCount = S.qs.filter(question => question.s >= 0).length;
+  const submitText = answeredCount < n
+    ? `ส่งข้อสอบ · ตอบแล้ว ${answeredCount}/${n}`
+    : `ส่งข้อสอบ · ตอบครบ ${n} ข้อ`;
+  const navigator = `
+    <aside class="question-nav" aria-label="นำทางข้อสอบ">
+      <h2>เลือกข้อสอบ</h2>
+      <p class="question-nav-summary">ตอบแล้ว ${answeredCount} จาก ${n} ข้อ</p>
+      <div class="question-map">
+        ${S.qs.map((question, index) => {
+          const answered = question.s >= 0;
+          const current = index === S.i;
+          return `<button type="button" class="${answered ? "answered " : ""}${current ? "current" : ""}"
+            data-question-index="${index}" aria-pressed="${current}"
+            aria-label="ข้อ ${index + 1}${answered ? " ตอบแล้ว" : " ยังไม่ได้ตอบ"}${current ? " กำลังดู" : ""}"
+            ${current ? 'aria-current="step"' : ""}>${index + 1}</button>`;
+        }).join("")}
+      </div>
+      <button type="button" class="btn btn-primary-blue submit-exam-desktop">${submitText}</button>
+    </aside>`;
+
+  $.innerHTML = `<div class="meta">
+      <span>${esc(S.info[0])} ${esc(S.info[1])} · ห้อง ${esc(S.info[2])} เลขที่ ${esc(S.info[3])}</span>
+      <span>ประเภท: ${tag}</span>
+    </div>
+    <div class="bar"><i style="width: ${(answeredCount / n) * 100}%"></i></div>
+    <div class="exam-layout">
+      <section class="exam-question" aria-label="คำถามข้อที่ ${S.i + 1}">
+        <div class="card">
+          <div class="meta"><span>คำถามข้อที่ ${S.i + 1} จากทั้งหมด ${n} ข้อ</span></div>
+          <p class="q">${esc(q.q)}</p>
+          ${q.c ? `<pre>${esc(q.c)}</pre>` : ""}
+          ${q.o.map((o, k) => `<button type="button" class="opt${q.s === k ? " on" : ""}" data-k="${k}" aria-pressed="${q.s === k}"><b>${L[k]}.</b><span>${esc(o)}</span></button>`).join("")}
+          <div class="nv">
+            <button type="button" class="lnk" id="pv" ${S.i ? "" : "disabled"}>ย้อนกลับ</button>
+            <button type="button" class="btn" id="nx" ${q.s < 0 ? "disabled" : ""}>${last ? "ส่งข้อสอบ" : "ข้อถัดไป"}</button>
+          </div>
+        </div>
+      </section>
+      ${navigator}
+    </div>
+    <button type="button" class="btn btn-primary-blue submit-exam-mobile">${submitText}</button>`;
+
+  $.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    q.s = +b.dataset.k;
+    quiz();
+  });
+  $.querySelectorAll("[data-question-index]").forEach(b => b.onclick = () => {
+    S.i = Number(b.dataset.questionIndex);
+    quiz();
+  });
+  $.querySelectorAll(".submit-exam-desktop, .submit-exam-mobile").forEach(b => {
+    b.onclick = submitExam;
+  });
+  document.getElementById("pv").onclick = () => {
+    S.i--;
+    quiz();
+  };
+  document.getElementById("nx").onclick = () => {
+    last ? submitExam() : (S.i++, quiz());
+  };
+}
+
+function submitExam() {
+  const unanswered = S.qs.filter(q => q.s < 0).length;
+  const message = unanswered
+    ? `ยังมีข้อที่ไม่ได้ตอบ ${unanswered} ข้อ หากส่งตอนนี้จะตรวจเฉพาะข้อที่ตอบแล้ว ยืนยันส่งข้อสอบหรือไม่`
+    : "ยืนยันส่งข้อสอบหรือไม่";
+  if (window.confirm(message)) result();
+}
+
+async function result() {
+  const n = S.qs.filter(q => q.s === q.a).length;
+  const tot = S.qs.length;
+  const pass = (n / tot) * 100 >= percentPass;
+  const hasPracticalExam = examMode === "qualification-practical";
+  if (pass && hasPracticalExam && !S.set) {
+    S.set = Math.random() < 0.5 ? "ข้อสอบชุดที่ 1" : "ข้อสอบชุดที่ 2";
+  }
+  const pct = Math.round((n / tot) * 100);
+  const resultTitle = pass
+    ? (hasPracticalExam ? "ผ่านเกณฑ์การประเมิน" : "สอบผ่าน")
+    : "ยังไม่ผ่านเกณฑ์";
+  const scoreDescription = hasPracticalExam
+    ? "คะแนนสอบคัดเลือก (ยังไม่รวมคะแนนสอบปฏิบัติ)"
+    : "คะแนนสอบ";
+  const resultRecordedAt = new Date().toLocaleString("th-TH", { dateStyle: "long", timeStyle: "short" });
+  const reportButton = '<button class="btn btn-green" id="btn-dl-report">พิมพ์รายงานผลการสอบ (PDF)</button>';
+
+  $.innerHTML = `<div class="tile">
+    <span class="pill">${esc(S.info[0])} ${esc(S.info[1])} · ห้อง ${esc(S.info[2])} เลขที่ ${esc(S.info[3])}</span>
+    <div class="big">${n} / ${tot}</div>
+    <h1 style="color: var(--meta-ink-deep); margin-bottom: 8px;">${resultTitle}</h1>
+    <p style="color: var(--meta-steel); margin-top: 0;">${scoreDescription}: ${pct}% · เกณฑ์ขั้นต่ำ ${percentPass}%</p>
+    <section class="result-summary" aria-label="สรุปผลการสอบ">
+      <h2>สรุปผลการสอบ</h2>
+      <p><span>คะแนน</span><span>${n} / ${tot} ข้อ (${pct}%)</span></p>
+      <p><span>เกณฑ์ผ่าน</span><span>${percentPass}% (${Math.ceil(tot * percentPass / 100)} ข้อ)</span></p>
+      <p><span>สถานะ</span><span class="${pass ? "result-status-passed" : "result-status-failed"}">${pass ? "ผ่านเกณฑ์" : "ไม่ผ่านเกณฑ์"}</span></p>
+      ${hasPracticalExam && pass ? `<p><span>สิทธิ์สอบปฏิบัติ</span><span>${esc(S.set)}</span></p>` : ""}
+      <p><span>วันที่บันทึกผล</span><span>${esc(resultRecordedAt)}</span></p>
+    </section>
+    ${pass ? `
+      ${hasPracticalExam ? `
+        <div style="margin: 24px 0 16px; font-size: 20px; font-weight: 700; color: var(--meta-primary)">
+          คุณได้รับสิทธิ์เข้าสอบ: ${S.set}
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary-blue" id="btn-view-exam">ดูข้อสอบปฏิบัติ (${S.set})</button>
+          <button class="btn btn-purple" id="btn-dl-assets">ดาวน์โหลดรูปภาพ Assets (.zip)</button>
+          ${reportButton}
+        </div>
+        <p id="dm" style="font-size: 14px; color: var(--meta-steel); margin-top: 12px">
+          สามารถดูตัวอย่างโจทย์ ดาวน์โหลดรูปภาพเพื่อลงมือทำ และบันทึกคะแนนสอบคัดเลือกไว้ได้ทันที
+        </p>
+      ` : `
+        <div class="actions">${reportButton}</div>
+      `}
+    ` : `
+      <p style="color: var(--meta-slate); margin: 24px 0;">คะแนนยังไม่ถึงเกณฑ์ ${percentPass}% สามารถทบทวนบทเรียนและทำข้อสอบใหม่อีกครั้ง</p>
+      <div style="max-width: 240px; margin: 0 auto 16px;">
+        <button class="btn" id="rt">ทำข้อสอบใหม่</button>
+      </div>
+      ${hasPracticalExam ? "" : `<div class="actions">${reportButton}</div>`}
+    `}
+    <p><button class="lnk" id="hm">กลับสู่หน้าแรก</button></p>
+  </div>`;
+
+  document.getElementById("hm").onclick = () => {
+    S.set = null;
+    S.seen = null;
+    start();
+  };
+
+  const rt = document.getElementById("rt");
+  if (rt) rt.onclick = () => {
+    S.set = null;
+    begin();
+  };
+
+  const btnViewExam = document.getElementById("btn-view-exam");
+  if (btnViewExam) btnViewExam.onclick = () => {
+    const modalArea = document.getElementById("modal-container");
+    const filePath = S.set === "ข้อสอบชุดที่ 1" ? examPractice1 : examPractice2;
+    const isPDF = filePath.toLowerCase().endsWith(".pdf");
+
+    modalArea.innerHTML = `
+    <div class="modal-overlay" id="modal-bg">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">เอกสารโจทย์ ${S.set} (${filePath})</div>
+          <button class="modal-close" id="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          ${isPDF 
+            ? `<iframe src="${filePath}" class="modal-frame"></iframe>`
+            : `<img src="${filePath}" class="modal-img" alt="โจทย์ข้อสอบปฏิบัติ">`
+          }
+        </div>
+      </div>
+    </div>`;
+    const close = () => { modalArea.innerHTML = ""; };
+    document.getElementById("modal-close-btn").onclick = close;
+    document.getElementById("modal-bg").onclick = e => { if (e.target.id === "modal-bg") close(); };
+  };
+
+  const btnDlAssets = document.getElementById("btn-dl-assets");
+  if (btnDlAssets) btnDlAssets.onclick = () => {
+    const a = document.createElement("a");
+    a.href = assetsFile;
+    a.download = assetsFile;
+    a.click();
+    const dm = document.getElementById("dm");
+    if (dm) dm.textContent = `ดาวน์โหลดไฟล์ ${assetsFile} เรียบร้อยแล้ว`;
+  };
+
+  const btnDlReport = document.getElementById("btn-dl-report");
+  if (btnDlReport) btnDlReport.onclick = () => {
+    const printArea = document.getElementById("print-container");
+    const origTitle = document.title;
+    document.title = `ผลการสอบ-${S.info[0]}-${S.info[1]}`;
+
+    printArea.innerHTML = `
+    <div id="report-template">
+      <h2>ใบรายงานผลการสอบออนไลน์</h2>
+      <div class="sub">${esc(examTitle)} - Examination Completion Certificate</div>
+      <div class="score-banner">
+        <div style="font-size: 14px; color: #5d6c7b; margin-bottom: 4px">${scoreDescription}</div>
+        <div class="val">${n} / ${tot} (${pct}%)</div>
+        <div style="font-size: 15px; font-weight: 700; color: ${pass ? "#31a24c" : "#f0284a"}; margin-top: 6px">สถานะ: ${pass ? "ผ่านเกณฑ์ (Passed)" : "ไม่ผ่านเกณฑ์ (Not passed)"}</div>
+      </div>
+      <table class="table-box">
+        <tr><td class="label">ชื่อ - นามสกุล</td><td><b>${esc(S.info[0])} ${esc(S.info[1])}</b></td></tr>
+        <tr><td class="label">ชั้นเรียน / ห้อง</td><td>ห้อง ${esc(S.info[2])}</td></tr>
+        <tr><td class="label">เลขที่</td><td>${esc(S.info[3])}</td></tr>
+        ${hasPracticalExam && pass ? `<tr><td class="label">ชุดข้อสอบปฏิบัติที่ได้รับ</td><td><b style="color: #0064e0; font-size: 16px">${esc(S.set)}</b></td></tr>` : ""}
+        <tr><td class="label">วิชา / ชุดข้อสอบ</td><td>${esc(examTitle)}</td></tr>
+        <tr><td class="label">วันที่และเวลาบันทึกผล</td><td>${esc(resultRecordedAt)} น.</td></tr>
+        <tr><td class="label">เกณฑ์การผ่าน</td><td>ไม่ต่ำกว่า ${percentPass}% (ตอบถูก ${Math.ceil(tot * percentPass / 100)} ข้อขึ้นไป)</td></tr>
+      </table>
+      <div class="footer">
+        เอกสารนี้ออกโดยระบบสอบออนไลน์ Online Examination System (วิชา React Native ระดับ BIT.1)<br>
+        รหัสยืนยันผลการสอบ: EXAM-${Date.now().toString(36).toUpperCase()}
+      </div>
+    </div>`;
+
+    window.print();
+    setTimeout(() => { document.title = origTitle; }, 1500);
+  };
+}
+
+// เริ่มต้นระบบ: โหลดไฟล์และเรนเดอร์หน้าแรก
+loadExamData().then(() => {
+  start();
+});
+</script>
+</body>
+</html>
