@@ -5,23 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>พ.ร.บ.การปฏิบัติราชการทางอิเล็กทรอนิกส์ พ.ศ. 2565 – สื่อการเรียนรู้</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root{--bg:#F4EFEA;--ink:#383838;--blue:#6FC2FF;--yel:#FFDE00;--teal:#16AA98;--red:#FF7169}
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
-body{font:400 16px/1.75 Prompt,sans-serif;background:var(--bg);color:var(--ink)}
-h1,h2,h3,.k{font-family:Kanit,sans-serif;letter-spacing:.05em}
+body{font:400 16px/1.75 Sarabun,sans-serif;background:var(--bg);color:var(--ink)}
+h1,h2,h3,.k{font-family:Sarabun,sans-serif;letter-spacing:.05em}
 .w{max-width:1100px;margin:auto;padding:0 20px;position:relative;z-index:1}
 nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--ink)}
 nav .w{display:flex;align-items:center;justify-content:space-between;height:60px}
-nav b{font:600 18px Kanit}nav b i{color:var(--teal);margin-right:8px}
+nav b{font:600 18px Sarabun}nav b i{color:var(--teal);margin-right:8px}
 nav a{color:var(--ink);text-decoration:none;font-size:14px;margin-left:20px}
 nav a:hover{text-decoration:underline}
-.btn{display:inline-block;border:2px solid var(--ink);background:var(--blue);color:var(--ink);padding:8px 22px;font:500 15px Kanit;letter-spacing:.06em;text-decoration:none;border-radius:3px;transition:.2s}
+.btn{display:inline-block;border:2px solid var(--ink);background:var(--blue);color:var(--ink);padding:8px 22px;font:500 15px Sarabun;letter-spacing:.06em;text-decoration:none;border-radius:3px;transition:.2s}
 .btn.o{background:none}.btn:hover{box-shadow:4px 4px 0 var(--ink);transform:translate(-2px,-2px)}
-.tag{display:inline-block;border:2px solid var(--ink);background:var(--bg);padding:4px 24px;font:500 20px Kanit;letter-spacing:.1em;margin-bottom:36px}
+.tag{display:inline-block;border:2px solid var(--ink);background:var(--bg);padding:4px 24px;font:500 20px Sarabun;letter-spacing:.1em;margin-bottom:36px}
 section{padding:80px 0;position:relative;overflow:hidden}
 .blue{background:var(--blue)}.yel{background:var(--yel)}.teal{background:var(--teal)}
 .card{background:#fff;border:2px solid var(--ink);border-radius:4px;padding:20px;transition:.2s}
@@ -47,23 +47,23 @@ h1{font-size:clamp(34px,5vw,58px);line-height:1.2;font-weight:500}
 .flow>i{align-self:center;font-size:20px}
 /* tabs */
 .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
-.tb{border:2px solid var(--ink);background:#fff;padding:8px 16px;font:500 15px Kanit;cursor:pointer;border-radius:3px;transition:.2s}
+.tb{border:2px solid var(--ink);background:#fff;padding:8px 16px;font:500 15px Sarabun;cursor:pointer;border-radius:3px;transition:.2s}
 .tb i{margin-right:8px}.tb:hover{background:var(--yel)}.tb.on{background:var(--ink);color:#fff}
 .pn{background:#fff;border:2px solid var(--ink);border-radius:4px;animation:pop .35s}
 @keyframes pop{from{opacity:0;transform:translateY(10px)}}
 .row{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 20px;border-bottom:1px dashed #bbb;align-items:start}
 .row:last-child{border:0}
-.row em{font:500 14px Kanit;font-style:normal;background:var(--yel);border:2px solid var(--ink);padding:0 8px;text-align:center;border-radius:3px}
+.row em{font:500 14px Sarabun;font-style:normal;background:var(--yel);border:2px solid var(--ink);padding:0 8px;text-align:center;border-radius:3px}
 .row b{background:linear-gradient(transparent 60%,#ffe96b 60%)}
 /* numbers & timeline */
-.num{text-align:center}.num strong{display:block;font:600 34px Kanit;line-height:1.2}.num span{font-size:14px}
+.num{text-align:center}.num strong{display:block;font:600 34px Sarabun;line-height:1.2}.num span{font-size:14px}
 .tl{display:flex;flex-wrap:wrap;gap:0;margin-top:48px;align-items:stretch}
 .tl>div{flex:1;min-width:160px;background:#fff;border:2px solid var(--ink);padding:14px;margin:0 -2px 12px 0;font-size:14px;position:relative}
-.tl>div b{display:block;font:500 17px Kanit}
+.tl>div b{display:block;font:500 17px Sarabun}
 .tl>div:before{content:"";position:absolute;top:-9px;left:14px;width:14px;height:14px;background:var(--red);border:2px solid var(--ink);transform:rotate(45deg)}
 /* cases */
 .t2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.case .v{display:inline-block;background:var(--red);color:#fff;font:500 13px Kanit;padding:0 10px;border-radius:2px;margin-bottom:6px}
+.case .v{display:inline-block;background:var(--red);color:#fff;font:500 13px Sarabun;padding:0 10px;border-radius:2px;margin-bottom:6px}
 .case .v.y{background:var(--teal)}
 .tip{margin-top:20px}.tip li{margin:6px 0 0 20px}
 .bad{color:#c0392b;font-weight:500}.good{color:#0b7d6f;font-weight:500}

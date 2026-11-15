@@ -6,7 +6,7 @@
 <title>ศูนย์รวมสื่อการเรียนรู้และระบบสอบออนไลน์กฎหมายดิจิทัล</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Prompt:wght@300;400;500&family=Sarabun:wght@300;400;500&family=Chakra+Petch:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
@@ -16,6 +16,7 @@
   --yel: #FFDE00;
   --teal: #16AA98;
   --red: #FF7169;
+  --body-font: 'Prompt', sans-serif;
 }
 
 * {
@@ -29,7 +30,7 @@ html {
 }
 
 body {
-  font: 400 16px/1.75 'Prompt', sans-serif;
+  font: 400 16px/1.75 var(--body-font);
   background: var(--bg);
   color: var(--ink);
   overflow-x: hidden;
@@ -85,18 +86,24 @@ nav b i {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
-.nav-links a {
+.nav-links a, .nav-btn {
   color: var(--ink);
   text-decoration: none;
   font: 500 14px 'Kanit', sans-serif;
   letter-spacing: .05em;
-  padding: 4px 6px;
+  padding: 4px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.nav-links a:hover {
+.nav-links a:hover, .nav-btn:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -151,6 +158,91 @@ nav b i {
   letter-spacing: .09em;
   margin-bottom: 32px;
   border-radius: 4px;
+}
+
+/* ===== SETTINGS MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(56, 56, 56, 0.4);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  width: 90%;
+  max-width: 460px;
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 24px;
+  transform: translateY(15px);
+  transition: transform .25s ease;
+}
+
+.modal-overlay.show .modal-card {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.modal-close {
+  background: var(--red);
+  color: #fff;
+  border: 2px solid var(--ink);
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.font-option-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.font-opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid var(--ink);
+  padding: 10px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--bg);
+  transition: background .15s ease;
+}
+
+.font-opt:hover {
+  background: var(--blue);
+}
+
+.font-opt.selected {
+  background: var(--yel);
+  box-shadow: 3px 3px 0 var(--ink);
 }
 
 /* ===== SECTIONS & CARDS ===== */
@@ -579,7 +671,7 @@ footer {
 }
 
 @media (max-width: 640px) {
-  .nav-links {
+  .nav-links .hide-mobile {
     display: none;
   }
   section {
@@ -640,14 +732,43 @@ footer {
   <div class="w">
     <b><i class="fa-solid fa-scale-balanced"></i>DIGITAL LAW EXAM</b>
     <div class="nav-links">
-      <a href="#modules">รายวิชาทั้งหมด</a>
-      <a href="#preview">เจาะลึกเนื้อหา</a>
-      <a href="#guide">ขั้นตอนการสอบ</a>
-      <a href="#checklist">เช็กความพร้อม</a>
-      <a href="#quick">ทางลัดเข้าห้องสอบ</a>
+      <a href="#modules" class="hide-mobile">รายวิชาทั้งหมด</a>
+      <a href="#preview" class="hide-mobile">เจาะลึกเนื้อหา</a>
+      <a href="#guide" class="hide-mobile">ขั้นตอนการสอบ</a>
+      <button class="nav-btn" id="btn-settings" title="ตั้งค่าฟอนต์และการแสดงผล"><i class="fa-solid fa-gear"></i> ตั้งค่าฟอนต์</button>
+      <button class="nav-btn" id="btn-fullscreen" title="สลับโหมดเต็มหน้าจอ"><i class="fa-solid fa-expand" id="fs-icon"></i> เต็มหน้าจอ</button>
     </div>
   </div>
 </nav>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="modal-title"><i class="fa-solid fa-font"></i> เลือกฟอนต์สำหรับการอ่าน</h3>
+      <button class="modal-close" id="modal-close-btn" aria-label="ปิดหน้าต่าง"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <p style="font-size:14px;margin-bottom:10px">เลือกรูปแบบตัวอักษรสำหรับเนื้อหาในระบบ เพื่อความสบายตาในการอ่านและการเตรียมตัวสอบ:</p>
+    <div class="font-option-list" id="font-list">
+      <div class="font-opt" data-font="'Prompt', sans-serif" style="font-family:'Prompt',sans-serif">
+        <span><b>Prompt</b> (ค่าเริ่มต้น - ทันสมัย อ่านง่าย)</span>
+        <i class="fa-solid fa-check" style="display:none"></i>
+      </div>
+      <div class="font-opt" data-font="'Sarabun', sans-serif" style="font-family:'Sarabun',sans-serif">
+        <span><b>Sarabun (สารบรรณ)</b> (ฟอนต์ราชการ มาตรฐานอ่านนานไม่ล้าตา)</span>
+        <i class="fa-solid fa-check" style="display:none"></i>
+      </div>
+      <div class="font-opt" data-font="'Kanit', sans-serif" style="font-family:'Kanit',sans-serif">
+        <span><b>Kanit (คณิต)</b> (ตัวหนาคมชัด ทรงเรขาคณิตทันสมัย)</span>
+        <i class="fa-solid fa-check" style="display:none"></i>
+      </div>
+      <div class="font-opt" data-font="'Chakra Petch', sans-serif" style="font-family:'Chakra Petch',sans-serif">
+        <span><b>Chakra Petch (จักรเพชร)</b> (สไตล์เทคโน ล้ำอนาคต)</span>
+        <i class="fa-solid fa-check" style="display:none"></i>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- 1. HERO (CREAM) -->
 <header class="hero">
@@ -1050,6 +1171,74 @@ quickEl.innerHTML = MODULES.map(m => `
     </div>
   </div>
 `).join("");
+
+// Fullscreen Toggle
+const fsBtn = document.getElementById("btn-fullscreen");
+const fsIcon = document.getElementById("fs-icon");
+
+fsBtn.onclick = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(err => {
+      alert(`ไม่สามารถเปิดโหมดเต็มหน้าจอได้: ${err.message}`);
+    });
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+};
+
+document.addEventListener("fullscreenchange", () => {
+  if (document.fullscreenElement) {
+    fsIcon.className = "fa-solid fa-compress";
+    fsBtn.innerHTML = '<i class="fa-solid fa-compress" id="fs-icon"></i> ย่อหน้าจอ';
+  } else {
+    fsIcon.className = "fa-solid fa-expand";
+    fsBtn.innerHTML = '<i class="fa-solid fa-expand" id="fs-icon"></i> เต็มหน้าจอ';
+  }
+});
+
+// Settings Modal & Font Switcher
+const settingsModal = document.getElementById("settings-modal");
+const btnSettings = document.getElementById("btn-settings");
+const modalCloseBtn = document.getElementById("modal-close-btn");
+const fontList = document.getElementById("font-list");
+
+btnSettings.onclick = () => settingsModal.classList.add("show");
+modalCloseBtn.onclick = () => settingsModal.classList.remove("show");
+settingsModal.onclick = (e) => {
+  if (e.target === settingsModal) settingsModal.classList.remove("show");
+};
+
+// Load saved font preference
+const savedFont = localStorage.getItem("exam_preferred_font");
+if (savedFont) {
+  document.documentElement.style.setProperty("--body-font", savedFont);
+}
+
+// Render Font Options
+const fontOptions = fontList.querySelectorAll(".font-opt");
+fontOptions.forEach(opt => {
+  const fontVal = opt.getAttribute("data-font");
+  const checkIcon = opt.querySelector("i");
+  if (getComputedStyle(document.documentElement).getPropertyValue("--body-font").trim() === fontVal.trim() || 
+      (!savedFont && fontVal.includes("Prompt"))) {
+    opt.classList.add("selected");
+    checkIcon.style.display = "inline-block";
+  }
+
+  opt.onclick = () => {
+    fontOptions.forEach(o => {
+      o.classList.remove("selected");
+      o.querySelector("i").style.display = "none";
+    });
+    opt.classList.add("selected");
+    checkIcon.style.display = "inline-block";
+
+    document.documentElement.style.setProperty("--body-font", fontVal);
+    localStorage.setItem("exam_preferred_font", fontVal);
+  };
+});
 
 // IntersectionObserver for Scroll Reveal
 const io = new IntersectionObserver(entries => {

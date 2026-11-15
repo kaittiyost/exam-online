@@ -259,6 +259,56 @@ label {
   display: flex;
 }
 
+/* Count Selector Grid */
+.count-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.count-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px 12px;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.count-card:hover {
+  border-color: var(--brand-sky);
+}
+
+.count-card.active {
+  background: var(--brand-sky-tint);
+  border-color: var(--brand-sky-dark);
+  box-shadow: inset 0 0 0 1px var(--brand-sky-dark);
+}
+
+.count-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink-dark);
+  line-height: 1.2;
+}
+
+.count-card.active .count-num {
+  color: var(--brand-sky-dark);
+}
+
+.count-desc {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
 /* Mode Selector Cards */
 .mode-grid {
   display: grid;
@@ -1055,7 +1105,8 @@ const percentPass     = 90;
 const examPractice1   = "Exam1View.png";
 const examPractice2   = "Exam2View.png";
 const assetsFile      = "pic.zip";
-const questionsCount  = 50;
+const QUESTION_COUNTS = [20, 50, 100];
+const defaultCount    = 50;
 
 /* ==========================================================================
    AVATARS: ตัวละคร 4 แบบให้ผู้เข้าสอบเลือก
@@ -1218,19 +1269,29 @@ const sh = a => {
 };
 const L = "ก ข ค ง จ".split(" ");
 const $ = document.getElementById("app");
-let S = { avatar: AVATARS[0], qs: [], i: 0, set: null, checkMode: "submit" };
+let S = { avatar: AVATARS[0], qs: [], i: 0, set: null, checkMode: "submit", questionCount: defaultCount };
+
+function getLeadText() {
+  const actualCount = Math.min(S.questionCount, Q.length);
+  return `สุ่ม ${actualCount} ข้อจากคลัง ${Q.length} ข้อ · เกณฑ์ผ่าน ${percentPass}% ขึ้นไป`;
+}
 
 function start() {
   document.getElementById("nav-title").textContent = examTitle;
   document.getElementById("nav-mode-badge").textContent = "ระบบสอบออนไลน์";
   document.title = examTitle;
-  const actualCount = Math.min(questionsCount, Q.length);
+
+  const countLabels = {
+    20: "ชุดสั้น (ทบทวนไว)",
+    50: "ชุดมาตรฐาน",
+    100: "ชุดจัดเต็ม"
+  };
 
   $.innerHTML = `
   <div class="start-wrap">
     <span class="section-tag yellow">ONLINE EXAMINATION</span>
     <h1>${esc(examTitle)}</h1>
-    <p class="lead">สุ่ม ${actualCount} ข้อจากคลัง ${Q.length} ข้อ · เกณฑ์ผ่าน ${percentPass}% ขึ้นไป</p>
+    <p class="lead" id="lead-summary">${getLeadText()}</p>
     <div class="card card-accent-top">
       <div class="f">
         <label>เลือกตัวละคร (Avatar) ของคุณ</label>
@@ -1243,6 +1304,21 @@ function start() {
               <div class="avatar-img" style="background:${av.bg}">${av.svg}</div>
               <div class="avatar-name">${esc(av.name)}</div>
               <div class="avatar-role">${esc(av.role)}</div>
+            </button>`;
+          }).join("")}
+        </div>
+      </div>
+
+      <div class="f">
+        <label>จำนวนข้อสอบที่ต้องการทำ</label>
+        <div class="count-grid" role="radiogroup" aria-label="เลือกจำนวนข้อสอบ">
+          ${QUESTION_COUNTS.map(cnt => {
+            const isActive = S.questionCount === cnt;
+            const capped = cnt > Q.length ? ` (คลังมี ${Q.length} ข้อ)` : "";
+            return `
+            <button type="button" class="count-card ${isActive ? "active" : ""}" data-count="${cnt}" aria-pressed="${isActive}">
+              <div class="count-num">${cnt} ข้อ</div>
+              <div class="count-desc">${countLabels[cnt] || ""}${capped}</div>
             </button>`;
           }).join("")}
         </div>
@@ -1282,6 +1358,19 @@ function start() {
     };
   });
 
+  $.querySelectorAll(".count-card").forEach(btn => {
+    btn.onclick = () => {
+      S.questionCount = Number(btn.dataset.count);
+      $.querySelectorAll(".count-card").forEach(c => {
+        const isActive = Number(c.dataset.count) === S.questionCount;
+        c.classList.toggle("active", isActive);
+        c.setAttribute("aria-pressed", String(isActive));
+      });
+      const leadEl = document.getElementById("lead-summary");
+      if (leadEl) leadEl.textContent = getLeadText();
+    };
+  });
+
   $.querySelectorAll(".mode-card").forEach(btn => {
     btn.onclick = () => {
       S.checkMode = btn.dataset.mode;
@@ -1300,7 +1389,7 @@ function start() {
 }
 
 function begin() {
-  const actualCount = Math.min(questionsCount, Q.length);
+  const actualCount = Math.min(S.questionCount, Q.length);
   S.seen = S.seen || new Set();
   let ids = Q.map((_, k) => k);
   let fresh = sh(ids.filter(k => !S.seen.has(k)));

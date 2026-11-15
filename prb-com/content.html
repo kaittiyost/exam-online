@@ -6,7 +6,7 @@
   <title>เรียนรู้ พ.ร.บ. คอมพิวเตอร์ อย่างเข้าใจง่าย | เตรียมสอบ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     :root {
@@ -19,6 +19,7 @@
       --white: #ffffff;
       --card-shadow: 6px 6px 0 var(--ink);
       --btn-shadow: 4px 4px 0 var(--ink);
+      --font-main: 'Sarabun', 'TH Sarabun New', 'THSarabunNew', sans-serif;
     }
 
     * {
@@ -32,16 +33,18 @@
     }
 
     body {
-      font-family: 'Prompt', sans-serif;
+      font-family: var(--font-main);
       background: var(--bg);
       color: var(--ink);
-      line-height: 1.75;
+      font-size: 18px;
+      line-height: 1.7;
       overflow-x: hidden;
     }
 
     h1, h2, h3, h4, .k {
-      font-family: 'Kanit', sans-serif;
-      letter-spacing: .05em;
+      font-family: var(--font-main);
+      font-weight: 700;
+      letter-spacing: 0.01em;
     }
 
     .w {
@@ -69,7 +72,7 @@
     }
 
     nav b {
-      font: 600 18px Kanit;
+      font: 700 20px var(--font-main);
       display: flex;
       align-items: center;
       gap: 8px;
@@ -82,10 +85,10 @@
     nav div a {
       color: var(--ink);
       text-decoration: none;
-      font-size: 14px;
-      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-family: var(--font-main);
       margin-left: 20px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     nav div a:hover {
@@ -101,8 +104,8 @@
       background: var(--blue);
       color: var(--ink);
       padding: 10px 24px;
-      font: 500 15px Kanit;
-      letter-spacing: .06em;
+      font: 600 17px var(--font-main);
+      letter-spacing: 0.02em;
       text-decoration: none;
       border-radius: 4px;
       transition: .2s;
@@ -123,8 +126,8 @@
       border: 2px solid var(--ink);
       background: #fff;
       padding: 6px 20px;
-      font: 500 18px Kanit;
-      letter-spacing: .08em;
+      font: 700 20px var(--font-main);
+      letter-spacing: 0.02em;
       margin-bottom: 32px;
       border-radius: 4px;
       box-shadow: 3px 3px 0 var(--ink);
@@ -193,9 +196,9 @@
     }
 
     h1 {
-      font-size: clamp(32px, 4.5vw, 52px);
+      font-size: clamp(34px, 4.8vw, 54px);
       line-height: 1.25;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 20px;
     }
 
@@ -206,7 +209,7 @@
 
     .hero p {
       margin-bottom: 28px;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
       max-width: 48ch;
     }
 
@@ -242,7 +245,7 @@
     }
 
     .win pre {
-      font: 14px/1.8 'Courier New', monospace;
+      font: 15px/1.8 'Courier New', monospace;
       padding: 18px;
       white-space: pre-wrap;
       color: var(--ink);
@@ -251,8 +254,9 @@
     .ok {
       border-top: 2px solid var(--ink);
       padding: 10px 18px;
-      font-weight: 600;
-      font-family: 'Kanit', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      font-family: var(--font-main);
       color: var(--teal);
       background: #f9f9f9;
     }
@@ -263,7 +267,7 @@
     }
 
     .section-header h2 {
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(26px, 3.2vw, 38px);
       margin-bottom: 8px;
     }
 
@@ -294,7 +298,7 @@
     }
 
     .highlight-box h3 {
-      font-size: 20px;
+      font-size: 22px;
       margin-bottom: 14px;
       display: flex;
       align-items: center;
@@ -346,7 +350,7 @@
       align-items: center;
       justify-content: center;
       padding: 16px;
-      font-family: 'Kanit', sans-serif;
+      font-family: var(--font-main);
       font-weight: 700;
     }
 
@@ -361,13 +365,13 @@
     }
 
     .offense-num .num {
-      font-size: 1.8rem;
+      font-size: 2rem;
       line-height: 1;
     }
 
     .offense-num .label {
-      font-size: 0.8rem;
-      font-weight: 500;
+      font-size: 0.9rem;
+      font-weight: 600;
     }
 
     .offense-body {
@@ -375,7 +379,7 @@
     }
 
     .offense-body h3 {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -384,7 +388,7 @@
     }
 
     .offense-body .desc {
-      font-size: 0.98rem;
+      font-size: 1.05rem;
       margin-bottom: 14px;
       opacity: 0.9;
     }
@@ -394,7 +398,7 @@
       display: inline-block;
       border: 2px solid var(--ink);
       padding: 2px 10px;
-      font: 500 12px Kanit;
+      font: 600 14px var(--font-main);
       border-radius: 3px;
       background: var(--bg);
     }
@@ -408,8 +412,8 @@
       background: #fff5f5;
       border: 2px solid var(--ink);
       color: #c0392b;
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-size: 0.98rem;
+      font-weight: 700;
       padding: 6px 14px;
       border-radius: 4px;
       margin-top: 6px;
@@ -464,19 +468,19 @@
       border-radius: 50%;
       text-align: center;
       line-height: 28px;
-      font-family: 'Kanit', sans-serif;
+      font-family: var(--font-main);
       font-weight: 700;
       margin-bottom: 12px;
       box-shadow: 2px 2px 0 var(--ink);
     }
 
     .step-card h4 {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       margin-bottom: 6px;
     }
 
     .step-card p {
-      font-size: 0.9rem;
+      font-size: 1rem;
       opacity: 0.85;
     }
 
@@ -496,7 +500,7 @@
     }
 
     .tip-card h3 {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -504,7 +508,7 @@
     }
 
     .tip-card p {
-      font-size: 0.93rem;
+      font-size: 1.02rem;
       opacity: 0.9;
     }
 
@@ -513,7 +517,7 @@
       background: var(--ink);
       color: #ddd;
       padding: 50px 0 30px;
-      font-size: 14px;
+      font-size: 16px;
       border-top: 2px solid var(--ink);
     }
 
@@ -535,7 +539,7 @@
 
     footer h4 {
       color: #fff;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       margin-bottom: 14px;
     }
 
@@ -557,7 +561,7 @@
       padding: 20px 20px 0;
       border-top: 1px solid rgba(255,255,255,0.15);
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       opacity: 0.8;
     }
 
