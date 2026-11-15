@@ -279,7 +279,7 @@ h1 {
 .win .bar s:nth-child(3) { background: var(--teal); }
 
 .win pre {
-  font: 13.5px/1.8 'Courier New', monospace;
+  font: 13px/1.75 'Courier New', monospace;
   padding: 18px;
   white-space: pre-wrap;
   color: var(--ink);
@@ -656,7 +656,7 @@ footer {
   <div class="w">
     <div class="rv">
       <div class="tag">ระบบคลังความรู้และทดสอบออนไลน์</div>
-      <h1>กฎหมายดิจิทัล<br>และเทคโนโลยีสารสนเทศ<br>ครบจบ 5 รายวิชา</h1>
+      <h1>กฎหมายดิจิทัล<br>และเทคโนโลยีสารสนเทศ<br>ครบจบ 6 รายวิชา</h1>
       <p>รวมสื่อการเรียนรู้สรุปสาระสำคัญ และระบบฝึกทำข้อสอบออนไลน์แบบสุ่มโจทย์ สลับตัวเลือก พร้อมระบบเลือกตัวละคร Avatar และรายงานผลสอบทันที</p>
       <div class="hero-actions">
         <a class="btn" href="#modules"><i class="fa-solid fa-layer-group"></i> เลือกรายวิชาเรียนและสอบ</a>
@@ -667,11 +667,12 @@ footer {
     <div class="win rv">
       <div class="bar"><s></s><s></s><s></s></div>
       <pre>exam-online/
-├── prb-com/             (พ.ร.บ. คอมพิวเตอร์)
+├── prb-com/              (พ.ร.บ. คอมพิวเตอร์)
+├── prb-cyber/            (พ.ร.บ. ความมั่นคงปลอดภัยไซเบอร์)
 ├── prb-elec-transaction/ (ธุรกรรมทางอิเล็กทรอนิกส์)
-├── prb-electronic/      (ปฏิบัติราชการอิเล็กทรอนิกส์)
-├── prb-mng-digital/     (การบริหารงานและบริการภาครัฐดิจิทัล)
-└── prb-pdpa/            (คุ้มครองข้อมูลส่วนบุคคล PDPA)</pre>
+├── prb-electronic/       (ปฏิบัติราชการอิเล็กทรอนิกส์)
+├── prb-mng-digital/      (การบริหารงานและบริการภาครัฐดิจิทัล)
+└── prb-pdpa/             (คุ้มครองข้อมูลส่วนบุคคล PDPA)</pre>
       <div class="ok"><i class="fa-solid fa-circle-check"></i> พร้อมใช้งานทั้งบทเรียน (content.html) และแบบทดสอบ (index.html)</div>
     </div>
   </div>
@@ -682,7 +683,7 @@ footer {
   <svg class="sh cl" style="left:3%;top:28px"><use href="#cloud"/></svg>
   <svg class="sh cl" style="right:4%;bottom:24px;animation-delay:-3s"><use href="#cloud"/></svg>
   <div class="w">
-    <div class="tag rv">รายวิชาทั้งหมด (5 หมวดกฎหมาย)</div>
+    <div class="tag rv">รายวิชาทั้งหมด (6 หมวดกฎหมาย)</div>
     <div class="g rv">
 
       <!-- 1. prb-com -->
@@ -701,7 +702,23 @@ footer {
         </div>
       </article>
 
-      <!-- 2. prb-elec-transaction -->
+      <!-- 2. prb-cyber -->
+      <article class="card mod-card">
+        <div>
+          <div class="mod-head">
+            <div class="mod-icon" style="background:var(--red);color:#fff"><i class="fa-solid fa-user-shield"></i></div>
+            <span class="mod-code">prb-cyber</span>
+          </div>
+          <h3>พ.ร.บ. การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562</h3>
+          <p>โครงสร้างพื้นฐานสำคัญทางสารสนเทศ (CII) ระดับภัยคุกคามทางไซเบอร์ 3 ระดับ บทบาท สกมช. และแนวทางรับมือ</p>
+        </div>
+        <div class="mod-actions">
+          <a class="btn o" href="prb-cyber/content.html"><i class="fa-solid fa-book-open"></i> อ่านเนื้อหา</a>
+          <a class="btn" href="prb-cyber/index.html"><i class="fa-solid fa-pen-to-square"></i> ทำข้อสอบ</a>
+        </div>
+      </article>
+
+      <!-- 3. prb-elec-transaction -->
       <article class="card mod-card">
         <div>
           <div class="mod-head">
@@ -717,7 +734,7 @@ footer {
         </div>
       </article>
 
-      <!-- 3. prb-electronic -->
+      <!-- 4. prb-electronic -->
       <article class="card mod-card">
         <div>
           <div class="mod-head">
@@ -733,11 +750,11 @@ footer {
         </div>
       </article>
 
-      <!-- 4. prb-mng-digital -->
+      <!-- 5. prb-mng-digital -->
       <article class="card mod-card">
         <div>
           <div class="mod-head">
-            <div class="mod-icon" style="background:var(--red);color:#fff"><i class="fa-solid fa-network-wired"></i></div>
+            <div class="mod-icon" style="background:var(--teal);color:#fff"><i class="fa-solid fa-network-wired"></i></div>
             <span class="mod-code">prb-mng-digital</span>
           </div>
           <h3>พ.ร.บ. การบริหารงานและการให้บริการภาครัฐผ่านระบบดิจิทัล</h3>
@@ -749,7 +766,7 @@ footer {
         </div>
       </article>
 
-      <!-- 5. prb-pdpa -->
+      <!-- 6. prb-pdpa -->
       <article class="card mod-card">
         <div>
           <div class="mod-head">
@@ -816,7 +833,7 @@ footer {
 <section class="cream" id="checklist">
   <div class="w">
     <div class="tag rv">เช็กความพร้อมก่อนเข้าห้องสอบ</div>
-    <p class="rv">ติ๊กถูกในหัวข้อที่คุณทบทวนเรียบร้อยแล้ว เพื่อดูความคืบหน้าการเตรียมตัวทั้ง 5 วิชา</p>
+    <p class="rv">ติ๊กถูกในหัวข้อที่คุณทบทวนเรียบร้อยแล้ว เพื่อดูความคืบหน้าการเตรียมตัวทั้ง 6 วิชา</p>
     <div class="pb rv" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="pbar-wrap">
       <div id="bar"></div>
     </div>
@@ -839,7 +856,7 @@ footer {
   <div class="w ft-flex">
     <div>
       <b class="k" style="font-size:17px"><i class="fa-solid fa-scale-balanced" style="color:var(--teal);margin-right:6px"></i>ระบบสื่อการเรียนรู้และข้อสอบออนไลน์</b>
-      <p style="margin-top:4px">ครอบคลุม 5 พระราชบัญญัติด้านกฎหมายดิจิทัลและเทคโนโลยีสารสนเทศ</p>
+      <p style="margin-top:4px">ครอบคลุม 6 พระราชบัญญัติด้านกฎหมายดิจิทัลและเทคโนโลยีสารสนเทศ</p>
     </div>
     <div class="k" style="font-size:14px">
       โครงสร้างระบบ: <span style="border:2px solid var(--ink);background:#fff;padding:2px 8px;border-radius:4px">root/index.html</span>
@@ -862,6 +879,20 @@ const MODULES = [
     focus: "เน้นจำอัตราโทษจำคุก/ปรับรายมาตรา และความแตกต่างระหว่าง ม.14 กับ ม.16 (ยอมความได้)",
     contentUrl: "prb-com/content.html",
     examUrl: "prb-com/index.html"
+  },
+  {
+    id: "prb-cyber",
+    short: "มั่นคงปลอดภัยไซเบอร์",
+    icon: "fa-user-shield",
+    title: "พ.ร.บ. การรักษาความมั่นคงปลอดภัยไซเบอร์ พ.ศ. 2562",
+    points: [
+      "หน่วยงานโครงสร้างพื้นฐานสำคัญทางสารสนเทศ (CII) 7 ด้านหลัก เช่น การเงิน พลังงาน โทรคมนาคม สาธารณสุข",
+      "การแบ่งระดับภัยคุกคามทางไซเบอร์ 3 ระดับ: ระดับไม่ร้ายแรง ระดับร้ายแรง และระดับวิกฤต",
+      "บทบาทของคณะกรรมการการรักษาความมั่นคงปลอดภัยไซเบอร์แห่งชาติ (กมช.), กกม. และ สกมช."
+    ],
+    focus: "เน้นจำความแตกต่างของภัยคุกคาม 3 ระดับ อำนาจสั่งการในแต่ละระดับ และหน้าที่แจ้งเหตุของ CII",
+    contentUrl: "prb-cyber/content.html",
+    examUrl: "prb-cyber/index.html"
   },
   {
     id: "prb-elec-transaction",
@@ -923,6 +954,7 @@ const MODULES = [
 
 const CHECK_ITEMS = [
   "ทบทวน พ.ร.บ. คอมพิวเตอร์ (prb-com) และจำอัตราโทษมาตราสำคัญได้แล้ว",
+  "เข้าใจระดับภัยคุกคาม 3 ระดับ และหน่วยงาน CII ใน พ.ร.บ. ความมั่นคงปลอดภัยไซเบอร์ (prb-cyber)",
   "เข้าใจหลักลายมือชื่อและสัญญาใน พ.ร.บ. ธุรกรรมทางอิเล็กทรอนิกส์ (prb-elec-transaction)",
   "จำตัวเลขและมาตราหลักใน พ.ร.บ. การปฏิบัติราชการทางอิเล็กทรอนิกส์ 2565 (prb-electronic)",
   "เข้าใจหลักธรรมาภิบาลข้อมูลภาครัฐใน พ.ร.บ. บริหารงานภาครัฐดิจิทัล (prb-mng-digital)",
@@ -997,7 +1029,7 @@ ckEl.addEventListener("change", () => {
   barEl.style.width = pct + "%";
   pbarWrap.setAttribute("aria-valuenow", String(pct));
   msgEl.textContent = done === inputs.length
-    ? "ทบทวนครบทั้ง 5 รายวิชาแล้ว พร้อมลุยข้อสอบทุกชุด!"
+    ? "ทบทวนครบทั้ง 6 รายวิชาแล้ว พร้อมลุยข้อสอบทุกชุด!"
     : `ทบทวนแล้ว ${done} จาก ${inputs.length} รายวิชา (${pct}%)`;
 });
 
