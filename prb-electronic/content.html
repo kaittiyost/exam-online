@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>พ.ร.บ.การปฏิบัติราชการทางอิเล็กทรอนิกส์ พ.ศ. 2565 – สื่อการเรียนรู้</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#F4EFEA;--ink:#383838;--blue:#6FC2FF;--yel:#FFDE00;--teal:#16AA98;--red:#FF7169}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:400 16px/1.75 Prompt,sans-serif;background:var(--bg);color:var(--ink)}
+h1,h2,h3,.k{font-family:Kanit,sans-serif;letter-spacing:.05em}
+.w{max-width:1100px;margin:auto;padding:0 20px;position:relative;z-index:1}
+nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--ink)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:60px}
+nav b{font:600 18px Kanit}nav b i{color:var(--teal);margin-right:8px}
+nav a{color:var(--ink);text-decoration:none;font-size:14px;margin-left:20px}
+nav a:hover{text-decoration:underline}
+.btn{display:inline-block;border:2px solid var(--ink);background:var(--blue);color:var(--ink);padding:8px 22px;font:500 15px Kanit;letter-spacing:.06em;text-decoration:none;border-radius:3px;transition:.2s}
+.btn.o{background:none}.btn:hover{box-shadow:4px 4px 0 var(--ink);transform:translate(-2px,-2px)}
+.tag{display:inline-block;border:2px solid var(--ink);background:var(--bg);padding:4px 24px;font:500 20px Kanit;letter-spacing:.1em;margin-bottom:36px}
+section{padding:80px 0;position:relative;overflow:hidden}
+.blue{background:var(--blue)}.yel{background:var(--yel)}.teal{background:var(--teal)}
+.card{background:#fff;border:2px solid var(--ink);border-radius:4px;padding:20px;transition:.2s}
+.card:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--ink)}
+.g{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card h3{font-size:18px;margin-bottom:6px}.card i.fa-solid{font-size:24px;margin-bottom:10px;display:block}
+.sh{position:absolute;animation:fl 6s ease-in-out infinite alternate}
+@keyframes fl{to{transform:translateY(-14px) rotate(8deg)}}
+.cl{width:200px;height:100px}
+/* hero */
+.hero{padding:70px 0 90px}
+.hero .w{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.2;font-weight:500}
+.hero p{margin:20px 0 28px;max-width:46ch}
+.win{background:#fff;border:2px solid var(--ink);border-radius:6px;box-shadow:8px 8px 0 var(--ink)}
+.win .bar{border-bottom:2px solid var(--ink);padding:8px 12px}
+.win .bar s{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red);margin-right:6px}
+.win pre{font:14px/1.8 'Courier New',monospace;padding:18px;white-space:pre-wrap}
+.ok{border-top:2px solid var(--ink);padding:10px 18px;font-weight:500;color:var(--teal)}
+/* flow */
+.flow{display:flex;gap:14px;align-items:stretch;flex-wrap:wrap;margin-bottom:40px}
+.flow .card{flex:1;min-width:200px;text-align:center}
+.flow>i{align-self:center;font-size:20px}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.tb{border:2px solid var(--ink);background:#fff;padding:8px 16px;font:500 15px Kanit;cursor:pointer;border-radius:3px;transition:.2s}
+.tb i{margin-right:8px}.tb:hover{background:var(--yel)}.tb.on{background:var(--ink);color:#fff}
+.pn{background:#fff;border:2px solid var(--ink);border-radius:4px;animation:pop .35s}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}}
+.row{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 20px;border-bottom:1px dashed #bbb;align-items:start}
+.row:last-child{border:0}
+.row em{font:500 14px Kanit;font-style:normal;background:var(--yel);border:2px solid var(--ink);padding:0 8px;text-align:center;border-radius:3px}
+.row b{background:linear-gradient(transparent 60%,#ffe96b 60%)}
+/* numbers & timeline */
+.num{text-align:center}.num strong{display:block;font:600 34px Kanit;line-height:1.2}.num span{font-size:14px}
+.tl{display:flex;flex-wrap:wrap;gap:0;margin-top:48px;align-items:stretch}
+.tl>div{flex:1;min-width:160px;background:#fff;border:2px solid var(--ink);padding:14px;margin:0 -2px 12px 0;font-size:14px;position:relative}
+.tl>div b{display:block;font:500 17px Kanit}
+.tl>div:before{content:"";position:absolute;top:-9px;left:14px;width:14px;height:14px;background:var(--red);border:2px solid var(--ink);transform:rotate(45deg)}
+/* cases */
+.t2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.case .v{display:inline-block;background:var(--red);color:#fff;font:500 13px Kanit;padding:0 10px;border-radius:2px;margin-bottom:6px}
+.case .v.y{background:var(--teal)}
+.tip{margin-top:20px}.tip li{margin:6px 0 0 20px}
+.bad{color:#c0392b;font-weight:500}.good{color:#0b7d6f;font-weight:500}
+/* check */
+.pb{height:16px;border:2px solid var(--ink);background:#fff;margin:14px 0 22px;border-radius:3px;overflow:hidden}
+.pb div{height:100%;width:0;background:var(--teal);transition:.4s}
+.ck{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;cursor:pointer;margin-bottom:10px}
+.ck input{margin-top:7px;accent-color:var(--teal);width:18px;height:18px}
+footer{background:var(--ink);color:#ddd;padding:36px 0;font-size:14px}
+.rv{opacity:0;transform:translateY(28px);transition:.6s}.rv.on{opacity:1;transform:none}
+@media(max-width:760px){.hero .w{grid-template-columns:1fr}nav a{display:none}.row{grid-template-columns:1fr;gap:6px}.row em{justify-self:start}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="c" viewBox="0 0 200 100"><path d="M40 92a30 30 0 0 1 2-60 40 40 0 0 1 76-8 36 36 0 0 1 48 30 26 26 0 0 1-6 38z" fill="#fff" stroke="#383838" stroke-width="3"/></symbol></svg>
+
+<nav><div class="w"><b><i class="fa-solid fa-landmark"></i>E-GOV ACT 2565</b>
+<div><a href="#overview">ภาพรวม</a><a href="#sections">รายมาตรา</a><a href="#numbers">ตัวเลข</a><a href="#roles">ใครทำอะไร</a><a href="#cases">สถานการณ์</a><a href="#check">เช็กความพร้อม</a></div></div></nav>
+
+<header class="hero"><div class="sh" style="right:6%;top:40px;width:130px;height:90px;background:var(--yel);border-radius:50%;border:2px solid var(--ink)"></div>
+<div class="w"><div class="rv">
+<h1>ปฏิบัติราชการ<br>ทางอิเล็กทรอนิกส์<br>เข้าใจภาพรวม ทำข้อสอบได้</h1>
+<p>สรุป พ.ร.บ.การปฏิบัติราชการทางอิเล็กทรอนิกส์ พ.ศ. 2565 ครบทั้ง 24 มาตรา จัดเป็นกลุ่มให้เห็นโครงสร้าง ตัวเลขที่ต้องจำ และหลักคิดวิเคราะห์สถานการณ์</p>
+<a class="btn" href="#overview">เริ่มเรียน</a> <a class="btn o" href="#check">เช็กความพร้อม</a></div>
+<div class="win rv"><div class="bar"><s></s><s style="background:var(--yel)"></s><s style="background:var(--teal)"></s></div>
+<pre>มาตรา 7
+ประชาชน.ยื่นคำขอ(ช่องทางอิเล็กทรอนิกส์)
+เจ้าหน้าที่.ปฏิเสธ(เพราะเป็นอิเล็กทรอนิกส์)
+# ทำไม่ได้ -> ไม่ชอบด้วยกฎหมาย</pre>
+<div class="ok"><i class="fa-solid fa-circle-check"></i> หลักใหญ่: ออนไลน์ต้องรับ</div></div></div></header>
+
+<section class="blue" id="overview">
+<svg class="sh cl" style="left:3%;top:30px"><use href="#c"/></svg><svg class="sh cl" style="right:4%;bottom:20px;animation-delay:-2s"><use href="#c"/></svg>
+<div class="w"><div class="tag rv">ภาพรวม</div>
+<div class="flow rv">
+<div class="card"><i class="fa-solid fa-user"></i><h3>ประชาชน</h3>ยื่นคำขอ ส่งเอกสาร ขออนุญาต (ม.7)</div><i class="fa-solid fa-arrow-right"></i>
+<div class="card"><i class="fa-solid fa-globe"></i><h3>ช่องทางอิเล็กทรอนิกส์</h3>ถือว่ารับเมื่อเข้าระบบ (ม.10, 20)</div><i class="fa-solid fa-arrow-right"></i>
+<div class="card"><i class="fa-solid fa-building-columns"></i><h3>หน่วยงานรัฐ</h3>พิจารณา ส่งต่อ ติดต่อกลับทางอิเล็กทรอนิกส์ (ม.10-17)</div><i class="fa-solid fa-arrow-right"></i>
+<div class="card"><i class="fa-solid fa-shield-halved"></i><h3>มาตรฐานกลาง</h3>ครม.กำหนด: เชื่อมโยง ปลอดภัย เข้าถึงง่าย (ม.6)</div></div>
+<div class="g rv">
+<div class="card"><i class="fa-solid fa-hand-holding-heart"></i><h3>ลดภาระประชาชน</h3>ไม่เพิ่มขั้นตอนหรือค่าใช้จ่ายเกินจำเป็น</div>
+<div class="card"><i class="fa-solid fa-ban"></i><h3>ห้ามปฏิเสธเพราะเป็นออนไลน์</h3>คำขอ เอกสาร และหนังสือระหว่างหน่วยงาน</div>
+<div class="card"><i class="fa-solid fa-link"></i><h3>ระบบต้องเชื่อมโยงกัน</h3>ใช้มาตรฐานตาม ม.6 ทั้งงานบริการ งานภายใน และการเก็บเอกสาร</div>
+<div class="card"><i class="fa-solid fa-door-open"></i><h3>มีข้อยกเว้นเฉพาะที่กฎหมายกำหนด</h3>พ.ร.ฎ. หรือกฎกระทรวง ไม่ใช่ประกาศภายใน</div></div></div></section>
+
+<section id="sections"><div class="w"><div class="tag rv">รายมาตรา</div>
+<div class="tabs rv" id="tabs"></div><div class="pn rv" id="panel"></div></div></section>
+
+<section class="yel" id="numbers">
+<div class="sh" style="left:4%;bottom:30px;width:60px;height:60px;background:var(--teal);border:2px solid var(--ink);border-radius:50%"></div>
+<div class="w"><div class="tag rv">ตัวเลขและลำดับเวลา</div>
+<div class="g rv" id="nums"></div>
+<div class="tl rv">
+<div><b>ประกาศ</b>12 ต.ค. 2565</div>
+<div><b>+1 วัน</b>ม.12, ม.15 วรรคสอง, ม.19, ม.22 เริ่มใช้</div>
+<div><b>+90 วัน</b>พ.ร.บ.มีผลบังคับทั่วไป</div>
+<div><b>+240 วัน</b>(นับจากวันบังคับใช้) 4 หน่วยงานเสนอ ครม. (ม.19)</div>
+<div><b>ครม.มีมติ ม.6</b>หน.หน่วยงานมี 90 วันประกาศช่องทาง (ม.20)</div></div></div></section>
+
+<section id="roles"><div class="w"><div class="tag rv">ใครทำอะไร</div><div class="g rv" id="roleg"></div></div></section>
+
+<section class="teal" id="cases">
+<svg class="sh cl" style="right:5%;top:20px"><use href="#c"/></svg>
+<div class="w"><div class="tag rv" style="background:#fff">วิเคราะห์สถานการณ์</div>
+<div class="t2 rv" id="caseg"></div>
+<div class="t2 rv" style="margin-top:20px">
+<div class="card"><h3><i class="fa-solid fa-scroll"></i> ต้องตราเป็นพระราชกฤษฎีกา</h3>นำ พ.ร.บ.ไปใช้กับฝ่ายตุลาการ/องค์กรอิสระ (ม.4) · ยกเว้นหน่วยงานที่ใช้ระบบอิเล็กทรอนิกส์ไม่ได้ เป็นกรณี ๆ ไป ระบุเหตุผล ความจำเป็น ระยะเวลา (ม.15)</div>
+<div class="card"><h3><i class="fa-solid fa-gavel"></i> ใช้กฎกระทรวง</h3>เอกสารสำคัญที่ไม่ให้แสดงเป็นภาพอิเล็กทรอนิกส์ (ม.14) · ผู้รักษาการ (นายกรัฐมนตรี) ออกตาม ม.24 ประกาศราชกิจจาฯ แล้วใช้บังคับได้</div></div>
+<div class="card tip rv"><h3><i class="fa-solid fa-lightbulb"></i> เทคนิคอ่านตัวเลือก (จากแนวข้อสอบชุดนี้)</h3>
+<ul><li><span class="bad">มักเป็นตัวหลอก:</span> "เฉพาะ…เท่านั้น", "ทุกกรณี", "ต้อง…เท่านั้น", "ตามดุลพินิจ"</li>
+<li><span class="good">มักเป็นคำตอบ:</span> "ได้", "ไม่ต้อง", "ไม่เรียกเก็บค่าใช้จ่าย", "เว้นแต่…", "สอดคล้องกับ ม.6"</li>
+<li>โจทย์ถามมาตรา ให้ย้อนดูกลุ่มในแท็บรายมาตรา แล้วตรวจคู่ตัวเลข-หน่วยงานในส่วนตัวเลข</li></ul></div></div></section>
+
+<section id="check"><div class="w"><div class="tag rv">เช็กความพร้อมก่อนทำข้อสอบ</div>
+<p class="rv">ติ๊กเมื่ออธิบายหัวข้อนั้นได้โดยไม่ต้องเปิดดู</p>
+<div class="pb"><div id="bar"></div></div><div id="ck"></div>
+<p class="k" id="msg" style="font-size:20px;margin-top:16px"></p>
+<div style="margin-top:20px"><a class="btn" href="#">ไปทำข้อสอบ</a></div></div></section>
+
+<footer><div class="w">สื่อการเรียนรู้ประกอบการสอบ · วิชาการปฏิบัติราชการทางอิเล็กทรอนิกส์ · พ.ร.บ.พ.ศ. 2565</div></footer>
+
+<script>
+const S=[
+["ทั่วไป ม.1-5","fa-book",[
+["ชื่อ","พ.ร.บ.การปฏิบัติราชการทางอิเล็กทรอนิกส์ พ.ศ. 2565 ประกาศในราชกิจจาฯ <b>12 ต.ค. 2565</b>"],
+["ม.2","บังคับใช้เมื่อพ้น <b>90 วัน</b>นับแต่วันประกาศ ยกเว้น <b>ม.12, ม.15 วรรคสอง, ม.19, ม.22</b> ใช้ตั้งแต่<b>วันถัดจากวันประกาศ</b>"],
+["เป้าหมาย","ส่งเสริมให้งานและบริการภาครัฐทำทางอิเล็กทรอนิกส์ได้เป็นหลัก (ไม่ได้บังคับประชาชนต้องใช้ออนไลน์อย่างเดียว)"],
+["ม.4","ใช้กับหน่วยงานรัฐทุกหน่วย <b>ยกเว้นฝ่ายตุลาการ</b> · จะนำไปใช้กับฝ่ายตุลาการหรือองค์กรอิสระต้อง<b>ตราเป็น พ.ร.ฎ.</b>"],
+["ม.5","<b>หน่วยงานรัฐ</b> = ส่วนกลาง ภูมิภาค ท้องถิ่น รัฐวิสาหกิจ องค์การมหาชน และอื่น ๆ แต่<b>ไม่รวมรัฐวิสาหกิจที่เป็นบริษัทจำกัด/บริษัทมหาชนจำกัด</b>"],
+["ม.5","<b>ขออนุญาต</b> = ขอใบอนุญาต ขออนุมัติ ขอจดทะเบียน ขอรับสวัสดิการ ขอรับบริการอื่น · <b>อนุญาต</b> = ออกใบอนุญาต อนุมัติ รับแจ้ง ให้บริการอื่น"]]],
+["มาตรฐานกลาง ม.6","fa-shield-halved",[
+["ม.6","<b>คณะรัฐมนตรี</b>กำหนดวิธีการทางอิเล็กทรอนิกส์ที่หน่วยงานรัฐต้องใช้ให้สอดคล้องกัน"],
+["คุณลักษณะ","<b>เชื่อมโยงถึงกันได้ · มั่นคงปลอดภัย · ประชาชนเข้าถึงสะดวก</b>"],
+["ใช้ต่อ","ระบบของเจ้าหน้าที่ (ม.16) และการจัดเก็บข้อมูล (ม.17) ต้องสอดคล้อง/เป็นไปตามมาตรฐาน ม.6"]]],
+["ประชาชน ม.7-11","fa-user",[
+["ม.7","ผู้ขออนุญาตเลือก<b>ยื่นคำขอ + ส่งเอกสารประกอบ</b>ทางอิเล็กทรอนิกส์ได้ · เจ้าหน้าที่<b>ปฏิเสธเพียงเพราะยื่นทางอิเล็กทรอนิกส์ไม่ได้</b>"],
+["ม.7","สำเนาที่ส่งทางอิเล็กทรอนิกส์<b>ไม่ต้องลงนามรับรอง</b> · กฎหมายให้ยื่น 3 ชุด ส่งชุดเดียว<b>ถือว่าครบ</b>"],
+["ข้อยกเว้น","การจดทะเบียนที่ต้อง<b>ทำเองเฉพาะตัว</b> เช่น <b>จดทะเบียนสมรส</b>"],
+["ม.8","ผู้อนุญาตกำหนดวิธีเพิ่มได้เพื่อ<b>อำนวยความสะดวก ป้องกันความเสี่ยง ยืนยันตัวตน</b> โดย<b>ไม่เพิ่มภาระเกินจำเป็น</b> · ยืนยันตัวตนวิธีอื่นนอกจากบัตรประชาชน/หนังสือเดินทางได้"],
+["ม.9","ตรวจบัตรประชาชน: <b>ผู้อนุญาต</b>ติดต่อ <b>นายทะเบียนประจำสำนักทะเบียนกลาง</b> ตรวจและแจ้งผลด้วยวิธีอิเล็กทรอนิกส์"],
+["ม.10","<b>ถือว่ารับเมื่อเข้าสู่ระบบ</b>ของหน่วยงาน/เจ้าหน้าที่ · นอกเวลาทำการ = <b>วันและเวลาทำการถัดไป</b> · ไม่มีอำนาจ ให้ส่งต่อเจ้าหน้าที่ผู้มีหน้าที่ หรือแจ้งว่าหน่วยงานใดรับผิดชอบ"],
+["ม.11","หน่วยงานติดต่อกลับ/ออกเอกสารทาง<b>อิเล็กทรอนิกส์</b> เว้นแต่ประชาชนระบุเป็นอย่างอื่น"]]],
+["หน่วยงาน ม.12-17","fa-building-columns",[
+["ม.12","ต้องใช้สำเนาเอกสารที่หน่วยงานรัฐอื่นออกให้ + ผู้ขอนำต้นฉบับมา → หน่วยงาน<b>ทำสำเนาและรับรองเอง ไม่เรียกเก็บค่าใช้จ่าย</b> และ<b>อ้างเป็นเหตุล่าช้าไม่ได้</b>"],
+["ม.13","ผู้รับอนุญาตแสดงใบอนุญาต<b>ทางอิเล็กทรอนิกส์ตามประกาศผู้อนุญาต</b>ได้ · ผู้อนุญาตเปิดเผยข้อมูลการอนุญาตในช่องทางที่ตรวจสอบสะดวก<b>ไม่เสียค่าใช้จ่าย</b> มีรายการอย่างน้อยเท่าในใบอนุญาต และ<b>เป็นปัจจุบัน</b>"],
+["ม.14","แสดงต่อเจ้าพนักงานเป็น<b>ภาพอิเล็กทรอนิกส์</b>ได้ · ยกเว้น<b>บัตร ใบอนุญาต เอกสารสำคัญที่กำหนดในกฎกระทรวง</b>"],
+["ม.15","หน่วยงานรัฐติดต่อ/ส่งเรื่องกันทางอิเล็กทรอนิกส์<b>ชอบด้วยกฎหมาย ใช้เป็นหลักฐานได้</b> ปฏิเสธเพราะเหตุนี้ไม่ได้ · ยกเว้นต้องตรา<b>พ.ร.ฎ.</b>เป็นกรณี ๆ (เหตุผล ความจำเป็น ระยะเวลา) · <b>กรมบัญชีกลาง</b>และหน่วยที่เกี่ยวข้องแก้กฎเกณฑ์ด้านการเงินที่เป็นอุปสรรค"],
+["ม.16","กฎหมายให้ทำเป็นหนังสือ → ทำด้วยระบบอิเล็กทรอนิกส์ที่<b>หัวหน้าหน่วยงานกำหนด</b> และสอดคล้อง ม.6 ถือว่าปฏิบัติชอบแล้ว"],
+["ม.17","ครม.กำหนดให้เก็บข้อมูลเป็น<b>รูปแบบอิเล็กทรอนิกส์</b>ตามมาตรฐาน ม.6 · ต้นฉบับ<b>ส่งมอบกรมศิลปากร</b>"]]],
+["ราชกิจจาฯ ม.18","fa-file-lines",[
+["ม.18","จัดทำและเผยแพร่ราชกิจจานุเบกษาด้วย<b>วิธีการทางอิเล็กทรอนิกส์แทนการจัดพิมพ์</b>"],
+["สำเนา","ประชาชนขอสำเนาเรื่องที่ประกาศ → <b>สำนักเลขาธิการคณะรัฐมนตรี</b>จัดให้ (เรียกเก็บได้ตามอัตราที่ประกาศกำหนด)"]]],
+["เปลี่ยนผ่าน ม.19-23","fa-hourglass-half",[
+["ม.19","<b>ก.พ.ร. · สำนักงานคณะกรรมการกฤษฎีกา · สำนักงานพัฒนาธุรกรรมทางอิเล็กทรอนิกส์ · สำนักงานพัฒนารัฐบาลดิจิทัล</b> ร่วมกันจัดทำวิธีการ เสนอ ครม.ภายใน <b>240 วัน</b>นับแต่ พ.ร.บ.ใช้บังคับ"],
+["ก่อน ครม.มีมติ","ใช้<b>มาตรฐานอื่นที่ใช้กันแพร่หลายไปพลางก่อน</b>ได้"],
+["ม.20","<b>หัวหน้าหน่วยงาน</b>ประกาศช่องทางอิเล็กทรอนิกส์ภายใน <b>90 วัน</b>นับแต่ ครม.มีมติตาม ม.6 · ระหว่างนั้นช่องทางที่หน่วยงานใช้อยู่ ใช้ส่งคำขอได้ตาม ม.10"],
+["ม.21","ยังไม่เปิดเผยข้อมูลอนุญาตทางอิเล็กทรอนิกส์ → <b>ส่งข้อมูลให้ภายใน 3 วัน</b>นับแต่รับคำขอ <b>ไม่เรียกเก็บ</b> · แสดงใบอนุญาตทางอิเล็กทรอนิกส์<b>อย่างใดก็ได้</b>ไปพลางก่อน"],
+["ม.22","ครม.กำหนดหน่วยงาน 1 แห่ง<b>ติดตามเร่งรัด</b> ม.20 วรรคหนึ่ง · รายงาน ครม. <b>ทุก 60 วัน</b> + ประกาศให้ประชาชนทราบ · แจ้งเตือนทุกหน่วยงาน <b>ทุก 15 วัน</b>"],
+["ม.23","<b>สำนักงานคณะกรรมการกฤษฎีกา</b>จัดทำและปรับปรุงฐานข้อมูลกฎหมายและระบบสืบค้น"]]],
+["รักษาการ ม.24","fa-user-shield",[
+["ม.24","<b>นายกรัฐมนตรี</b>รักษาการ · ออก<b>กฎกระทรวง</b> · ประกาศในราชกิจจาฯ แล้วมีผลใช้บังคับได้"],
+["เทียบ พ.ร.บ.ธุรกรรมฯ 2544","ปฏิบัติราชการอิเล็กทรอนิกส์ให้ทำตาม พ.ร.บ.นี้ <b>ไม่ต้องทำตามหมวด 4</b> เว้นแต่ ครม.มีมติเป็นอย่างอื่น"]]]];
+const N=[["12 ต.ค. 65","ประกาศราชกิจจาฯ"],["90 วัน","พ.ร.บ.บังคับใช้ทั่วไป (ม.2)"],["240 วัน","เสนอ ครม. (ม.19)"],["90 วัน","หน.หน่วยงานประกาศช่องทาง (ม.20)"],["3 วัน","ส่งข้อมูลอนุญาต ไม่คิดเงิน (ม.21)"],["60 วัน","รายงาน ครม. (ม.22)"],["15 วัน","แจ้งเตือนหน่วยงาน (ม.22)"]];
+const R=[["คณะรัฐมนตรี","fa-landmark","กำหนดวิธีการอิเล็กทรอนิกส์ (ม.6) · ให้เก็บข้อมูลแบบอิเล็กทรอนิกส์ (ม.17) · ตั้งหน่วยติดตาม (ม.22)"],["หัวหน้าหน่วยงานรัฐ","fa-user-tie","กำหนดระบบให้เจ้าหน้าที่ (ม.16) · ประกาศช่องทางประชาชน (ม.20)"],["ผู้อนุญาต","fa-stamp","ติดต่อตรวจบัตร (ม.9) · ประกาศวิธีแสดงใบอนุญาต เปิดเผยข้อมูล (ม.13)"],["นายทะเบียนสำนักทะเบียนกลาง","fa-id-card","ตรวจและแจ้งผลบัตรประชาชน (ม.9)"],["กรมบัญชีกลาง","fa-coins","แก้กฎเกณฑ์ด้านการเงินที่เป็นอุปสรรค (ม.15)"],["กรมศิลปากร","fa-box-archive","รับเอกสารต้นฉบับ (ม.17)"],["สำนักเลขาธิการ ครม.","fa-newspaper","จัดสำเนาเรื่องในราชกิจจาฯ (ม.18)"],["ก.พ.ร. · กฤษฎีกา · พัฒนาธุรกรรมฯ · พัฒนารัฐบาลดิจิทัล","fa-people-group","ร่วมกันจัดทำวิธีการอิเล็กทรอนิกส์ (ม.19)"],["สำนักงานคณะกรรมการกฤษฎีกา","fa-scale-balanced","ฐานข้อมูลกฎหมาย ระบบสืบค้น (ม.23)"],["นายกรัฐมนตรี","fa-user-shield","รักษาการ ออกกฎกระทรวง (ม.24)"]];
+const C=[["ปฏิเสธเพราะเป็นอิเล็กทรอนิกส์","ไม่ชอบ","ม.7 / ม.15: คำขอ เอกสาร และหนังสือระหว่างหน่วยงาน ปฏิเสธเพียงเหตุนี้ไม่ได้"],["เพิ่มภาระหรือค่าใช้จ่ายเกินจำเป็น","ขัด ม.8","แอปแพงทั้งที่มีวิธีง่ายกว่า · ขอกระดาษเพิ่มทั้งที่ส่งครบแล้ว (ม.7)"],["ถือว่ารับคำขอเมื่อใด","ม.10","เมื่อเข้าระบบ ไม่ใช่ตอนเจ้าหน้าที่เปิดอ่าน · นอกเวลาทำการ = วันและเวลาทำการถัดไป"],["สงสัยบัตรปลอม","ม.9","ผู้อนุญาตต้องติดต่อสำนักทะเบียนกลาง ไม่ใช่ให้ประชาชนหาใบรับรองตำรวจ"],["ระบบและการเก็บเอกสาร","ม.6/16/17","ต้องใช้ระบบที่หัวหน้าหน่วยงานกำหนดและเป็นมาตรฐาน ไม่ใช่ระบบส่วนตัวหรือไฟล์ไม่มีมาตรฐาน"],["ขอสำเนาเอกสารรัฐ","ม.12","หน่วยงานทำและรับรองเอง ฟรี อ้างเป็นเหตุล่าช้าไม่ได้"]];
+const K=["บอกวันประกาศ ระยะบังคับใช้ และ 4 มาตราที่ใช้วันถัดไปได้","แยกความหมาย หน่วยงานรัฐ / ขออนุญาต / อนุญาต (ม.5) และรู้ว่าอะไรถูกยกเว้น","อธิบาย ม.7 ได้ครบ: ยื่นได้ ปฏิเสธไม่ได้ ไม่ต้องรับรองสำเนา ชุดเดียวครบ + ข้อยกเว้นจดทะเบียนสมรส","บอกได้ว่า ม.10 ถือว่ารับคำขอเมื่อใด รวมกรณีนอกเวลาและกรณีไม่มีอำนาจ","จับคู่หน่วยงานกับหน้าที่ในหัวข้อ \"ใครทำอะไร\" ได้","ท่องตัวเลข 240 / 90 / 3 / 60 / 15 ได้ถูกคู่มาตรา","แยกได้ว่าข้อยกเว้นไหนใช้ พ.ร.ฎ. ข้อไหนใช้กฎกระทรวง","วิเคราะห์สถานการณ์ว่าชอบหรือไม่ พร้อมอ้างมาตราได้"];
+const $=i=>document.getElementById(i);
+const tabs=$("tabs"),pn=$("panel");
+function show(i){[...tabs.children].forEach((b,j)=>b.classList.toggle("on",i===j));
+pn.style.animation="none";pn.offsetHeight;pn.style.animation="";
+pn.innerHTML=S[i][2].map(r=>`<div class="row"><em>${r[0]}</em><div>${r[1]}</div></div>`).join("")}
+S.forEach((s,i)=>{const b=document.createElement("button");b.className="tb";b.innerHTML=`<i class="fa-solid ${s[1]}"></i>${s[0]}`;b.onclick=()=>show(i);tabs.appendChild(b)});show(0);
+$("nums").innerHTML=N.map(n=>`<div class="card num"><strong>${n[0]}</strong><span>${n[1]}</span></div>`).join("");
+$("roleg").innerHTML=R.map(r=>`<div class="card"><i class="fa-solid ${r[1]}"></i><h3>${r[0]}</h3>${r[2]}</div>`).join("");
+$("caseg").innerHTML=C.map(c=>`<div class="card case"><span class="v ${c[1].startsWith("ม.")?"y":""}">${c[1]}</span><h3>${c[0]}</h3>${c[2]}</div>`).join("");
+const ck=$("ck");
+ck.innerHTML=K.map((t,i)=>`<label class="card ck"><input type="checkbox"><span>${t}</span></label>`).join("");
+ck.addEventListener("change",()=>{const a=ck.querySelectorAll("input"),n=[...a].filter(x=>x.checked).length;
+$("bar").style.width=n/a.length*100+"%";$("msg").textContent=n===a.length?"พร้อมแล้ว ไปทำข้อสอบได้เลย":`ผ่านแล้ว ${n} จาก ${a.length} หัวข้อ`});
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add("on");io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+</script>
+</body>
+</html>

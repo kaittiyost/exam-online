@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDPA พ.ศ. 2562 | เนื้อหาก่อนทำข้อสอบ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&family=Prompt:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--cream:#F4EFEA;--ink:#383838;--blue:#6FC2FF;--yellow:#FFDE00;--teal:#16AA98;--coral:#FF7169;--w:#fff}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:400 16px/1.75 Prompt,sans-serif;background:var(--cream);color:var(--ink)}
+h1,h2,h3,button,.tag,.ref,.btn,nav a{font-family:Kanit,sans-serif;letter-spacing:.06em}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+nav{position:sticky;top:0;z-index:9;background:var(--cream);border-bottom:2px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:10px 5vw;gap:12px;flex-wrap:wrap}
+nav b{font:600 18px Kanit;letter-spacing:.08em;background:none}
+nav a{color:inherit;text-decoration:none;font-size:14px;margin-left:16px;font-weight:500}
+.wrap{max-width:1080px;margin:auto;padding:0 20px;position:relative;z-index:1}
+section{position:relative;padding:76px 0;overflow:hidden}
+.blue{background:var(--blue)}.yel{background:var(--yellow)}.teal{background:var(--teal)}
+.tag{display:inline-block;border:2px solid var(--ink);background:var(--cream);padding:4px 18px;font-size:20px;font-weight:500;margin-bottom:28px}
+h1{font-size:clamp(34px,7vw,68px);line-height:1.2;font-weight:500;letter-spacing:.1em}
+.btn{display:inline-block;border:2px solid var(--ink);padding:10px 22px;font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;background:var(--blue);cursor:pointer;transition:.15s;margin:6px 10px 0 0}
+.btn.alt{background:var(--w)}
+.btn:hover{box-shadow:4px 4px 0 var(--ink);transform:translate(-2px,-2px)}
+.card{background:var(--w);border:2px solid var(--ink);border-radius:4px;padding:20px;transition:.2s}
+.card:hover{transform:translateY(-5px);box-shadow:5px 5px 0 var(--ink)}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+b{font-weight:500;background:linear-gradient(transparent 58%,var(--yellow) 58%)}
+.yel b{background:linear-gradient(transparent 58%,var(--blue) 58%)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.hero p{margin:16px 0 12px;max-width:34em}
+.win{background:var(--w);border:2px solid var(--ink);border-radius:4px;box-shadow:8px 8px 0 var(--ink)}
+.bar{display:flex;gap:7px;padding:10px 14px;border-bottom:2px solid var(--ink)}
+.bar i{width:13px;height:13px;border-radius:50%;border:2px solid var(--ink)}
+.bar i:nth-child(1){background:var(--coral)}.bar i:nth-child(2){background:var(--yellow)}.bar i:nth-child(3){background:var(--teal)}
+pre{padding:18px;font:400 14.5px/2 Prompt,sans-serif;white-space:pre-wrap}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:34px;margin-bottom:34px}
+.step{position:relative}
+.step .n{font:600 34px Kanit;color:var(--coral)}
+.step:not(:last-child)::after{content:"\f061";font:900 18px "Font Awesome 6 Free";position:absolute;right:-27px;top:50%}
+.card h3{font-size:18px;font-weight:500;margin-bottom:6px}
+.card i.fa-solid{font-size:24px;margin-bottom:10px;display:block}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tabs button{border:2px solid var(--ink);background:var(--w);padding:8px 16px;font-size:15px;cursor:pointer;color:var(--ink)}
+.tabs button[aria-selected=true]{background:var(--yellow);box-shadow:3px 3px 0 var(--ink)}
+#pn{animation:in .35s}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+.row{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:2px dashed var(--ink)}
+.ref{border:2px solid var(--ink);background:var(--blue);text-align:center;font-size:14px;font-weight:500;padding:2px 6px;align-self:start}
+.num{font:600 40px/1.2 Kanit}
+.num small{font:500 15px Kanit;margin-left:6px}
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;border-top:3px solid var(--ink);margin-top:44px}
+.tl div{position:relative;padding-top:20px}
+.tl div::before{content:"";position:absolute;top:-11px;left:0;width:18px;height:18px;border-radius:50%;background:var(--coral);border:2px solid var(--ink)}
+.v{display:inline-block;border:2px solid var(--ink);padding:0 12px;font:500 14px Kanit;margin-right:8px}
+.v.ok{background:var(--teal);color:#fff}.v.no{background:var(--coral)}.v.rf{background:var(--yellow)}
+.tip{display:flex;gap:12px;margin:10px 0}
+.pg{height:20px;border:2px solid var(--ink);background:var(--w);border-radius:4px;overflow:hidden;margin:12px 0 24px}
+#bar{display:block;height:100%;width:0;background:var(--teal);transition:width .4s}
+.ck{display:flex;gap:12px;align-items:flex-start;padding:10px 14px;margin-bottom:10px;cursor:pointer}
+.ck input{width:22px;height:22px;accent-color:var(--teal);flex:none;margin-top:4px}
+footer{background:var(--ink);color:var(--cream);padding:36px 0;font-size:14px}
+.sh{position:absolute;z-index:0;animation:fl 9s ease-in-out infinite alternate;border:2px solid var(--ink)}
+@keyframes fl{to{transform:translateY(-18px) rotate(6deg)}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.rv.on{opacity:1;transform:none}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.step::after{display:none}nav a{margin:0 12px 0 0}}
+@media(max-width:520px){.row{grid-template-columns:1fr;gap:6px}.ref{justify-self:start}section{padding:56px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="cl" viewBox="0 0 200 80"><path d="M30 76a24 24 0 0 1 2-48 34 34 0 0 1 64-8 30 30 0 0 1 52 14 24 24 0 0 1 22 42z" fill="#fff" stroke="#383838" stroke-width="3"/></symbol></svg>
+
+<nav>
+  <b><i class="fa-solid fa-shield-halved"></i> PDPA 2562</b>
+  <div><a href="#ov">ภาพรวม</a><a href="#ct">เนื้อหา</a><a href="#nm">ตัวเลข</a><a href="#wh">ใครทำอะไร</a><a href="#sc">สถานการณ์</a><a href="#rd">เช็กความพร้อม</a></div>
+</nav>
+
+<section>
+  <i class="sh" style="width:110px;height:56px;border-radius:50%;background:var(--yellow);right:6%;top:40px"></i>
+  <div class="wrap hero">
+    <div>
+      <h1>คุ้มครองข้อมูล<br>เข้าใจก่อนสอบ</h1>
+      <p>สรุปพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 ตามประเด็นที่ข้อสอบ 100 ข้อถามจริง</p>
+      <a class="btn" href="#ct">เริ่มอ่านเนื้อหา</a><a class="btn alt" href="#rd">เช็กความพร้อม</a>
+    </div>
+    <div class="win rv"><div class="bar"><i></i><i></i><i></i></div>
+<pre>pdpa.หลักใหญ่ {
+  ข้อมูลส่วนบุคคล = ระบุตัวบุคคลได้
+  เก็บ = เท่าที่จำเป็น (ม.22)
+  ยินยอม = ชัดแจ้ง + ถอนได้ง่าย (ม.19)
+  ข้อมูลรั่ว → แจ้งสำนักงาน ≤ 72 ชม.
+}</pre></div>
+  </div>
+</section>
+
+<section id="ov" class="blue">
+  <svg class="sh" style="border:0;left:3%;top:20px" width="150" height="60"><use href="#cl"/></svg>
+  <div class="wrap">
+    <span class="tag">ภาพรวม</span>
+    <div class="flow" id="flow"></div>
+    <div class="grid" id="idea"></div>
+  </div>
+</section>
+
+<section id="ct">
+  <div class="wrap">
+    <span class="tag">เนื้อหารายมาตรา</span>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div id="pn" role="tabpanel"></div>
+  </div>
+</section>
+
+<section id="nm" class="yel">
+  <div class="wrap">
+    <span class="tag">ตัวเลขและลำดับเวลา</span>
+    <div class="grid" id="nums"></div>
+    <div class="tl" id="tl"></div>
+  </div>
+</section>
+
+<section id="wh">
+  <div class="wrap">
+    <span class="tag">ใครทำอะไร</span>
+    <div class="grid" id="who"></div>
+  </div>
+</section>
+
+<section id="sc" class="teal">
+  <i class="sh" style="width:70px;height:70px;background:var(--coral);right:5%;top:30px;transform:rotate(45deg)"></i>
+  <div class="wrap">
+    <span class="tag">วิเคราะห์สถานการณ์</span>
+    <div class="grid" id="cases"></div>
+    <div class="card" style="margin-top:26px">
+      <h3>เทคนิคอ่านตัวเลือก (สรุปจากชุดข้อสอบนี้ 100 ข้อ)</h3>
+      <div id="tips"></div>
+    </div>
+  </div>
+</section>
+
+<section id="rd">
+  <div class="wrap">
+    <span class="tag">เช็กความพร้อม</span>
+    <p>ติ๊กหัวข้อที่เข้าใจแล้ว <b id="cnt">0/9</b></p>
+    <div class="pg" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="bar"></i></div>
+    <div id="ckl"></div>
+    <a class="btn" href="#" style="margin-top:16px">ไปทำข้อสอบ</a>
+  </div>
+</section>
+
+<footer><div class="wrap">เนื้อหาสรุปจากชุดข้อสอบพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 ใช้ประกอบการทบทวนเท่านั้น</div></footer>
+
+<script>
+const FLOW=[['ขอบเขต','ใครอยู่ใต้กฎหมาย และอะไรได้รับยกเว้น (ม.3-5)'],['เก็บรวบรวม','แจ้งวัตถุประสงค์ ขอยินยอม เก็บเท่าที่จำเป็น (ม.19-26)'],['ใช้ โอน รักษา','โอนต่างประเทศ ดูแลความปลอดภัย แจ้งเหตุรั่ว (ม.28-42)'],['สิทธิ ร้องเรียน โทษ','เจ้าของข้อมูลใช้สิทธิ ผู้ฝ่าฝืนรับผิด (ม.30-95)']];
+const IDEA=[['fa-user-lock','ยินยอมต้องชัดแจ้ง','ขอเป็นหนังสือหรืออิเล็กทรอนิกส์ ถอนได้ง่ายเท่าตอนให้'],['fa-filter','เก็บเท่าที่จำเป็น','ไม่เกินวัตถุประสงค์ที่แจ้งไว้ ถ้าเปลี่ยนต้องขอใหม่'],['fa-fingerprint','ข้อมูลอ่อนไหวเข้มกว่า','ม.26 ต้องยินยอมโดยชัดแจ้ง เว้นแต่เข้าข้อยกเว้น'],['fa-scale-balanced','เสียหายต้องชดใช้','แพ่ง อาญา และปกครอง ใช้ได้พร้อมกัน']];
+const TABS=[
+{t:'ขอบเขตและนิยาม',r:[
+['ม.2','หมวด 1 (คณะกรรมการ) ใช้บังคับ<b>วันถัดจากวันประกาศ</b>ในราชกิจจานุเบกษา'],
+['นิยาม','ข้อมูลส่วนบุคคล = ระบุตัวบุคคลได้<b>ทางตรงหรือทางอ้อม</b> ไม่รวมข้อมูลของ<b>ผู้ถึงแก่กรรมโดยเฉพาะ</b>'],
+['นิยาม','<b>ผู้ควบคุม</b>มีอำนาจตัดสินใจเรื่องเก็บ ใช้ เปิดเผย · <b>ผู้ประมวลผล</b>ทำตามคำสั่งหรือในนามผู้ควบคุม · ผู้รักษาการคือ<b>รมว.ดิจิทัลเพื่อเศรษฐกิจและสังคม</b>'],
+['ม.3','กิจการมีกฎหมายเฉพาะ: ใช้กฎหมายเฉพาะ แต่เรื่องเก็บ ใช้ เปิดเผย และสิทธิ ใช้ พ.ร.บ.นี้<b>เพิ่มเติม</b>'],
+['ม.4','ไม่ใช้บังคับ: <b>กิจกรรมส่วนตนหรือครอบครัว</b> · หน่วยงานรัฐด้านความมั่นคงและ<b>สื่อมวลชนตามจริยธรรม</b> ยังต้องรักษาความมั่นคงปลอดภัยตามมาตรฐาน'],
+['ม.5','ผู้ควบคุมอยู่ใน<b>ราชอาณาจักร</b>: ใช้บังคับ แม้เก็บหรือใช้นอกประเทศ · ผู้ควบคุมนอกประเทศที่<b>เฝ้าติดตามพฤติกรรม</b>ของคนในไทย: ใช้บังคับด้วย']]},
+{t:'ความยินยอม',r:[
+['ม.19','ขอ<b>โดยชัดแจ้ง เป็นหนังสือหรือผ่านระบบอิเล็กทรอนิกส์</b> · ฝังท้ายข้อตกลง ถ้อยคำเข้าใจยาก = <b>ไม่มีผลผูกพัน</b>'],
+['ม.19','<b>ถอนเมื่อใดก็ได้</b> และถอนง่ายเท่าให้ · การถอน<b>ไม่กระทบ</b>ข้อมูลที่ใช้ไปแล้วโดยชอบ · ห้ามบังคับยินยอมเรื่องที่<b>ไม่จำเป็นหรือไม่เกี่ยวข้อง</b>กับบริการ'],
+['ม.20','ผู้เยาว์อายุไม่เกิน<b>สิบปี</b> → ขอจาก<b>ผู้ใช้อำนาจปกครอง</b> · ผู้เยาว์ทั่วไปที่ทำเองไม่ได้ → ต้องได้ผู้ปกครองด้วย'],
+['ม.20','<b>คนไร้ความสามารถ</b> → ผู้อนุบาล · ผู้เยาว์ที่<b>บรรลุนิติภาวะโดยสมรส</b> → ให้ยินยอมเองได้'],
+['ม.21','เปลี่ยนวัตถุประสงค์ → <b>แจ้งใหม่และได้รับยินยอมก่อน</b> เว้นแต่กฎหมายให้ทำได้']]},
+{t:'การเก็บรวบรวม',r:[
+['ม.22','เก็บได้<b>เท่าที่จำเป็น</b>ภายใต้วัตถุประสงค์ชอบด้วยกฎหมาย · เก็บใบสมัครนานเกินจำเป็นขัดหลักนี้'],
+['ม.23','ต้องแจ้งก่อนหรือขณะเก็บ เช่น<b>ประเภทของบุคคลหรือหน่วยงานที่ข้อมูลอาจถูกเปิดเผย</b>'],
+['ม.24','เก็บโดยไม่ต้องขอยินยอมได้ เช่น <b>ป้องกันอันตรายต่อชีวิต ร่างกาย สุขภาพ</b> · ฐาน<b>ประโยชน์โดยชอบด้วยกฎหมาย</b>คือ ม.24 (5)'],
+['ม.25','เก็บจากแหล่งอื่น ต้องแจ้งไม่เกิน<b>สามสิบวัน</b> · ถ้าจะเปิดเผยครั้งแรกก่อนครบ ต้องแจ้ง<b>ก่อนเปิดเผยครั้งแรก</b>'],
+['ม.25','ยกเว้นแจ้ง: <b>วิจัยทางวิทยาศาสตร์</b>ที่แจ้งไม่ได้หรือเป็นอุปสรรค ต้องพิสูจน์ได้และมีมาตรการคุ้มครอง']]},
+{t:'อ่อนไหวและต่างประเทศ',r:[
+['ม.26','ห้ามเก็บโดยไม่ได้<b>ยินยอมโดยชัดแจ้ง</b> เช่น <b>ข้อมูลพันธุกรรม</b> · ข้อมูลชีวภาพ เช่น <b>จำลองลายนิ้วมือ</b>'],
+['ม.26','ยกเว้น: <b>ป้องกันอันตรายต่อชีวิต</b>เมื่อให้ยินยอมไม่ได้ · <b>มูลนิธิหรือองค์กรไม่แสวงหากำไร</b>ด้านศาสนาที่มีการคุ้มครองและไม่เปิดเผยออกนอก'],
+['ม.26','<b>ประวัติอาชญากรรม</b>: ทำภายใต้การควบคุมของหน่วยงานตามกฎหมาย หรือมีมาตรการตามหลักเกณฑ์ที่<b>คณะกรรมการ</b>ประกาศ'],
+['ม.28','โอนไปต่างประเทศ: ปลายทางต้องมี<b>มาตรฐานคุ้มครองเพียงพอ</b> เว้นแต่เข้าข้อยกเว้น'],
+['ม.29','<b>นโยบายเครือกิจการ</b>ที่<b>สำนักงาน</b>ตรวจสอบและรับรอง = ยกเว้น ม.28 · ไม่มีทั้งสอง → ต้องมี<b>มาตรการคุ้มครองที่เหมาะสม</b>และเยียวยาได้ผล']]},
+{t:'สิทธิเจ้าของข้อมูล',r:[
+['ม.30','<b>เข้าถึงและขอสำเนา</b> · ตอบภายในไม่เกิน<b>สามสิบวัน</b> · ถ้าปฏิเสธต้อง<b>บันทึกพร้อมเหตุผล</b>ไว้ตาม ม.39'],
+['ม.31','<b>โอนย้าย</b>: ขอรับในรูปแบบที่เครื่องมืออัตโนมัติอ่านได้ และส่งให้ผู้ควบคุมรายอื่น · จำกัดเฉพาะข้อมูลที่<b>ยินยอม</b>หรือฐาน ม.24 (3)'],
+['ม.32','<b>คัดค้าน</b> เช่น<b>การตลาดแบบตรง</b> → หยุดและ<b>แยกข้อมูลทันที</b> · ผู้ควบคุมปฏิเสธได้เมื่อมี<b>เหตุอันชอบด้วยกฎหมายที่สำคัญยิ่งกว่า</b>หรือเพื่อต่อสู้สิทธิเรียกร้อง'],
+['ม.33','<b>ลบ/ทำลาย</b>: หมดความจำเป็น · ถอนความยินยอมและไม่มีฐานอื่น · ที่เปิดเผยสาธารณะแล้ว ผู้ควบคุมรับผิดชอบ<b>เทคโนโลยีและค่าใช้จ่าย</b>และแจ้งผู้ควบคุมรายอื่น'],
+['ม.33','ปฏิเสธลบได้เมื่อต้อง<b>เก็บตามกฎหมาย</b>หรือเพื่อ<b>ก่อตั้งสิทธิเรียกร้อง</b>'],
+['ม.34','<b>ระงับการใช้</b>: ระหว่างตรวจสอบคำขอแก้ไขตาม ม.36 · ขอแทนการลบได้ เช่น ต้องการเก็บไว้ต่อสู้คดี'],
+['ม.35-36','ข้อมูลต้อง<b>ถูกต้อง เป็นปัจจุบัน สมบูรณ์ ไม่ก่อให้เข้าใจผิด</b> · ไม่แก้ตามคำขอ → <b>บันทึกคำขอและเหตุผล</b>ตาม ม.39']]},
+{t:'หน้าที่ผู้ควบคุม/DPO',r:[
+['ม.37 (3)','ต้องมีระบบตรวจสอบเพื่อ<b>ลบหรือทำลาย</b>ข้อมูลเมื่อพ้นระยะเก็บรักษาหรือเกินจำเป็น'],
+['ม.37 (4)','ข้อมูลรั่ว: แจ้งสำนักงาน<b>ภายใน 72 ชั่วโมง</b>เท่าที่ทำได้ เว้นแต่ไม่มีความเสี่ยง · เสี่ยงสูงต้องแจ้งเจ้าของข้อมูลพร้อมแนวทางเยียวยา'],
+['ม.37 (5)','ผู้ควบคุมนอกประเทศตาม ม.5 วรรคสอง ต้อง<b>แต่งตั้งตัวแทนเป็นหนังสือ</b> อยู่ในราชอาณาจักร · ยกเว้นตาม ม.38'],
+['ม.39','บันทึกรายการ เช่น<b>ระยะเวลาเก็บรักษา</b> · กิจการเล็กยกเว้นได้เมื่อ<b>ไม่เสี่ยง เก็บเป็นครั้งคราว และไม่มีข้อมูล ม.26</b>'],
+['ม.40','<b>ผู้ประมวลผล</b>แจ้งเหตุรั่วต่อผู้ควบคุม · ผู้ควบคุมต้องทำ<b>ข้อตกลง</b>กับผู้ประมวลผล · ใช้ข้อมูลนอกคำสั่ง = <b>เป็นผู้ควบคุม</b>'],
+['ม.41-42','ต้องมี <b>DPO</b> เมื่อกิจกรรมหลักเกี่ยวกับข้อมูล ม.26 · เลิกจ้าง DPO เพราะทำหน้าที่ไม่ได้ · ควบหน้าที่อื่นต้อง<b>รับรองต่อสำนักงาน</b>ว่าไม่ขัดแย้ง']]},
+{t:'องค์กรและร้องเรียน',r:[
+['ม.8-12','กรรมการผู้ทรงคุณวุฒิ <b>9 คน</b> · รองประธานคือ<b>ปลัดกระทรวงดิจิทัลฯ</b> · วาระ<b>4 ปี ไม่เกิน 2 วาระ</b> · สมาชิกสภาท้องถิ่นเป็นไม่ได้ (ม.11)'],
+['ม.13-15','ประธานพ้นก่อนวาระ → <b>รองประธาน</b>ทำหน้าที่ · คะแนนเท่ากัน → <b>ประธานออกเสียงชี้ขาด</b> · มีส่วนได้เสียต้อง<b>แจ้งและห้ามประชุมเรื่องนั้น</b>'],
+['ม.43,58-59','สำนักงานเป็น<b>หน่วยงานรัฐ นิติบุคคล ไม่เป็นส่วนราชการ</b> · เลขาธิการ <b>สัญชาติไทย อายุ 35-60 ปี</b> · ข้าราชการเป็นไม่ได้'],
+['ม.71-73','คณะกรรมการ<b>แต่งตั้ง</b>คณะกรรมการผู้เชี่ยวชาญ · ผู้เสียหาย<b>ร้องเรียน</b>ต่อคณะกรรมการผู้เชี่ยวชาญ'],
+['ม.74','ไกล่เกลี่ยได้และคู่กรณีประสงค์ → <b>ไกล่เกลี่ยก่อน</b> · คำสั่งแก้ไขหรือห้ามกระทำ<b>เป็นที่สุด</b> · ไม่ทำตาม → <b>บังคับทางปกครอง</b>'],
+['ม.74','<b>ไม่รับเรื่อง</b> = ผู้ร้องไม่ทำตามระเบียบ · <b>ยุติเรื่อง</b> = พิจารณาแล้วไม่มีมูล'],
+['ม.76','ตรวจสถานที่และยึดเอกสาร: <b>ยื่นคำร้องต่อศาล</b> · เข้าได้ระหว่างพระอาทิตย์ขึ้นถึงตก หรือในเวลาทำการ']]},
+{t:'ความรับผิดและโทษ',r:[
+['แพ่ง','ม.77 ชดใช้<b>ไม่ว่าจงใจหรือประมาท</b> · ม.78 ศาลเพิ่มได้<b>ไม่เกิน 2 เท่า</b> · อายุความ <b>3 ปี</b>นับแต่รู้ / <b>10 ปี</b>นับแต่ละเมิด'],
+['อาญา','ม.79 วรรคแรก (ข้อมูล ม.26 ทำให้เสียหาย): <b>จำคุกไม่เกิน 6 เดือน หรือปรับไม่เกิน 5 แสน</b> · วรรคสอง (หาประโยชน์มิควรได้): <b>1 ปี หรือ 1 ล้านบาท</b>'],
+['อาญา','ม.80 เจ้าหน้าที่นำข้อมูลไปเปิดเผย: <b>6 เดือน หรือ 5 แสน</b> · ม.81 กรรมการผู้สั่งการต้อง<b>รับโทษด้วย</b>'],
+['ปกครอง','<b>1 ล้าน</b>: ไม่แจ้งตาม ม.23 (ม.82) · ไม่ตั้ง DPO (ม.85) &nbsp; <b>3 ล้าน</b>: หลอกขอยินยอม (ม.83) · ผู้ประมวลผลไม่ทำตาม ม.40 (ม.86)'],
+['ปกครอง','<b>5 ล้าน</b>: ข้อมูล ม.26 ไม่ยินยอม (ม.84) · <b>5 แสน</b>: ไม่มาชี้แจง (ม.89) · ม.90 ต้องคำนึงถึงความร้ายแรงและขนาดกิจการ และอาจ<b>สั่งแก้ไขหรือตักเตือนก่อน</b>'],
+['ม.95','ข้อมูลที่เก็บก่อนกฎหมายใช้: ใช้ต่อได้<b>ตามวัตถุประสงค์เดิม</b> แต่ต้องมีวิธียกเลิกความยินยอมที่ง่ายและเผยแพร่']]}
+];
+const NUMS=[['72','ชั่วโมง','แจ้งสำนักงานเมื่อข้อมูลรั่ว ม.37 (4)'],['30','วัน','แจ้งเมื่อเก็บจากแหล่งอื่น ม.25 · ตอบคำขอสำเนา ม.30'],['10','ปี','อายุผู้เยาว์ตาม ม.20 · อายุความสูงสุด ม.78'],['3','ปี','อายุความนับแต่รู้ความเสียหาย ม.78'],['9','คน','กรรมการผู้ทรงคุณวุฒิ ม.8'],['4','ปี','วาระ ไม่เกิน 2 วาระ ม.12'],['35-60','ปี','อายุเลขาธิการ ม.58'],['2','เท่า','ค่าสินไหมเพื่อลงโทษ ไม่เกิน ม.78'],['5 แสน','บาท','ปรับทางปกครอง ม.89'],['1 ล้าน','บาท','ม.82 และ ม.85'],['3 ล้าน','บาท','ม.83 และ ม.86'],['5 ล้าน','บาท','ม.84']];
+const TL=[['ทราบเหตุข้อมูลรั่ว','แจ้งสำนักงานภายใน <b>72 ชั่วโมง</b>'],['ได้ข้อมูลจากแหล่งอื่น / รับคำขอ','แจ้งหรือดำเนินการภายใน <b>30 วัน</b> (เปิดเผยก่อนหน้านั้น ต้องแจ้งก่อน)'],['รู้ถึงความเสียหายและตัวผู้รับผิด','ฟ้องภายใน <b>3 ปี</b> แต่ไม่เกิน <b>10 ปี</b>นับแต่ละเมิด']];
+const WHO=[['fa-user-tie','รมว.ดิจิทัลเพื่อเศรษฐกิจและสังคม','ผู้รักษาการตามกฎหมาย · แต่งตั้งพนักงานเจ้าหน้าที่'],['fa-people-group','คณะกรรมการคุ้มครองข้อมูลส่วนบุคคล','แต่งตั้งคณะกรรมการผู้เชี่ยวชาญ · ประกาศหลักเกณฑ์การส่งข้อมูลไปต่างประเทศ'],['fa-building-columns','สำนักงานคณะกรรมการ','รับแจ้งเหตุรั่ว · ตรวจสอบและรับรองนโยบายคุ้มครองข้อมูลของเครือกิจการ'],['fa-scale-balanced','คณะกรรมการผู้เชี่ยวชาญ','รับเรื่องร้องเรียน · ไกล่เกลี่ย · สั่งแก้ไข · ปรับทางปกครอง'],['fa-gavel','ศาล','อนุญาตให้พนักงานเจ้าหน้าที่เข้าตรวจสถานที่ · สั่งค่าสินไหมเพื่อลงโทษ'],['fa-user-shield','ผู้ควบคุมข้อมูล','ตัดสินใจเรื่องเก็บ ใช้ เปิดเผย · บันทึกรายการ · แจ้งเหตุรั่ว'],['fa-gears','ผู้ประมวลผลข้อมูล','ทำตามคำสั่ง · แจ้งเหตุรั่วต่อผู้ควบคุม · ทำนอกคำสั่งถือเป็นผู้ควบคุม'],['fa-id-badge','เจ้าหน้าที่คุ้มครองข้อมูล (DPO)','ต้องตั้งเมื่อกิจกรรมหลักเกี่ยวกับข้อมูล ม.26 · เลิกจ้างเพราะทำหน้าที่ไม่ได้']];
+const CASES=[['no','ไม่ผูกพัน','ม.19','ขอยินยอมฝังท้ายข้อตกลงหลายหน้า ถ้อยคำเข้าใจยาก → <b>ไม่มีผลผูกพัน</b>'],['no','ไม่ชอบ','ม.19','บังคับให้ยินยอมเก็บประวัติท่องเว็บอื่น มิฉะนั้นไม่ให้ใช้แอป → <b>ไม่จำเป็นหรือไม่เกี่ยวข้อง</b>'],['ok','ชอบ','ม.20','อายุ 9 ปี → <b>ผู้ปกครอง</b> · 16 ปี (ทำเองไม่ได้) → <b>ผู้ปกครองด้วย</b> · 17 ปีสมรส → <b>ให้เองได้</b>'],['rf','ม.21','ม.21','ใช้ที่อยู่ส่งโฆษณาต่างจากเดิม → <b>แจ้งวัตถุประสงค์ใหม่และขอยินยอมก่อน</b>'],['ok','ชอบ','ม.26','ห้องฉุกเฉินผู้ป่วยหมดสติ → <b>ไม่ต้องขอยินยอม</b> · มูลนิธิศาสนา → <b>ได้</b>'],['no','ไม่ชอบ','ม.26','อ้างประโยชน์โดยชอบด้วยกฎหมายเก็บข้อมูลชีวภาพ → <b>เก็บไม่ได้</b> · ธนาคารเก็บลายนิ้วมือ → ต้อง<b>ยินยอมโดยชัดแจ้ง</b>'],['ok','ชอบ','ม.29','ส่งข้อมูลให้บริษัทแม่ตามนโยบายที่สำนักงานรับรอง → <b>ยกเว้น ม.28</b>'],['rf','บันทึก','ม.39','ปฏิเสธสำเนาข้อมูล หรือไม่แก้ข้อมูล → <b>บันทึกเหตุผลไว้ตาม ม.39</b>'],['rf','หยุดทันที','ม.32','คัดค้านการตลาดแบบตรง → <b>หยุดและแยกข้อมูลทันที</b>'],['rf','ม.34','ม.34','ลบไม่ได้ แต่ต้องการเก็บไว้สู้คดี → <b>ขอระงับการใช้</b>แทนการลบ'],['rf','72 ชม.','ม.37','ข้อมูลรั่วเสี่ยงสูง → <b>แจ้งสำนักงาน 72 ชม.</b> และแจ้งเจ้าของข้อมูล'],['no','เป็นผู้ควบคุม','ม.40','ผู้ประมวลผลนำข้อมูลไปทำการตลาดเองโดยไม่มีคำสั่ง → <b>ถือเป็นผู้ควบคุม</b>'],['no','ไม่ชอบ','ม.42','เลิกจ้าง DPO เพราะทักท้วง → <b>ทำไม่ได้</b>'],['no','ไม่ชอบ','ม.22/37','เก็บใบสมัคร 10 ปีไม่มีระบบลบ → ขัด <b>ม.37 (3)</b> และ <b>ม.22</b>'],['no','ต้องห้าม','ม.11/59','สมาชิกสภาท้องถิ่นเป็นกรรมการ · ข้าราชการเป็นเลขาธิการ → <b>ไม่ได้ทั้งคู่</b>'],['ok','ใช้บังคับ','ม.5','บริษัทไทยเก็บข้อมูลคนต่างชาติบนเซิร์ฟเวอร์นอกประเทศ → <b>ใช้บังคับ</b> เพราะผู้ควบคุมอยู่ในราชอาณาจักร']];
+const TIPS=[['fa-triangle-exclamation','ตัวหลอกมักมีคำเด็ดขาด: <b>“ทุกกรณี”</b> อยู่ในตัวเลือกผิด 17 ครั้ง ในเฉลย 0 · <b>“เท่านั้น”</b> ผิด 26 / เฉลย 1 · “เสมอ” 6 / 0 · “ไม่มีข้อยกเว้น” 6 / 0 · “เด็ดขาด” 3 / 0'],['fa-bolt','<b>“ทันที”</b> อยู่ในตัวเลือกผิด 13 ครั้ง ในเฉลย 1 ครั้ง (ม.32 หยุดและแยกข้อมูลทันที)'],['fa-circle-check','<b>“เว้นแต่”</b> อยู่ในเฉลย 7 ข้อ แต่อยู่ในตัวเลือกผิดเพียง 1 ครั้ง'],['fa-ruler','เฉลยเป็นตัวเลือกที่ยาวสุดหรือเท่ายาวสุด 53 ข้อจาก 100 ใช้ประกอบได้ แต่ห้ามใช้ตัดสินเอง'],['fa-shuffle','ตำแหน่งเฉลยกระจายเท่ากัน (แต่ละตำแหน่ง 20 ข้อ) จึงเดาจากลำดับข้อไม่ได้']];
+const CK=['แยกผู้ควบคุม ผู้ประมวลผล เจ้าของข้อมูล และนิยามข้อมูลส่วนบุคคลได้','รู้ขอบเขต ม.3-5 และข้อยกเว้นตาม ม.4','จำเงื่อนไขความยินยอม ม.19-21 และอายุสิบปี','แยกฐานเก็บโดยไม่ขอยินยอม ม.24 จากข้อมูลอ่อนไหว ม.26','จำสิทธิ 6 ข้อ ม.30-36 และเหตุปฏิเสธ','จำตัวเลขเวลา 72 ชั่วโมง 30 วัน 3 และ 10 ปี','แยกหน้าที่คณะกรรมการ สำนักงาน คณะกรรมการผู้เชี่ยวชาญ ศาล','แยกโทษแพ่ง อาญา ปกครอง และจำนวนเงินปรับ','อ่านสถานการณ์แล้วอ้างมาตราได้ทันที'];
+const $=s=>document.querySelector(s);
+$('#flow').innerHTML=FLOW.map((f,i)=>`<div class="step rv"><div class="n">${i+1}</div><h3>${f[0]}</h3><p>${f[1]}</p></div>`).join('');
+$('#idea').innerHTML=IDEA.map(c=>`<div class="card rv"><i class="fa-solid ${c[0]}"></i><h3>${c[1]}</h3><p>${c[2]}</p></div>`).join('');
+$('#tabs').innerHTML=TABS.map((x,i)=>`<button role="tab" aria-selected="false" aria-controls="pn" data-i="${i}">${x.t}</button>`).join('');
+function show(i){document.querySelectorAll('#tabs button').forEach((b,j)=>b.setAttribute('aria-selected',i==j));const p=$('#pn');p.style.animation='none';p.offsetWidth;p.style.animation='';p.innerHTML=TABS[i].r.map(r=>`<div class="row"><span class="ref">${r[0]}</span><p>${r[1]}</p></div>`).join('')}
+$('#tabs').onclick=e=>{const b=e.target.closest('button');if(b)show(+b.dataset.i)};show(0);
+$('#nums').innerHTML=NUMS.map(n=>`<div class="card rv"><div class="num">${n[0]}<small>${n[1]}</small></div><p>${n[2]}</p></div>`).join('');
+$('#tl').innerHTML=TL.map(t=>`<div class="rv"><h3>${t[0]}</h3><p>${t[1]}</p></div>`).join('');
+$('#who').innerHTML=WHO.map(w=>`<div class="card rv"><i class="fa-solid ${w[0]}"></i><h3>${w[1]}</h3><p>${w[2]}</p></div>`).join('');
+$('#cases').innerHTML=CASES.map(c=>`<div class="card rv"><p><span class="v ${c[0]}">${c[1]}</span><span class="ref">${c[2]}</span></p><p style="margin-top:10px">${c[3]}</p></div>`).join('');
+$('#tips').innerHTML=TIPS.map(t=>`<div class="tip"><i class="fa-solid ${t[0]}"></i><p>${t[1]}</p></div>`).join('');
+$('#ckl').innerHTML=CK.map((c,i)=>`<label class="card ck"><input type="checkbox" id="c${i}"><span>${c}</span></label>`).join('');
+$('#ckl').onchange=()=>{const n=document.querySelectorAll('#ckl input:checked').length,p=Math.round(n/CK.length*100);$('#bar').style.width=p+'%';$('#cnt').textContent=n+'/'+CK.length;document.querySelector('.pg').setAttribute('aria-valuenow',p)};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

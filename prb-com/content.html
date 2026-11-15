@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เรียนรู้ พ.ร.บ. คอมพิวเตอร์ อย่างเข้าใจง่าย | เตรียมสอบ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg: #F4EFEA;
+      --ink: #383838;
+      --blue: #6FC2FF;
+      --yel: #FFDE00;
+      --teal: #16AA98;
+      --red: #FF7169;
+      --white: #ffffff;
+      --card-shadow: 6px 6px 0 var(--ink);
+      --btn-shadow: 4px 4px 0 var(--ink);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .k {
+      font-family: 'Kanit', sans-serif;
+      letter-spacing: .05em;
+    }
+
+    .w {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--bg);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    nav .w {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    nav b {
+      font: 600 18px Kanit;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    nav b i {
+      color: var(--teal);
+    }
+
+    nav div a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-family: 'Kanit', sans-serif;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    nav div a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== BUTTONS & TAGS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid var(--ink);
+      background: var(--blue);
+      color: var(--ink);
+      padding: 10px 24px;
+      font: 500 15px Kanit;
+      letter-spacing: .06em;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: .2s;
+      cursor: pointer;
+    }
+
+    .btn.o {
+      background: #fff;
+    }
+
+    .btn:hover {
+      box-shadow: var(--btn-shadow);
+      transform: translate(-2px, -2px);
+    }
+
+    .tag {
+      display: inline-block;
+      border: 2px solid var(--ink);
+      background: #fff;
+      padding: 6px 20px;
+      font: 500 18px Kanit;
+      letter-spacing: .08em;
+      margin-bottom: 32px;
+      border-radius: 4px;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    /* ===== SECTIONS & CARDS ===== */
+    section {
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .blue { background: var(--blue); }
+    .yel { background: var(--yel); }
+    .teal { background: var(--teal); }
+    .white-section { background: #fff; }
+
+    .card {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      padding: 24px;
+      transition: .2s;
+      box-shadow: 4px 4px 0 rgba(56,56,56,0.15);
+    }
+
+    .card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: var(--card-shadow);
+    }
+
+    .g {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .sh {
+      position: absolute;
+      animation: fl 6s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes fl {
+      to { transform: translateY(-14px) rotate(8deg); }
+    }
+
+    .cl {
+      width: 200px;
+      height: 100px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 70px 0 90px;
+      background: var(--bg);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .hero .w {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4.5vw, 52px);
+      line-height: 1.25;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      background: linear-gradient(transparent 60%, var(--yel) 60%);
+      padding: 0 4px;
+    }
+
+    .hero p {
+      margin-bottom: 28px;
+      font-size: 1.05rem;
+      max-width: 48ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .win {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      box-shadow: 8px 8px 0 var(--ink);
+    }
+
+    .win .bar {
+      border-bottom: 2px solid var(--ink);
+      padding: 8px 12px;
+      background: var(--bg);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .win .bar s {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red);
+      border: 1px solid var(--ink);
+    }
+
+    .win pre {
+      font: 14px/1.8 'Courier New', monospace;
+      padding: 18px;
+      white-space: pre-wrap;
+      color: var(--ink);
+    }
+
+    .ok {
+      border-top: 2px solid var(--ink);
+      padding: 10px 18px;
+      font-weight: 600;
+      font-family: 'Kanit', sans-serif;
+      color: var(--teal);
+      background: #f9f9f9;
+    }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      color: var(--ink);
+      opacity: 0.85;
+    }
+
+    /* ===== OVERVIEW CARDS ===== */
+    .overview-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: inline-block;
+      padding: 10px;
+      background: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 4px;
+    }
+
+    /* ===== HIGHLIGHT BOX ===== */
+    .highlight-box {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      padding: 28px 32px;
+      box-shadow: 6px 6px 0 var(--ink);
+      margin-top: 36px;
+    }
+
+    .highlight-box h3 {
+      font-size: 20px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .highlight-box ul {
+      padding-left: 20px;
+    }
+
+    .highlight-box li {
+      margin-bottom: 8px;
+    }
+
+    /* ===== OFFENSE LIST ===== */
+    .offense-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .offense-card {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      box-shadow: 4px 4px 0 var(--ink);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      transition: .2s;
+    }
+
+    .offense-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 7px 7px 0 var(--ink);
+    }
+
+    @media (max-width: 640px) {
+      .offense-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .offense-num {
+      background: var(--yel);
+      border-right: 2px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 700;
+    }
+
+    @media (max-width: 640px) {
+      .offense-num {
+        border-right: none;
+        border-bottom: 2px solid var(--ink);
+        flex-direction: row;
+        gap: 8px;
+        padding: 10px;
+      }
+    }
+
+    .offense-num .num {
+      font-size: 1.8rem;
+      line-height: 1;
+    }
+
+    .offense-num .label {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .offense-body {
+      padding: 24px;
+    }
+
+    .offense-body h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .offense-body .desc {
+      font-size: 0.98rem;
+      margin-bottom: 14px;
+      opacity: 0.9;
+    }
+
+    /* Tags inside cards */
+    .badge {
+      display: inline-block;
+      border: 2px solid var(--ink);
+      padding: 2px 10px;
+      font: 500 12px Kanit;
+      border-radius: 3px;
+      background: var(--bg);
+    }
+    .badge.red { background: var(--red); color: #fff; }
+    .badge.blue { background: var(--blue); }
+    .badge.teal { background: var(--teal); color: #fff; }
+    .badge.yel { background: var(--yel); }
+
+    .penalty {
+      display: inline-block;
+      background: #fff5f5;
+      border: 2px solid var(--ink);
+      color: #c0392b;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 4px;
+      margin-top: 6px;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .penalty.light {
+      background: #f0f9ff;
+      color: #0369a1;
+    }
+
+    .penalty.warning {
+      background: #fffbeb;
+      color: #b45309;
+    }
+
+    /* ===== TWO COL ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== STEPS ===== */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .step-card {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      padding: 24px 20px;
+      box-shadow: 4px 4px 0 var(--ink);
+      position: relative;
+    }
+
+    .step-num {
+      display: inline-block;
+      background: var(--yel);
+      border: 2px solid var(--ink);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 700;
+      margin-bottom: 12px;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .step-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    /* ===== TIPS GRID ===== */
+    .tip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .tip-card {
+      background: #fff;
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      padding: 24px;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .tip-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tip-card p {
+      font-size: 0.93rem;
+      opacity: 0.9;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--ink);
+      color: #ddd;
+      padding: 50px 0 30px;
+      font-size: 14px;
+      border-top: 2px solid var(--ink);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    footer h4 {
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+
+    footer p, footer a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 40px auto 0;
+      padding: 20px 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: .6s;
+    }
+    .rv.on {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="w">
+      <b><i class="fa-solid fa-shield-halved"></i> พ.ร.บ. คอมพิวเตอร์</b>
+      <div>
+        <a href="#overview">ภาพรวม</a>
+        <a href="#definitions">นิยาม</a>
+        <a href="#offenses">ความผิดหลัก</a>
+        <a href="#officials">อำนาจเจ้าหน้าที่</a>
+        <a href="#tips">เตรียมสอบ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="w">
+      <div class="rv">
+        <div class="tag">📘 สื่อการเรียนรู้ก่อนทำข้อสอบ</div>
+        <h1>เข้าใจ <span>พ.ร.บ. คอมพิวเตอร์</span><br>อย่างง่ายและครบถ้วน</h1>
+        <p>
+          สรุปเนื้อหาสำคัญจากพระราชบัญญัติว่าด้วยการกระทำความผิดเกี่ยวกับคอมพิวเตอร์ 
+          พ.ศ. 2550 และฉบับแก้ไข พ.ศ. 2560 เห็นโครงสร้างชัดเจน พร้อมนำไปทำข้อสอบได้จริง
+        </p>
+        <div class="hero-cta">
+          <a href="#overview" class="btn">เริ่มเรียนรู้ <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#tips" class="btn o">ดูข้อควรจำ</a>
+        </div>
+      </div>
+      <div class="win rv">
+        <div class="bar"><s></s><s></s><s></s></div>
+        <pre>มาตรา 14
+- นำเข้าข้อมูลเท็จ/ปลอม (น่าจะเสียหาย)
+- ข้อมูลเท็จกระทบความมั่นคง / ตื่นตระหนก
+- ความผิดเกี่ยวกับความมั่นคง
+- ข้อมูลลามกประชาชนเข้าถึงได้
+# โทษ: จำคุกไม่เกิน 5 ปี หรือปรับไม่เกิน 100,000</pre>
+        <div class="ok"><i class="fa-solid fa-circle-check"></i> ออกข้อสอบบ่อยที่สุด!</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- OVERVIEW -->
+  <section class="white-section" id="overview">
+    <div class="w">
+      <div class="section-header rv">
+        <div class="tag">ภาพรวม</div>
+        <h2>กฎหมายนี้เกี่ยวกับอะไร?</h2>
+        <p>กฎหมายหลักที่ใช้ควบคุมการกระทำความผิดทางคอมพิวเตอร์ในประเทศไทย มีการแก้ไขครั้งใหญ่ในปี 2560</p>
+      </div>
+
+      <div class="g rv">
+        <div class="card">
+          <div class="overview-icon"><i class="fa-solid fa-calendar-days" style="color:var(--teal);"></i></div>
+          <h3>ปีที่ใช้บังคับ</h3>
+          <p>พ.ศ. 2550 (เริ่มใช้ 19 ก.ค. 2550) และแก้ไขเพิ่มเติมครั้งใหญ่โดยฉบับที่ 2 พ.ศ. 2560 (มีผลหลัง 120 วันนับจากประกาศ)</p>
+        </div>
+        <div class="card">
+          <div class="overview-icon"><i class="fa-solid fa-bullseye" style="color:var(--red);"></i></div>
+          <h3>จุดประสงค์หลัก</h3>
+          <p>ป้องกันและปราบปรามการกระทำความผิดเกี่ยวกับคอมพิวเตอร์ คุ้มครองความมั่นคง ความสงบเรียบร้อย และสิทธิของบุคคล</p>
+        </div>
+        <div class="card">
+          <div class="overview-icon"><i class="fa-solid fa-landmark" style="color:var(--blue);"></i></div>
+          <h3>ผู้รักษาการ</h3>
+          <p>รัฐมนตรีว่าการกระทรวงดิจิทัลเพื่อเศรษฐกิจและสังคม (เดิมคือกระทรวง ICT)</p>
+        </div>
+        <div class="card">
+          <div class="overview-icon"><i class="fa-solid fa-globe" style="color:var(--teal);"></i></div>
+          <h3>ขอบเขตการบังคับใช้</h3>
+          <p>ใช้ในราชอาณาจักรไทย และครอบคลุมการกระทำนอกราชอาณาจักรที่ส่งผลกระทบต่อความมั่นคงหรือระบบของไทย</p>
+        </div>
+      </div>
+
+      <div class="highlight-box rv">
+        <h3><i class="fa-solid fa-bolt" style="color:var(--yel);"></i> ความแตกต่างสำคัญของฉบับปี 2560</h3>
+        <ul>
+          <li>เพิ่มบทบัญญัติเกี่ยวกับ <strong>ข่าวปลอม / ข้อมูลเท็จ</strong> และการกลั่นกรองเนื้อหาที่ขัดต่อความสงบเรียบร้อย</li>
+          <li>กำหนดให้มี <strong>คณะกรรมการกลั่นกรองข้อมูลคอมพิวเตอร์</strong> (ผู้ทรงคุณวุฒิไม่เกิน 9 คน รวมผู้แทนภาคเอกชน)</li>
+          <li>ปรับปรุงความรับผิดของผู้ให้บริการ (Notice and Takedown)</li>
+          <li>เพิ่มความผิดเกี่ยวกับภาพตัดต่อ (Deepfake) ในมาตรา 16</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEFINITIONS -->
+  <section class="blue" id="definitions">
+    <div class="w">
+      <div class="section-header rv">
+        <div class="tag" style="background:#fff;">นิยามสำคัญ</div>
+        <h2>คำศัพท์ที่ต้องรู้ก่อนทำข้อสอบ</h2>
+        <p>หลายข้อสอบจะถามนิยามเหล่านี้โดยตรงเพื่อเช็กความเข้าใจ</p>
+      </div>
+
+      <div class="g rv">
+        <div class="card">
+          <h3><i class="fa-solid fa-tower-broadcast"></i> ข้อมูลจราจรทางคอมพิวเตอร์</h3>
+          <p>ข้อมูลเกี่ยวกับการสื่อสาร ซึ่งแสดงถึง แหล่งกำเนิด ต้นทาง ปลายทาง เส้นทาง เวลา วันที่ ปริมาณ ระยะเวลา ชนิดของบริการ หรืออื่นๆ ที่เกี่ยวข้อง</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-hard-drive"></i> ข้อมูลคอมพิวเตอร์</h3>
+          <p>ข้อมูล ข้อความ คำสั่ง ชุดคำสั่ง หรือสิ่งอื่นใด ไม่ว่าจะอยู่ในรูปแบบใดๆ ที่อยู่ในระบบคอมพิวเตอร์และสามารถประมวลผลได้</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-server"></i> ผู้ให้บริการ (Service Provider)</h3>
+          <p>ผู้ให้บริการแก่ผู้อื่นในการเข้าถึงระบบคอมพิวเตอร์ หรือการจัดเก็บ จัดส่ง หรือประมวลผลข้อมูล (เช่น ISP, เว็บโฮสติ้ง, โซเชียลมีเดีย)</p>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-user-shield"></i> พนักงานเจ้าหน้าที่</h3>
+          <p>ผู้ซึ่งรัฐมนตรีว่าการกระทรวงดิจิทัลเพื่อเศรษฐกิจและสังคม แต่งตั้งให้ปฏิบัติการตามพระราชบัญญัตินี้ (มีความเชี่ยวชาญด้านคอมพิวเตอร์)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFENSES -->
+  <section class="white-section" id="offenses">
+    <div class="w">
+      <div class="section-header rv">
+        <div class="tag">ความผิดหลัก</div>
+        <h2>มาตราสำคัญที่ออกบ่อยในข้อสอบ</h2>
+        <p>จัดกลุ่มตามลักษณะการกระทำ พร้อมบทกำหนดโทษสูงสุด</p>
+      </div>
+
+      <div class="offense-list rv">
+
+        <!-- 5 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">5</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>เข้าถึงระบบคอมพิวเตอร์โดยมิชอบ <span class="badge blue">ไม่มีการป้องกันเฉพาะ</span></h3>
+            <p class="desc">ผู้ใดเข้าถึงโดยมิชอบซึ่งระบบคอมพิวเตอร์ที่มีมาตรการป้องกันการเข้าถึงโดยเฉพาะและมาตรการนั้นไม่ได้มีไว้สำหรับตน → ใช้มาตรา 7 แทน แต่ถ้าไม่มีป้องกันเลย → ใช้มาตรา 5</p>
+            <span class="penalty light">จำคุกไม่เกิน 6 เดือน หรือปรับไม่เกิน 10,000 บาท หรือทั้งจำทั้งปรับ</span>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">6</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>เปิดเผยมาตรการป้องกันการเข้าถึง</h3>
+            <p class="desc">ผู้ใดล่วงรู้มาตรการป้องกันการเข้าถึงระบบคอมพิวเตอร์ที่ผู้อื่นจัดทำขึ้นเฉพาะ นำไปเปิดเผยโดยประการที่น่าจะเกิดความเสียหายแก่ผู้อื่น</p>
+            <span class="penalty light">จำคุกไม่เกิน 1 ปี หรือปรับไม่เกิน 20,000 บาท หรือทั้งจำทั้งปรับ</span>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">7</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>เข้าถึงระบบ/ข้อมูลที่มีมาตรการป้องกันโดยมิชอบ</h3>
+            <p class="desc">เข้าถึงโดยมิชอบซึ่งระบบคอมพิวเตอร์หรือข้อมูลคอมพิวเตอร์ที่มีมาตรการป้องกันการเข้าถึงโดยเฉพาะ และมาตรการนั้นไม่ได้มีไว้สำหรับตน</p>
+            <span class="penalty">จำคุกไม่เกิน 2 ปี หรือปรับไม่เกิน 40,000 บาท หรือทั้งจำทั้งปรับ</span>
+          </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">8</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>ดักรับ / เปิดเผยข้อมูลคอมพิวเตอร์ระหว่างส่ง</h3>
+            <p class="desc">ล่วงรู้ข้อมูลคอมพิวเตอร์ของผู้อื่นที่อยู่ระหว่างการส่งในระบบ และนำไปเปิดเผยโดยประการที่น่าจะเกิดความเสียหาย (มิได้มีไว้เพื่อประโยชน์สาธารณะ)</p>
+            <span class="penalty">จำคุกไม่เกิน 3 ปี หรือปรับไม่เกิน 60,000 บาท หรือทั้งจำทั้งปรับ</span>
+          </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">9</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>ทำให้เสียหาย ทำลาย แก้ไข เปลี่ยนแปลงข้อมูล</h3>
+            <p class="desc">ผู้ใดทำให้เสียหาย ทำลาย แก้ไข เปลี่ยนแปลง หรือเพิ่มเติมข้อมูลคอมพิวเตอร์ของผู้อื่นโดยมิชอบ <strong>(แม้ยังไม่เกิดความเสียหายจริงก็เป็นความผิด)</strong></p>
+            <span class="penalty">จำคุกไม่เกิน 5 ปี หรือปรับไม่เกิน 100,000 บาท หรือทั้งจำทั้งปรับ</span>
+          </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">10</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>ทำให้ระบบสะดุด / ขัดข้อง / ถูกระงับ (DDoS)</h3>
+            <p class="desc">กระทำให้การทำงานของระบบคอมพิวเตอร์ถูกระงับ ชะลอ ขัดขวาง หรือรบกวนจนไม่สามารถทำงานตามปกติได้โดยไม่มีเหตุอันควร</p>
+            <div style="margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+              <span class="penalty">ทั่วไป: จำคุกไม่เกิน 5 ปี หรือปรับไม่เกิน 100,000 บาท</span>
+              <span class="penalty">เป็นเหตุให้เกิดอันตรายแก่บุคคล: จำคุกไม่เกิน 10 ปี / ปรับไม่เกิน 200,000 บาท</span>
+              <span class="penalty">เป็นเหตุให้ถึงแก่ความตาย: จำคุก 10–20 ปี</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">11</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>ส่งสแปมเมล / จดหมายอิเล็กทรอนิกส์ก่อความรำคาญ</h3>
+            <p class="desc">ส่งข้อมูลคอมพิวเตอร์หรืออีเมลแก่บุคคลอื่น โดยปกปิดหรือปลอมแปลงแหล่งที่มา ในลักษณะที่น่าจะก่อให้เกิดความเดือดร้อนรำคาญแก่ผู้รับ</p>
+            <span class="penalty light">ปรับไม่เกิน 100,000 บาท (ไม่มีโทษจำคุก)</span>
+          </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">13</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>จำหน่ายหรือเผยแพร่เครื่องมือสำหรับแฮก</h3>
+            <p class="desc">จำหน่ายหรือเผยแพร่ชุดคำสั่ง (Software/Tool) ที่จัดทำขึ้นโดยเฉพาะเพื่อนำไปใช้เป็นเครื่องมือในการกระทำความผิดตามมาตรา 5 ถึง 10</p>
+            <span class="penalty light">จำคุกไม่เกิน 1 ปี หรือปรับไม่เกิน 20,000 บาท หรือทั้งจำทั้งปรับ</span>
+          </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="offense-card" style="border-left: 6px solid var(--red);">
+          <div class="offense-num" style="background:#ffe6e6;">
+            <span class="num" style="color:var(--red);">14</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>นำเข้าข้อมูลเท็จ / ลามก / กระทบความมั่นคง <span class="badge red">ออกบ่อยที่สุด</span></h3>
+            <p class="desc">
+              (1) ข้อมูลเท็จ / ปอม ประชาชนเสียหาย<br>
+              (2) ข้อมูลเท็จกระทบความมั่นคง / ตื่นตระหนก<br>
+              (3) ความผิดเกี่ยวกับความมั่นคงแห่งราชอาณาจักร<br>
+              (4) ข้อมูลคอมพิวเตอร์ลามก ประชาชนเข้าถึงได้
+            </p>
+            <span class="penalty">จำคุกไม่เกิน 5 ปี หรือปรับไม่เกิน 100,000 บาท หรือทั้งจำทั้งปรับ</span>
+          </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="offense-card">
+          <div class="offense-num">
+            <span class="num">15</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>ความรับผิดของผู้ให้บริการ (Service Provider)</h3>
+            <p class="desc">จงใจสนับสนุนหรือยินยอมให้มีการกระทำความผิดตามมาตรา 14 ในระบบที่อยู่ในความควบคุม → ต้องรับโทษเท่ากับผู้กระทำความผิด (ยกเว้นปฏิบัติตาม Notice and Takedown)</p>
+            <span class="penalty warning">โทษเท่ากับผู้กระทำผิดหลัก (ม.14)</span>
+          </div>
+        </div>
+
+        <!-- 16 -->
+        <div class="offense-card" style="border-left: 6px solid var(--teal);">
+          <div class="offense-num" style="background:#e0f7f5;">
+            <span class="num" style="color:var(--teal);">16</span>
+            <span class="label">มาตรา</span>
+          </div>
+          <div class="offense-body">
+            <h3>ภาพตัดต่อ / Deepfake ทำให้เสียชื่อเสียง <span class="badge teal">ยอมความได้</span></h3>
+            <p class="desc">นำเข้าสู่ระบบคอมพิวเตอร์ซึ่งภาพตัดต่อ เติม ดัดแปลง ด้วยวิธีอิเล็กทรอนิกส์ โดยประการที่น่าจะทำให้ผู้อื่นเสียชื่อเสียง ถูกดูหมิ่นเกลียดชัง หรืออับอาย (ม.16/1 ผู้ส่งต่อก็โดนด้วย)</p>
+            <span class="penalty">จำคุกไม่เกิน 3 ปี หรือปรับไม่เกิน 200,000 บาท หรือทั้งจำทั้งปรับ</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFICIALS POWER -->
+  <section class="yel" id="officials">
+    <div class="w">
+      <div class="section-header rv">
+        <div class="tag" style="background:#fff;">อำนาจและหน้าที่</div>
+        <h2>พนักงานเจ้าหน้าที่ และการปฏิบัติงาน</h2>
+        <p>ข้อสอบชอบถามเรื่องระยะเวลาเก็บข้อมูล และขั้นตอนทางกฎหมาย</p>
+      </div>
+
+      <div class="two-col rv">
+        <div class="card">
+          <h3 style="margin-bottom:12px;"><i class="fa-solid fa-box-archive"></i> การเก็บรักษาข้อมูลจราจร (Traffic Data)</h3>
+          <p style="margin-bottom:8px;">• <strong>ระยะเวลาปกติ:</strong> ผู้ให้บริการต้องเก็บไว้ไม่น้อยกว่า <strong style="color:var(--teal);">90 วัน</strong></p>
+          <p>• <strong>กรณีจำเป็น:</strong> เจ้าหน้าที่สั่งให้เก็บเพิ่มได้รวมแล้ว <strong style="color:var(--teal);">ไม่เกิน 2 ปี</strong></p>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:12px;"><i class="fa-solid fa-magnifying-glass"></i> อำนาจตรวจค้น / ยึด</h3>
+          <p style="margin-bottom:8px;">• <strong>ปกติ:</strong> ต้องมีหมายศาล</p>
+          <p>• <strong>เหตุฉุกเฉินเร่งด่วน:</strong> ค้น/ยึดก่อนได้ แต่ต้องยื่นคำร้องต่อศาลเพื่อขอหมายภายใน <strong style="color:var(--red);">48 ชั่วโมง</strong></p>
+        </div>
+      </div>
+
+      <div class="highlight-box rv" style="margin-top:30px;">
+        <h3><i class="fa-solid fa-clipboard-list"></i> ขั้นตอนการระงับข้อมูลตามมาตรา 20</h3>
+        <div class="steps" style="margin-top:16px;">
+          <div class="step-card">
+            <span class="step-num">1</span>
+            <h4>พบข้อมูลต้องสงสัย</h4>
+            <p>ขัดต่อความสงบเรียบร้อยหรือศีลธรรมอันดี</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">2</span>
+            <h4>เสนอคณะกรรมการ</h4>
+            <p>ขอความเห็นชอบจากคณะกรรมการกลั่นกรองฯ</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">3</span>
+            <h4>ยื่นคำร้องต่อศาล</h4>
+            <p>ขอคำสั่งระงับหรือลบข้อมูลจากศาล</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">4</span>
+            <h4>ผู้ให้บริการปฏิบัติตาม</h4>
+            <p>ลบ/ระงับทันที ฝ่าฝืนปรับวันละไม่เกิน 5,000 บาท</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section class="teal" id="tips">
+    <div class="w">
+      <div class="section-header rv">
+        <div class="tag" style="background:#fff;">เตรียมสอบ</div>
+        <h2 style="color:#fff;">ข้อควรจำเพื่อทำข้อสอบให้แม่นยำ</h2>
+      </div>
+
+      <div class="tip-grid rv">
+        <div class="card">
+          <h3>1️⃣ ความผิดยอมความได้</h3>
+          <p>มาตรา 16 (ภาพตัดต่อ) เป็นความผิดอันยอมความได้ ส่วนมาตรา 14 โดยทั่วไปเป็นความผิดอาญาแผ่นดิน (ยอมความไม่ได้)</p>
+        </div>
+        <div class="card">
+          <h3>2️⃣ “น่าจะเกิดความเสียหาย”</h3>
+          <p>ไม่จำเป็นต้องเสียหายจริง เพียงมีพฤติการณ์ที่อาจส่งผลให้เกิดความเสียหายก็เป็นความผิดแล้ว (โดยเฉพาะ ม.14)</p>
+        </div>
+        <div class="card">
+          <h3>3️⃣ แชร์ข้อมูลเท็จ</h3>
+          <p>ผู้ที่รู้ว่าเป็นข้อมูลเท็จแล้วยังกดแชร์ต่อสาธารณะ มีความผิดฐานนำเข้าข้อมูลเท็จเช่นเดียวกับผู้โพสต์ต้นทาง</p>
+        </div>
+        <div class="card">
+          <h3>4️⃣ White-hat / ทดสอบระบบ</h3>
+          <p>หากกระทำเพื่อการศึกษาวิจัยหรือทดสอบความปลอดภัยโดยได้รับอนุญาตจากเจ้าของระบบอย่างถูกต้อง → ไม่มี ฐานความผิด</p>
+        </div>
+        <div class="card">
+          <h3>5️⃣ นิติบุคคลกระทำผิด</h3>
+          <p>กรรมการ ผู้จัดการ หรือผู้รับผิดชอบ ต้องรับโทษด้วย เว้นแต่พิสูจน์ได้ว่าตนมิได้มีส่วนร่วมรู้เห็น</p>
+        </div>
+        <div class="card">
+          <h3>6️⃣ อายุความ</h3>
+          <p>ใช้อายุความตามประมวลกฎหมายอาญา ขึ้นอยู่กับอัตราโทษจำคุกของแต่ละมาตรา (ไม่ได้กำหนดตายตัวใน พ.ร.บ.นี้)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h4><i class="fa-solid fa-shield-halved"></i> พ.ร.บ. คอมพิวเตอร์</h4>
+        <p>สื่อการเรียนรู้สรุปเนื้อหาสำคัญจาก พ.ร.บ. ว่าด้วยการกระทำความผิดเกี่ยวกับคอมพิวเตอร์ พ.ศ. 2550 และแก้ไขเพิ่มเติม (ฉบับที่ 2) พ.ศ. 2560</p>
+      </div>
+      <div>
+        <h4>เมนูลัด</h4>
+        <a href="#overview">ภาพรวมกฎหมาย</a>
+        <a href="#definitions">นิยามสำคัญ</a>
+        <a href="#offenses">ความผิดและมาตรา</a>
+        <a href="#officials">อำนาจเจ้าหน้าที่</a>
+      </div>
+      <div>
+        <h4>หมายเหตุ</h4>
+        <p>จัดทำเพื่อเป็นแนวทางศึกษาและเตรียมสอบ ควรอ้างอิงตัวบทกฎหมายฉบับราชกิจจานุเบกษาควบคู่กัน</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      ดีไซน์สไตล์นีโอบรูทาลิสต์ • สำหรับการเรียนรู้และเตรียมสอบ
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-in scroll animation
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
