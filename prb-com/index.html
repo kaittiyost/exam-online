@@ -1098,7 +1098,7 @@ document.addEventListener("keydown", event => {
 /* ==========================================================================
    CONFIG: ตั้งค่าชุดข้อสอบ ไฟล์ และเกณฑ์คะแนน
    ========================================================================== */
-const examTitle       = "ข้อสอบ พ.ร.บ. การปฏิบัติราชการทางอิเล็กทรอนิกส์ พ.ศ. 2565";
+const examTitle       = "ข้อสอบ พ.ร.บ. คอมพิวเตอร์";
 const exam            = "react_native_questions.js";
 const examMode        = "single"; // "single" | "qualification-practical"
 const percentPass     = 90;
@@ -1180,53 +1180,21 @@ const AVATARS = [
    คลังข้อสอบสำรอง (Inline Fallback)
    ========================================================================== */
 let Q = [
-  ["f","เติมโค้ดที่ขาด (____) ให้รูปปรับขนาดตามหน้าจอหรือกรอบได้","Image(\"photo\")\n    .____()\n    .scaledToFit()","resizable","scalable","resizing","aspectFit","resizeToFit"],
-  ["f","เติมโค้ดที่ขาด (____) ให้รูปเป็นวงกลม","Image(\"profile\")\n    .resizable()\n    .clipShape(____())","Circle","Round","Oval","Ring","Rounded"],
-  ["f","เติมโค้ดที่ขาด (____) เพื่อใส่สีพื้นหลังเป็นสีฟ้า","Text(\"Hello\")\n    .____(.blue)\n    .foregroundStyle(.white)","background","backgroundColor","fill","tint","foregroundFill"],
-  ["f","เติมโค้ดที่ขาด (____) เพื่อจัดข้อความในแนวตั้งให้ชิดซ้าย","VStack(____: .leading) {\n    Text(\"SwiftUI\")\n}","alignment","align","position","edge","anchor"],
-  ["f","เติมโค้ดที่ขาด (____) กำหนดขนาดความกว้างและความสูงของรูป","Image(\"logo\")\n    .frame(width: 150, ____: 150)","height","length","tall","size","vertical"],
-  ["f","เติมโค้ดที่ขาด (____) เพื่อจำกัดให้ข้อความแสดงไม่เกิน 1 บรรทัด","Text(\"SwiftUI Basics\")\n    .____(1)","lineLimit","maxLines","limit","numberOfLines","lines"],
-  ["f","เติมโค้ดที่ขาด (____) เพื่อกำหนดระยะห่างระหว่าง view ในแนวนอนเป็น 20","HStack(____: 20) {\n    Text(\"A\")\n    Text(\"B\")\n}","spacing","gap","margin","space","padding"],
-  ["f","เติมโค้ดที่ขาด (____) เพื่อตั้งค่าขนาดฟอนต์เป็นหัวข้อใหญ่","Text(\"SwiftUI\")\n    .font(.____)","largeTitle","bigTitle","extraLarge","title0","hugeTitle"],
-  ["f","เติมโค้ดที่ขาด (____) เพื่อกำหนดให้ข้อความมีความหนาแบบ bold","Text(\"Score\")\n    .____(.bold)","fontWeight","weight","fontStyle","textWeight","fontBold"],
-  ["f","เติมโค้ดที่ขาด (____) ให้เว้นระยะขอบรอบข้อความ","Text(\"SwiftUI\")\n    .____()\n    .background(.yellow)","padding","margin","spacing","offset","border"],
-  ["f","เติมโค้ดที่ขาด (____) เพื่อเปลี่ยนสีของตัวอักษรเป็นสีขาว","Text(\"Welcome\")\n    .____(.white)","foregroundStyle","textColor","color","fontColor","tintColor"],
-  ["f","เติมโค้ดที่ขาด (____) จัด layout เรียงในแนวตั้ง","____ {\n    Text(\"บน\")\n    Text(\"ล่าง\")\n}","VStack","HStack","Stack","Vertical","ListStack"],
-  ["f","เติมโค้ดที่ขาด (____) จัด layout เรียงในแนวนอน","____ {\n    Image(systemName: \"star\")\n    Text(\"5.0\")\n}","HStack","VStack","Horizontal","HBox","Row"],
-  ["f","เติมโค้ดที่ขาด (____) เพื่อดันพื้นที่ว่างให้ view แยกห่างจากกัน","HStack {\n    Text(\"ซ้าย\")\n    ____()\n    Text(\"ขวา\")\n}","Spacer","Space","Divider","Gap","Filler"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","Text(\"Hello\")\n    .font(.largeTitle)\n    .bold","`.bold` ขาดวงเล็บ () ต้องเป็น `.bold()`","`.font` ใช้กับ Text ไม่ได้","ต้องใส่ return หน้า Text","`.largeTitle` ต้องเป็นตัวเลข","ต้องเรียก .padding() ก่อน"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","Text(\"Hello\")\n    .foregroundStyle(white)","ขาดจุดหน้า white ต้องเป็น .white","white ต้องใส่เครื่องหมายคำพูด","ต้องใช้ .foregroundColor เท่านั้น","Text ไม่รองรับการใส่สี","ต้องเรียก Color() ครอบสองชั้น"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","Image(\"photo\")\n    .scaledToFit()\n    .resizable()",".resizable() ต้องมาก่อน scaledToFit","ชื่อรูปต้องมีนามสกุล .png","ต้องใส่ frame ก่อนทุก modifier","Image ไม่สามารถใช้ resizable ได้","scaledToFit ต้องมีค่าพารามิเตอร์"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","VStack {\n    Text(\"A\")\n    Text(\"B\")\n)","ปิดบล็อกผิดตัว ต้องใช้ } ไม่ใช่ )","VStack ใส่ Text ได้เพียงตัวเดียว","ต้องใส่เครื่องหมาย comma คั่นระหว่าง Text","Text ต้องใช้เครื่องหมายปีกกา {}","ต้องใส่เซมิโคลอนท้ายบรรทัดเสมอ"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","Text(\"Name\")\n    .lineLimit(\"1\")","lineLimit รับค่าตัวเลข Int ไม่ใช่ String","Text ไม่สามารถใช้ modifier lineLimit ได้","ต้องเขียนเป็น lineLimit(true)","ต้องมี label ว่า count: 1","lineLimit ต้องอยู่ก่อน Text"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","Image(\"photo\")\n    .resizable()\n    .clipShape(Circle)","Circle ต้องมีวงเล็บปิดเปิดเป็น Circle()","clipShape ต้องอยู่ก่อน resizable","Circle ต้องมีจุดนำหน้าเป็น .circle","Image ใช้กับ clipShape ไม่ได้","ต้องกำหนด frame ภายใน Circle"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","Text(\"A\")\n    .font(.largeTitle)\n    .fontWeight(bold)","bold ขาดจุดนำหน้า ต้องเขียนเป็น .bold","fontWeight รับเฉพาะตัวเลข Int","ห้ามใช้ fontWeight ร่วมกับ font","largeTitle ต้องมีวงเล็บ ()","ต้องแปลง bold เป็น String"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","VStack(alignment: leading) {\n    Text(\"A\")\n}","leading ขาดจุดนำหน้า ต้องเป็น .leading","alignment ต้องรับเป็นตัวเลข","VStack ไม่รองรับ alignment","ต้องใช้ HStack แทนเสมอ","leading ต้องครอบด้วยเครื่องหมายคำพูด"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","Image(\"cat\")\n    .frame(width: 100 height: 100)","ขาดเครื่องหมายจุลภาค (,) คั่นระหว่างพารามิเตอร์","frame รับได้แค่พารามิเตอร์เดียว","ต้องใช้ size: แทน width และ height","ห้ามกำหนด width ใน Image","ต้องคั่นด้วยเซมิโคลอน (;)"],
-  ["b","โค้ดนี้มี error ข้อใดคือสาเหตุ","Text('Hello')","Swift ต้องใช้เครื่องหมายคำพูดคู่ (\") สำหรับ String","Text รับได้เฉพาะตัวเลข","ต้องเขียนเป็น Text{Hello}","ต้องมีเครื่องหมาย @ นำหน้าข้อความ","ต้องใส่ .string() ต่อท้ายเสมอ"],
-  ["m","VStack จัดวาง View ลูกในลักษณะใด","","จัดเรียง View ตามลำดับในแนวตั้ง","จัดเรียง View ตามลำดับในแนวนอน","จัดเรียง View ซ้อนทับกันในแนวลึก","จัดวางแบบตารางสองมิติ","จัดวางแบบสุ่มตำแหน่งบนหน้าจอ"],
-  ["m","HStack จัดวาง View ลูกในลักษณะใด","","จัดเรียง View ตามลำดับในแนวนอน","จัดเรียง View ตามลำดับในแนวตั้ง","จัดเรียง View ซ้อนทับกันในแนวลึก","ทำให้ View หมุนเป็นวงกลม","จัดวางเฉพาะรูปภาพเท่านั้น"],
-  ["m","เมื่อนำ .padding() วางไว้ก่อน .background(.blue) จะได้ผลลัพธ์อย่างไร","","สีพื้นหลังสีฟ้าจะครอบคลุมพื้นที่ว่างของ padding ด้วย","สีพื้นหลังจะอยู่ชิดพอดีกับขอบตัวอักษรเท่านั้น","padding จะไม่ทำงานและถูกลบทิ้ง","ข้อความจะถูกเปลี่ยนเป็นสีฟ้า","หน้าจอจะเกิด error"],
-  ["m","การใส่ .resizable() ให้กับ Image มีความสำคัญอย่างไร","","อนุญาตให้รูปภาพปรับขนาดตามกรอบหรือ frame ได้","บีบอัดขนาดไฟล์ภาพเพื่อประหยัดหน่วยความจำ","เปลี่ยนภาพถ่ายเป็นกราฟิกเวกเตอร์","ล็อกไม่ให้รูปภาพเคลื่อนไหว","เปลี่ยนสีพื้นหลังของรูปภาพ"],
-  ["m","modifier .scaledToFit() ของ Image ทำหน้าที่อะไร","","ปรับย่อ/ขยายรูปโดยยังคงอัตราส่วนเดิมไว้ทั้งหมด","ยืดรูปให้เต็มพื้นที่จนอาจเสียสัดส่วน","ตัดขอบรูปภาพส่วนเกินออก","ขยายรูปภาพให้ใหญ่ขึ้น 2 เท่าเสมอ","ทำให้รูปภาพเบลอตามขอบ"],
-  ["m","Spacer() ใน VStack หรือ HStack ทำหน้าที่อะไร","","ขยายตัวเพื่อดัน View รอบข้างให้ชิดขอบหรือแยกห่างกัน","สร้างเส้นคั่นบางๆ ระหว่าง View","ซ่อน View ตัวถัดไปชั่วคราว","จำกัดความกว้างของ View","เปลี่ยนสีพื้นหลังให้โปร่งใส"],
-  ["m","VStack(alignment: .leading) ส่งผลต่อ View ด้านในอย่างไร","","ทำให้ View ด้านในทั้งหมดชิดขอบด้านซ้าย","ทำให้ View ทั้งหมดอยู่ตรงกึ่งกลาง","ทำให้ View ทั้งหมดชิดขอบด้านขวา","ทำให้ View ทั้งหมดชิดขอบด้านล่าง","เรียงข้อความจากขวาไปซ้าย"],
-  ["m","HStack(spacing: 15) หมายถึงอะไร","","กำหนดระยะห่างระหว่าง View แต่ละตัวในแนวนอนเป็น 15 pt","กำหนดความกว้างของ HStack เป็น 15 pt","เว้นขอบรอบนอก HStack ด้านละ 15 pt","จำกัดให้มี View ภายในได้ 15 ตัว","หน่วงเวลาการแสดงผล 15 วินาที"],
-  ["m","ลำดับการเขียน modifier ใน SwiftUI มีความสำคัญเพราะเหตุใด","","แต่ละ modifier จะสร้าง View ใหม่มาครอบ View เดิมตามลำดับที่เรียก","SwiftUI ทำงานจากบรรทัดล่างขึ้นไปบรรทัดบน","modifier ตัวแรกเท่านั้นที่จะมีผลต่อการแสดงผล","ไม่มีความสำคัญ ลำดับใดก็ได้ผลเหมือนกัน","Xcode จะเรียงลำดับให้ใหม่อัตโนมัติ"],
-  ["m","หากต้องการเปลี่ยนสีข้อความของ Text ใน SwiftUI สมัยใหม่ควรใช้ modifier ใด","",".foregroundStyle()",".textColor()",".fontColor()",".textStyle()",".color()"],
-  ["m","การใช้ .clipShape(Circle()) กับ Image จะได้ผลอย่างไร","","ตัดส่วนเกินของรูปภาพให้ออกมาเป็นทรงวงกลม","วาดเส้นวงกลมล้อมรอบรูปภาพ","บีบรูปภาพให้กลายเป็นวงรี","เปลี่ยนรูปภาพเป็นสีขาวดำ","ทำให้รูปภาพสามารถหมุนเป็นวงกลมได้"]
+  ["m","พระราชบัญญัติการปฏิบัติราชการทางอิเล็กทรอนิกส์ พ.ศ. 2565 ประกาศในราชกิจจานุเบกษาเมื่อวันที่เท่าใด","","12 ตุลาคม 2565","10 ตุลาคม 2565","11 ตุลาคม 2565","13 ตุลาคม 2565","15 ตุลาคม 2565"]
 ];
 
 function normalizeQuestions(data) {
   if (!Array.isArray(data) || data.length === 0) return null;
   return data.map(item => {
     if (Array.isArray(item)) return item;
-    const wrongs = (item.choices || []).filter(c => c !== item.answer);
+    const ans = String(item.answer || "").trim();
+    const choices = (item.choices || []).map(c => String(c).trim()).filter(Boolean);
+    const wrongs = choices.filter(c => c !== ans);
     return [
       item.type || "m",
       item.question || "",
       item.code || "",
-      item.answer || "",
+      ans,
       wrongs[0] || "", wrongs[1] || "", wrongs[2] || "", wrongs[3] || ""
     ];
   });
@@ -1235,7 +1203,7 @@ function normalizeQuestions(data) {
 async function loadExamData() {
   const jsData = (module && module.exports && module.exports.length)
     ? module.exports
-    : (window.reactNativeQuestions || window.EXAM_DATA || null);
+    : (typeof Questions !== "undefined" ? Questions : (window.reactNativeQuestions || window.EXAM_DATA || null));
 
   if (jsData) {
     const parsed = normalizeQuestions(jsData);
@@ -1401,8 +1369,18 @@ function begin() {
   fresh.forEach(k => S.seen.add(k));
   S.qs = fresh.map(k => {
     const q = Q[k];
-    const o = sh([q[3], q[4], q[5], q[6], q[7]]);
-    return { t: q[0], q: q[1], c: q[2], o, a: o.indexOf(q[3]), s: -1 };
+    const choices = [q[3], q[4], q[5], q[6], q[7]]
+      .filter(c => c !== undefined && c !== null && String(c).trim() !== "")
+      .map((text, idx) => ({ text: String(text), isCorrect: idx === 0 }));
+    const oObj = sh(choices);
+    return {
+      t: q[0],
+      q: q[1],
+      c: q[2],
+      o: oObj.map(item => item.text),
+      a: oObj.findIndex(item => item.isCorrect),
+      s: -1
+    };
   });
   S.i = 0;
   document.getElementById("nav-mode-badge").textContent =
@@ -1465,7 +1443,7 @@ function quiz() {
       cls += " on";
     }
     return `<button type="button" class="${cls}" data-k="${k}" ${isLocked ? "disabled" : ""} aria-pressed="${q.s === k}">
-      <span class="opt-key">${L[k]}</span>
+      <span class="opt-key">${L[k] || (k + 1)}</span>
       <span class="opt-text">${esc(o)}</span>
       ${badge}
     </button>`;
@@ -1474,7 +1452,7 @@ function quiz() {
   const feedbackHtml = isLocked ? (
     q.s === q.a
       ? `<div class="feedback-box ok" role="status">✓ ถูกต้อง! คุณตอบถูกในข้อนี้</div>`
-      : `<div class="feedback-box no" role="status">✕ ไม่ถูกต้อง · คำตอบที่ถูกต้องคือข้อ ${L[q.a]}. ${esc(q.o[q.a])}</div>`
+      : `<div class="feedback-box no" role="status">✕ ไม่ถูกต้อง · คำตอบที่ถูกต้องคือข้อ ${L[q.a] || (q.a + 1)}. ${esc(q.o[q.a])}</div>`
   ) : "";
 
   $.innerHTML = `
