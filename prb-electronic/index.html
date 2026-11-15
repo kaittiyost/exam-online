@@ -1401,9 +1401,20 @@ function begin() {
   fresh.forEach(k => S.seen.add(k));
   S.qs = fresh.map(k => {
     const q = Q[k];
-    const o = sh([q[3], q[4], q[5], q[6], q[7]]);
-    return { t: q[0], q: q[1], c: q[2], o, a: o.indexOf(q[3]), s: -1 };
+    const choices = [q[3], q[4], q[5], q[6], q[7]]
+      .filter(c => c !== undefined && c !== null && String(c).trim() !== "")
+      .map((text, idx) => ({ text: String(text), isCorrect: idx === 0 }));
+    const oObj = sh(choices);
+    return {
+      t: q[0],
+      q: q[1],
+      c: q[2],
+      o: oObj.map(item => item.text),
+      a: oObj.findIndex(item => item.isCorrect),
+      s: -1
+    };
   });
+
   S.i = 0;
   document.getElementById("nav-mode-badge").textContent =
     S.checkMode === "instant" ? "โหมด: ตรวจทันที" : "โหมด: ตรวจเมื่อส่ง";
