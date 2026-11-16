@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Online Exam System</title>
 <style>
 :root {
@@ -46,7 +49,7 @@ body {
   margin: 0;
   background: var(--bg-page);
   color: var(--ink-body);
-  font-family: -apple-system, BlinkMacSystemFont, "Sarabun", "Leelawadee UI", "Segoe UI", sans-serif;
+  font-family: "Sarabun", "Leelawadee UI", sans-serif;
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -94,6 +97,18 @@ nav {
   display: inline-block;
 }
 
+.nav-actions { display:flex; align-items:center; gap:10px; }
+.fullscreen-btn { border:1px solid var(--border-strong); background:var(--bg-card); color:var(--ink-dark); border-radius:var(--radius-sm); padding:7px 12px; font:inherit; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; }
+.fullscreen-btn:hover { background:var(--brand-sky-tint); border-color:var(--brand-sky-dark); }
+.category-pill { display:inline-flex; align-items:center; margin:0 0 16px; padding:5px 11px; border-radius:20px; border:1px solid #b9dced; background:#eef9fe; color:#287ba6; font-size:13px; font-weight:700; }
+.report-question { border:1px solid #d9dfe3; border-radius:6px; padding:12px 14px; margin:12px 0; break-inside:avoid; }
+.report-question h3 { margin:0 0 7px; font-size:15px; }
+.report-question .report-category { color:#287ba6; font-size:12px; font-weight:700; margin-bottom:6px; }
+.report-question .report-choice { margin:4px 0; font-size:13px; }
+.report-question .report-choice.selected { font-weight:700; }
+.report-question .report-choice.correct { color:#16764f; }
+.report-question .report-choice.incorrect { color:#b42318; }
+.report-question .report-status { font-weight:700; margin-top:8px; font-size:13px; }
 .nav-badge {
   font-size: 12px;
   font-weight: 700;
@@ -955,8 +970,7 @@ pre {
     max-width: 680px !important;
     margin: 0 auto !important;
     border-radius: 6px !important;
-    border: 1.5px solid #c8c8c4 !important;
-    font-family: system-ui, -apple-system, sans-serif !important;
+    font-family: "Sarabun", sans-serif !important;
   }
   #report-template h2 { margin: 0 0 6px !important; font-size: 22px !important; color: #22252a !important; text-align: center !important; }
   #report-template .sub { color: #6c727f !important; text-align: center !important; font-size: 13px !important; margin-bottom: 20px !important; }
@@ -965,6 +979,7 @@ pre {
   #report-template .table-box { width: 100% !important; border-collapse: collapse !important; margin: 20px 0 !important; }
   #report-template .table-box td { padding: 10px 12px !important; border-bottom: 1px solid #e2e2df !important; font-size: 14px !important; }
   #report-template .table-box td.label { font-weight: 700 !important; color: #6c727f !important; width: 40% !important; }
+  #report-template .report-question { break-inside: avoid !important; }
   #report-template .footer { text-align: center !important; font-size: 12px !important; color: #6c727f !important; margin-top: 24px !important; }
 }
 
@@ -1077,7 +1092,10 @@ pre {
       <span class="nav-dot"></span>
       <span id="nav-title">Online Exam</span>
     </div>
-    <span class="nav-badge" id="nav-mode-badge">ระบบสอบออนไลน์</span>
+    <div class="nav-actions">
+      <span class="nav-badge" id="nav-mode-badge">ระบบสอบออนไลน์</span>
+      <button type="button" class="fullscreen-btn" id="fullscreen-toggle" aria-label="เปิดเต็มหน้าจอ">⛶ เต็มหน้าจอ</button>
+    </div>
   </div>
 </nav>
 <main id="app"></main>
@@ -1098,7 +1116,7 @@ document.addEventListener("keydown", event => {
 /* ==========================================================================
    CONFIG: ตั้งค่าชุดข้อสอบ ไฟล์ และเกณฑ์คะแนน
    ========================================================================== */
-const examTitle       = "ข้อสอบ พ.ร.บ. คอมพิวเตอร์";
+const examTitle       = "ข้อสอบ พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล";
 const exam            = "react_native_questions.js";
 const examMode        = "single"; // "single" | "qualification-practical"
 const percentPass     = 90;
@@ -1186,7 +1204,7 @@ let Q = [
 function normalizeQuestions(data) {
   if (!Array.isArray(data) || data.length === 0) return null;
   return data.map(item => {
-    if (Array.isArray(item)) return item;
+    if (Array.isArray(item)) return [...item.slice(0, 8), item[8] || ""];
     const ans = String(item.answer || "").trim();
     const choices = (item.choices || []).map(c => String(c).trim()).filter(Boolean);
     const wrongs = choices.filter(c => c !== ans);
@@ -1195,7 +1213,8 @@ function normalizeQuestions(data) {
       item.question || "",
       item.code || "",
       ans,
-      wrongs[0] || "", wrongs[1] || "", wrongs[2] || "", wrongs[3] || ""
+      wrongs[0] || "", wrongs[1] || "", wrongs[2] || "", wrongs[3] || "",
+      item.category || item.topic || item.subject || ""
     ];
   });
 }
@@ -1237,6 +1256,38 @@ const sh = a => {
 };
 const L = "ก ข ค ง จ".split(" ");
 const $ = document.getElementById("app");
+
+// เสียงตอบถูก/ผิด สร้างด้วย Web Audio API ไม่ต้องใช้ไฟล์เสียงภายนอก
+let audioContext = null;
+function playAnswerSound(isCorrect) {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    audioContext = audioContext || new AudioCtx();
+    if (audioContext.state === "suspended") audioContext.resume();
+    const osc = audioContext.createOscillator(), gain = audioContext.createGain();
+    const now = audioContext.currentTime;
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(isCorrect ? 660 : 220, now);
+    if (isCorrect) osc.frequency.setValueAtTime(880, now + 0.11);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.16, now + 0.025);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + (isCorrect ? 0.28 : 0.22));
+    osc.connect(gain); gain.connect(audioContext.destination);
+    osc.start(now); osc.stop(now + (isCorrect ? 0.30 : 0.24));
+  } catch (e) { console.warn("ไม่สามารถเล่นเสียงได้", e); }
+}
+
+document.getElementById("fullscreen-toggle").addEventListener("click", async () => {
+  try {
+    if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+    else await document.exitFullscreen();
+  } catch (e) { console.warn("Fullscreen is not available", e); }
+});
+document.addEventListener("fullscreenchange", () => {
+  const b = document.getElementById("fullscreen-toggle");
+  if (b) b.textContent = document.fullscreenElement ? "⤢ ออกจากเต็มหน้าจอ" : "⛶ เต็มหน้าจอ";
+});
 let S = { avatar: AVATARS[0], qs: [], i: 0, set: null, checkMode: "submit", questionCount: defaultCount };
 
 function getLeadText() {
@@ -1377,6 +1428,7 @@ function begin() {
       t: q[0],
       q: q[1],
       c: q[2],
+      category: q[8] || "",
       o: oObj.map(item => item.text),
       a: oObj.findIndex(item => item.isCorrect),
       s: -1
@@ -1475,6 +1527,7 @@ function quiz() {
             <span style="font-size: 13px; color: var(--ink-muted);">${isInstant ? "ตรวจคำตอบทันที" : "ตรวจหลังส่งข้อสอบ"}</span>
           </div>
           <p class="q">${esc(q.q)}</p>
+          <div class="category-pill">หมวดหมู่: ${esc(q.category && String(q.category).trim() ? q.category : "ไม่ได้ระบุ")}</div>
           ${q.c ? `<pre>${esc(q.c)}</pre>` : ""}
           ${optionsHtml}
           ${feedbackHtml}
@@ -1503,6 +1556,7 @@ function quiz() {
   $.querySelectorAll(".opt").forEach(b => b.onclick = () => {
     if (isLocked) return;
     q.s = +b.dataset.k;
+    if (isInstant) playAnswerSound(q.s === q.a);
     quiz();
   });
 
@@ -1651,7 +1705,34 @@ async function result() {
   if (btnDlReport) btnDlReport.onclick = () => {
     const printArea = document.getElementById("print-container");
     const origTitle = document.title;
-    document.title = `ผลการสอบ-${S.avatar.name}`;
+    const now = new Date();
+    const pad2 = value => String(value).padStart(2, "0");
+    const datePart = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+    const timePart = `${pad2(now.getHours())}-${pad2(now.getMinutes())}-${pad2(now.getSeconds())}`;
+    const statusFile = pass ? "ผ่าน" : "ไม่ผ่าน";
+    const safeExamTitle = examTitle.replace(/[\\/:*?"<>|]/g, "-").replace(/\s+/g, "_");
+    const pdfFileName = `ผลการสอบ(${statusFile})-${safeExamTitle}-${datePart}-${timePart}`;
+    document.title = pdfFileName;
+
+    const questionReviewHtml = S.qs.map((question, index) => {
+      const answered = question.s >= 0;
+      const correct = answered && question.s === question.a;
+      const statusText = !answered ? "ไม่ได้ตอบ" : (correct ? "ตอบถูก" : "ตอบผิด");
+      const choicesHtml = question.o.map((choice, choiceIndex) => {
+        const isSelected = question.s === choiceIndex;
+        const isCorrectChoice = question.a === choiceIndex;
+        const classes = ["report-choice", isSelected ? "selected" : "", isCorrectChoice ? "correct" : "", isSelected && !correct ? "incorrect" : ""].filter(Boolean).join(" ");
+        const markers = `${isSelected ? " [คำตอบที่เลือก]" : ""}${isCorrectChoice ? " [เฉลย]" : ""}`;
+        return `<div class="${classes}">${esc(L[choiceIndex] || choiceIndex + 1)}. ${esc(choice)}${markers}</div>`;
+      }).join("");
+      return `<section class="report-question">
+        <div class="report-category">หมวดหมู่: ${esc(question.category && String(question.category).trim() ? question.category : "ไม่ได้ระบุ")}</div>
+        <h3>ข้อ ${index + 1}. ${esc(question.q)}</h3>
+        ${question.c ? `<pre style="white-space:pre-wrap;background:#f3f4f6;color:#222;padding:8px">${esc(question.c)}</pre>` : ""}
+        ${choicesHtml}
+        <div class="report-status" style="color:${correct ? "#16764f" : (answered ? "#b42318" : "#6c727f")}">ผลการตอบ: ${statusText}${answered ? ` · คำตอบที่เลือก: ${esc(L[question.s] || question.s + 1)}` : ""}</div>
+      </section>`;
+    }).join("");
 
     printArea.innerHTML = `
     <div id="report-template">
@@ -1670,14 +1751,21 @@ async function result() {
         <tr><td class="label">วันที่และเวลาบันทึกผล</td><td>${esc(resultRecordedAt)} น.</td></tr>
         <tr><td class="label">เกณฑ์การผ่าน</td><td>ไม่ต่ำกว่า ${percentPass}% (ตอบถูก ${Math.ceil(tot * percentPass / 100)} ข้อขึ้นไป)</td></tr>
       </table>
+      <h2 style="margin-top:26px">รายละเอียดคำตอบรายข้อ</h2>
+      <div class="sub">แสดงโจทย์ ตัวเลือกทั้งหมด คำตอบที่เลือก และเฉลยของทุกข้อ</div>
+      ${questionReviewHtml}
       <div class="footer">
         เอกสารนี้ออกโดยระบบสอบออนไลน์ Online Examination System<br>
         รหัสยืนยันผลการสอบ: EXAM-${Date.now().toString(36).toUpperCase()}
       </div>
     </div>`;
 
+    const restoreTitle = () => {
+      document.title = origTitle;
+      window.removeEventListener("afterprint", restoreTitle);
+    };
+    window.addEventListener("afterprint", restoreTitle);
     window.print();
-    setTimeout(() => { document.title = origTitle; }, 1500);
   };
 }
 
