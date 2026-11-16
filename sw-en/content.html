@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>การวิเคราะห์ความต้องการ (Requirement Analysis & Feasibility Study)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--cream:#F4EFEA;--ink:#383838;--blue:#6FC2FF;--yellow:#FFDE00;--teal:#16AA98;--red:#FF7169;--white:#fff}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'Sarabun',sans-serif;font-size:17px;line-height:1.75;color:var(--ink);background:var(--cream);overflow-x:hidden}
+h1,h2,h3,h4,.k,button,.tag{font-family:'Kanit',sans-serif;letter-spacing:.05em}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--yellow)}
+.band{position:relative;padding:72px 20px;border-bottom:2px solid var(--ink);overflow:hidden}
+.b-cream{background:var(--cream)}.b-blue{background:var(--blue)}.b-yellow{background:var(--yellow)}.b-teal{background:var(--teal)}
+.wrap{max-width:1040px;margin:0 auto;position:relative;z-index:2}
+.tag{display:inline-block;border:2px solid var(--ink);background:var(--white);padding:4px 16px;font-weight:600;font-size:15px;border-radius:4px;margin-bottom:14px}
+.tag i{margin-right:8px}
+h1{font-size:clamp(30px,6vw,54px);line-height:1.25;font-weight:700;letter-spacing:.05em}
+h2{font-size:clamp(25px,4.4vw,36px);font-weight:600;line-height:1.35;margin-bottom:10px;letter-spacing:.06em}
+h3{font-size:20px;font-weight:600;margin-bottom:6px;letter-spacing:.05em}
+h4{font-size:17px;font-weight:600;margin:12px 0 2px;letter-spacing:.05em}
+p{margin-bottom:10px}
+.lead{max-width:70ch;margin-bottom:26px}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--white);border:2px solid var(--ink);border-radius:4px;padding:20px;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--ink)}
+.card .ic{width:44px;height:44px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;font-size:18px;margin-bottom:10px}
+.c1{background:var(--blue)}.c2{background:var(--yellow)}.c3{background:var(--teal)}.c4{background:var(--red)}
+ul{padding-left:22px;margin-bottom:8px}li{margin-bottom:3px}
+.good,.bad{font-size:15.5px}
+.good::marker{color:var(--teal)}.bad::marker{color:var(--red)}
+.btn{display:inline-block;border:2px solid var(--ink);background:var(--white);color:var(--ink);padding:8px 18px;border-radius:4px;font-weight:500;font-size:15px;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover,.btn.on{background:var(--yellow);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.btn i{margin-right:6px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.pn{display:none}.pn.on{display:block;animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.win{border:2px solid var(--ink);border-radius:4px;box-shadow:8px 8px 0 var(--ink);background:var(--ink);color:var(--cream);margin:16px 0;overflow:hidden}
+.win .hd{background:var(--white);border-bottom:2px solid var(--ink);padding:8px 12px;display:flex;gap:7px;align-items:center;color:var(--ink);font-family:'Kanit';font-size:14px}
+.win .hd b{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink)}
+.win .hd b:nth-child(1){background:var(--red)}.win .hd b:nth-child(2){background:var(--yellow)}.win .hd b:nth-child(3){background:var(--teal)}
+.win .hd span{margin-left:8px}
+.win pre{padding:16px;overflow-x:auto;font:15px/1.7 'Courier New',monospace;white-space:pre}
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;background:var(--white);border:2px solid var(--ink)}
+th,td{border:2px solid var(--ink);padding:9px 12px;text-align:left;vertical-align:top;font-size:16px}
+th{font-family:'Kanit';font-weight:600;background:var(--yellow);letter-spacing:.05em}
+.steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));counter-reset:s}
+.steps .card{padding:14px;text-align:center}
+.steps .card .n{font-family:'Kanit';font-weight:700;font-size:26px}
+.note{border:2px solid var(--ink);border-left-width:10px;border-radius:4px;background:var(--white);padding:12px 16px;margin:14px 0}
+svg.dg{width:100%;height:auto;background:var(--white);border:2px solid var(--ink);border-radius:4px;display:block;margin:14px 0}
+svg.dg text{font-family:'Sarabun';font-size:14px;fill:#383838}
+svg.dg .ln{stroke:#383838;stroke-width:2;fill:none}
+.cloud{position:absolute;fill:var(--white);stroke:var(--ink);stroke-width:2.5;z-index:1;animation:fl 9s ease-in-out infinite}
+.sh{position:absolute;border:2px solid var(--ink);z-index:1;animation:fl 11s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-14px)}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+.hero{padding-top:90px;padding-bottom:90px}
+.hero p{max-width:60ch;font-size:19px}
+.nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+footer{padding:28px 20px;text-align:center;font-family:'Kanit';font-size:15px;background:var(--cream)}
+@media (max-width:600px){.band{padding:52px 16px}.win{box-shadow:5px 5px 0 var(--ink)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="cl" viewBox="0 0 120 64"><path d="M26 56a20 20 0 0 1 1-40 28 28 0 0 1 54-4 24 24 0 0 1 14 44z"/></symbol></svg>
+
+<header class="band b-cream hero" id="top">
+  <svg class="cloud" style="top:30px;right:6%;width:150px" viewBox="0 0 120 64" aria-hidden="true"><use href="#cl"/></svg>
+  <svg class="cloud" style="bottom:40px;right:26%;width:100px;animation-delay:-4s" viewBox="0 0 120 64" aria-hidden="true"><use href="#cl"/></svg>
+  <span class="sh" style="top:90px;right:18%;width:54px;height:54px;border-radius:50%;background:var(--yellow)" aria-hidden="true"></span>
+  <span class="sh" style="bottom:70px;right:8%;width:70px;height:40px;border-radius:50%;background:var(--teal);animation-delay:-5s" aria-hidden="true"></span>
+  <span class="sh" style="top:60%;left:3%;width:34px;height:34px;transform:rotate(45deg);background:var(--red);animation-delay:-2s" aria-hidden="true"></span>
+  <div class="wrap">
+    <span class="tag"><i class="fa-solid fa-clipboard-list"></i>เอกสารประกอบการสอน</span>
+    <h1>การวิเคราะห์ความต้องการ<br>Requirement Analysis<br>&amp; Feasibility Study</h1>
+    <p>เนื้อหาเรื่องการวิเคราะห์ความต้องการและการศึกษาความเป็นไปได้ในการพัฒนาระบบงานประยุกต์ ตั้งแต่วงจรพัฒนาระบบ การเก็บความต้องการ การเขียนแบบจำลอง จนถึงเอกสาร SRS</p>
+    <nav class="nav" aria-label="สารบัญ">
+      <a class="btn" href="#sdlc"><i class="fa-solid fa-rotate"></i>SDLC</a>
+      <a class="btn" href="#gather"><i class="fa-solid fa-comments"></i>เก็บความต้องการ</a>
+      <a class="btn" href="#frnfr"><i class="fa-solid fa-list-check"></i>FR / NFR</a>
+      <a class="btn" href="#usecase"><i class="fa-solid fa-user-gear"></i>Use Case</a>
+      <a class="btn" href="#feasible"><i class="fa-solid fa-scale-balanced"></i>ความเป็นไปได้</a>
+      <a class="btn" href="#cba"><i class="fa-solid fa-coins"></i>CBA / ROI</a>
+      <a class="btn" href="#tools"><i class="fa-solid fa-diagram-project"></i>เครื่องมือ</a>
+      <a class="btn" href="#srs"><i class="fa-solid fa-file-lines"></i>SRS</a>
+    </nav>
+  </div>
+</header>
+
+<section class="band b-blue" id="sdlc">
+  <svg class="cloud" style="top:20px;right:4%;width:120px;animation-delay:-3s" viewBox="0 0 120 64" aria-hidden="true"><use href="#cl"/></svg>
+  <div class="wrap rv">
+    <span class="tag"><i class="fa-solid fa-rotate"></i>หัวข้อที่ 1</span>
+    <h2>SDLC และโมเดลการพัฒนา</h2>
+    <p class="lead">SDLC (Systems Development Life Cycle) คือวงจรชีวิตการพัฒนาระบบ เป็นกรอบขั้นตอนที่ใช้วางแผน สร้าง ทดสอบ และส่งมอบระบบสารสนเทศอย่างเป็นระบบ การวิเคราะห์ความต้องการอยู่ในขั้นที่ 2 ซึ่งเป็นฐานของทุกขั้นตอนถัดไป</p>
+    <div class="steps">
+      <div class="card"><div class="n">1</div><h4>วางแผน</h4><small>Planning: กำหนดปัญหา ขอบเขต ศึกษาความเป็นไปได้</small></div>
+      <div class="card"><div class="n">2</div><h4>วิเคราะห์</h4><small>Analysis: เก็บและวิเคราะห์ความต้องการ</small></div>
+      <div class="card"><div class="n">3</div><h4>ออกแบบ</h4><small>Design: ออกแบบฐานข้อมูล หน้าจอ สถาปัตยกรรม</small></div>
+      <div class="card"><div class="n">4</div><h4>พัฒนา</h4><small>Implementation: เขียนโปรแกรม</small></div>
+      <div class="card"><div class="n">5</div><h4>ทดสอบ</h4><small>Testing: ตรวจสอบความถูกต้อง</small></div>
+      <div class="card"><div class="n">6</div><h4>ติดตั้งและบำรุงรักษา</h4><small>Deployment &amp; Maintenance</small></div>
+    </div>
+    <h3 style="margin-top:34px">เปรียบเทียบโมเดล</h3>
+    <div class="tg">
+      <div class="tabs" role="tablist">
+        <button class="btn on" role="tab" aria-selected="true" data-p="m1"><i class="fa-solid fa-water"></i>Waterfall</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="m2"><i class="fa-solid fa-bolt"></i>Agile</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="m3"><i class="fa-solid fa-people-group"></i>Scrum</button>
+      </div>
+      <div class="pn on card" id="m1">
+        <h3>Waterfall (น้ำตก)</h3>
+        <p>ทำงานเป็นขั้นตอนต่อเนื่องจากบนลงล่าง เมื่อจบขั้นหนึ่งจึงเริ่มขั้นถัดไป และแทบไม่ย้อนกลับ แต่ละขั้นมีเอกสารส่งมอบชัดเจน</p>
+        <p><b>ลำดับ:</b> Requirements → Design → Implementation → Testing → Deployment → Maintenance</p>
+        <div class="grid"><div><h4>ข้อดี</h4><ul class="good"><li>เข้าใจง่าย จัดการง่าย</li><li>มีเอกสารครบทุกขั้น</li><li>ประมาณเวลาและงบได้ชัด</li></ul></div>
+        <div><h4>ข้อเสีย</h4><ul class="bad"><li>แก้ไขความต้องการกลางทางยาก</li><li>เห็นระบบจริงช้า (ตอนท้ายโครงการ)</li><li>พบข้อผิดพลาดช้า ต้นทุนแก้สูง</li></ul></div></div>
+        <p><b>เหมาะกับ:</b> โครงการที่ความต้องการชัดเจนและคงที่ เช่น ระบบตามกฎระเบียบ ระบบขนาดเล็กที่ขอบเขตแน่นอน</p>
+      </div>
+      <div class="pn card" id="m2">
+        <h3>Agile (คล่องตัว)</h3>
+        <p>พัฒนาแบบวนซ้ำเป็นรอบสั้น ๆ (Iterative &amp; Incremental) ส่งมอบซอฟต์แวร์ที่ใช้งานได้ทีละส่วน และรับข้อเสนอแนะจากผู้ใช้อย่างต่อเนื่อง</p>
+        <h4>4 คุณค่าของ Agile Manifesto</h4>
+        <ul><li>บุคคลและการปฏิสัมพันธ์ สำคัญกว่า กระบวนการและเครื่องมือ</li><li>ซอฟต์แวร์ที่ใช้งานได้ สำคัญกว่า เอกสารที่ครอบคลุม</li><li>การร่วมมือกับลูกค้า สำคัญกว่า การต่อรองสัญญา</li><li>การตอบสนองต่อการเปลี่ยนแปลง สำคัญกว่า การทำตามแผน</li></ul>
+        <p><b>เหมาะกับ:</b> ความต้องการเปลี่ยนบ่อย ต้องการเห็นผลเร็ว ผู้ใช้มีส่วนร่วมสูง &nbsp;|&nbsp; <b>ข้อควรระวัง:</b> ขอบเขตงานบานปลายได้ถ้าไม่ควบคุม เอกสารมักน้อยกว่า</p>
+      </div>
+      <div class="pn card" id="m3">
+        <h3>Scrum</h3>
+        <p>Scrum เป็นกรอบการทำงานแบบหนึ่งภายใต้แนวคิด Agile ทำงานเป็นรอบที่เรียกว่า <b>Sprint</b> ยาว 1-4 สัปดาห์ จบแต่ละรอบต้องได้ส่วนงานที่ใช้งานได้ (Increment)</p>
+        <div class="tw"><table>
+          <tr><th>หมวด</th><th>องค์ประกอบ</th><th>หน้าที่</th></tr>
+          <tr><td rowspan="3">บทบาท</td><td>Product Owner</td><td>กำหนดสิ่งที่ต้องทำและจัดลำดับความสำคัญใน Product Backlog</td></tr>
+          <tr><td>Scrum Master</td><td>ดูแลให้ทีมใช้ Scrum ถูกต้อง ขจัดอุปสรรค</td></tr>
+          <tr><td>Development Team</td><td>ลงมือพัฒนา ออกแบบ ทดสอบ</td></tr>
+          <tr><td rowspan="3">ผลงาน</td><td>Product Backlog</td><td>รายการความต้องการทั้งหมดของผลิตภัณฑ์</td></tr>
+          <tr><td>Sprint Backlog</td><td>งานที่เลือกมาทำใน Sprint นั้น</td></tr>
+          <tr><td>Increment</td><td>ส่วนงานที่เสร็จและใช้งานได้ในรอบนั้น</td></tr>
+          <tr><td rowspan="4">กิจกรรม</td><td>Sprint Planning</td><td>วางแผนงานของ Sprint</td></tr>
+          <tr><td>Daily Scrum</td><td>ประชุมสั้น 15 นาทีทุกวัน</td></tr>
+          <tr><td>Sprint Review</td><td>สาธิตผลงานให้ผู้มีส่วนได้ส่วนเสีย</td></tr>
+          <tr><td>Sprint Retrospective</td><td>ทบทวนวิธีทำงานเพื่อปรับปรุง</td></tr>
+        </table></div>
+        <div class="note"><b>จำให้แม่น:</b> Agile คือแนวคิด ส่วน Scrum คือวิธีปฏิบัติรูปแบบหนึ่งของ Agile</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band b-cream" id="gather">
+  <span class="sh" style="top:50px;right:5%;width:60px;height:60px;border-radius:50%;background:var(--blue)" aria-hidden="true"></span>
+  <div class="wrap rv">
+    <span class="tag"><i class="fa-solid fa-comments"></i>หัวข้อที่ 2</span>
+    <h2>การเก็บรวบรวมความต้องการ</h2>
+    <p class="lead">Requirement Elicitation คือการรวบรวมสิ่งที่ผู้ใช้และผู้มีส่วนได้ส่วนเสีย (Stakeholder) ต้องการจากระบบ ควรใช้หลายวิธีประกอบกันเพื่อให้ข้อมูลครบและตรวจสอบกันได้</p>
+    <div class="grid">
+      <div class="card"><div class="ic c1"><i class="fa-solid fa-microphone-lines"></i></div><h3>สัมภาษณ์ (Interview)</h3><p>พูดคุยโดยตรงกับผู้ใช้หรือผู้บริหารเป็นรายบุคคลหรือกลุ่ม</p>
+        <ul class="good"><li>ได้รายละเอียดเชิงลึก ถามต่อได้</li></ul><ul class="bad"><li>ใช้เวลามาก ผู้สัมภาษณ์ต้องมีทักษะ</li></ul></div>
+      <div class="card"><div class="ic c2"><i class="fa-solid fa-clipboard-question"></i></div><h3>แบบสอบถาม (Questionnaire)</h3><p>ให้กลุ่มผู้ใช้จำนวนมากตอบคำถามชุดเดียวกัน</p>
+        <ul class="good"><li>เก็บจากคนจำนวนมากได้เร็ว ประหยัด</li></ul><ul class="bad"><li>ไม่ลึก ถามต่อไม่ได้ อัตราตอบกลับอาจต่ำ</li></ul></div>
+      <div class="card"><div class="ic c3"><i class="fa-solid fa-eye"></i></div><h3>สังเกตการณ์ (Observation)</h3><p>ดูการทำงานจริงของผู้ใช้ในสถานที่ปฏิบัติงาน</p>
+        <ul class="good"><li>เห็นขั้นตอนจริง พบปัญหาที่ผู้ใช้ไม่ได้บอก</li></ul><ul class="bad"><li>ผู้ถูกสังเกตอาจทำตัวไม่เป็นธรรมชาติ ใช้เวลานาน</li></ul></div>
+      <div class="card"><div class="ic c4"><i class="fa-solid fa-folder-open"></i></div><h3>ศึกษาเอกสาร (Document Review)</h3><p>ศึกษาแบบฟอร์ม รายงาน คู่มือ ระเบียบ และระบบเดิม</p>
+        <ul class="good"><li>เข้าใจข้อมูลและกฎของงานก่อนเข้าพบผู้ใช้</li></ul><ul class="bad"><li>เอกสารอาจล้าสมัยหรือไม่ตรงกับการปฏิบัติจริง</li></ul></div>
+    </div>
+    <div class="note"><b>เทคนิคอื่นที่ควรรู้:</b> การประชุมกลุ่ม (JAD: Joint Application Development) และการสร้างต้นแบบ (Prototyping) เพื่อให้ผู้ใช้เห็นภาพและยืนยันความต้องการ</div>
+  </div>
+</section>
+
+<section class="band b-yellow" id="frnfr">
+  <svg class="cloud" style="top:24px;right:8%;width:110px" viewBox="0 0 120 64" aria-hidden="true"><use href="#cl"/></svg>
+  <div class="wrap rv">
+    <span class="tag"><i class="fa-solid fa-list-check"></i>หัวข้อที่ 3</span>
+    <h2>Functional และ Non-functional Requirements</h2>
+    <p class="lead">ความต้องการของระบบแบ่งเป็นสองประเภทหลัก คือ ระบบต้อง “ทำอะไร” และระบบต้อง “ทำได้ดีแค่ไหน”</p>
+    <div class="grid">
+      <div class="card"><div class="ic c3"><i class="fa-solid fa-gears"></i></div><h3>Functional Requirement (FR)</h3>
+        <p>ฟังก์ชันหรือพฤติกรรมที่ระบบต้องทำได้ ผู้ใช้มองเห็นและสั่งงานได้</p>
+        <ul><li>ระบบต้องให้นักเรียนเข้าสู่ระบบด้วยรหัสนักเรียน</li><li>ระบบต้องคำนวณเกรดเฉลี่ยอัตโนมัติ</li><li>ผู้ดูแลต้องเพิ่ม แก้ไข ลบข้อมูลรายวิชาได้</li><li>ระบบต้องออกรายงานผลการเรียนเป็น PDF</li></ul></div>
+      <div class="card"><div class="ic c1"><i class="fa-solid fa-gauge-high"></i></div><h3>Non-functional Requirement (NFR)</h3>
+        <p>คุณลักษณะ ข้อจำกัด และคุณภาพของระบบ มักวัดค่าได้</p>
+        <ul><li>หน้าเว็บต้องโหลดภายใน 3 วินาที</li><li>รองรับผู้ใช้พร้อมกัน 500 คน</li><li>รหัสผ่านต้องถูกเข้ารหัสก่อนจัดเก็บ</li><li>ระบบพร้อมใช้งานไม่น้อยกว่า 99% ต่อเดือน</li></ul></div>
+    </div>
+    <h3 style="margin-top:26px">ประเภทของ NFR ที่ออกสอบบ่อย</h3>
+    <div class="tw"><table>
+      <tr><th>ด้าน</th><th>ความหมาย</th></tr>
+      <tr><td>Performance</td><td>ความเร็วในการตอบสนอง และปริมาณงานที่ประมวลผลได้</td></tr>
+      <tr><td>Security</td><td>การป้องกันการเข้าถึงและแก้ไขข้อมูลโดยไม่ได้รับอนุญาต</td></tr>
+      <tr><td>Usability</td><td>ความง่ายในการเรียนรู้และใช้งาน</td></tr>
+      <tr><td>Reliability / Availability</td><td>ความน่าเชื่อถือ และความพร้อมใช้งานของระบบ</td></tr>
+      <tr><td>Scalability</td><td>ขยายรองรับผู้ใช้และข้อมูลที่เพิ่มขึ้นได้</td></tr>
+      <tr><td>Maintainability</td><td>ความง่ายในการแก้ไขและปรับปรุงระบบ</td></tr>
+      <tr><td>Compatibility</td><td>ทำงานร่วมกับระบบ อุปกรณ์ หรือเบราว์เซอร์อื่นได้</td></tr>
+    </table></div>
+    <div class="note"><b>วิธีแยกประเภทเร็ว ๆ:</b> ถ้าประโยคตอบคำถามว่า “ระบบทำอะไร” คือ FR ถ้าตอบว่า “ระบบทำได้เร็ว ปลอดภัย ใช้ง่ายแค่ไหน” คือ NFR</div>
+  </div>
+</section>
+
+<section class="band b-cream" id="usecase">
+  <span class="sh" style="top:70px;right:6%;width:44px;height:44px;transform:rotate(45deg);background:var(--teal)" aria-hidden="true"></span>
+  <div class="wrap rv">
+    <span class="tag"><i class="fa-solid fa-user-gear"></i>หัวข้อที่ 4</span>
+    <h2>Use Case, User Story และ Use Case Diagram</h2>
+    <p class="lead">เป็นเครื่องมือถ่ายทอดความต้องการจากมุมมองของผู้ใช้ให้ทีมพัฒนาและผู้ใช้เข้าใจตรงกัน</p>
+    <div class="tg">
+      <div class="tabs" role="tablist">
+        <button class="btn on" role="tab" aria-selected="true" data-p="u1"><i class="fa-solid fa-sitemap"></i>Use Case Diagram</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="u2"><i class="fa-solid fa-table-list"></i>Use Case</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="u3"><i class="fa-solid fa-note-sticky"></i>User Story</button>
+      </div>
+      <div class="pn on" id="u1">
+        <div class="grid">
+          <div class="card"><h4>Actor</h4><p>ผู้ใช้หรือระบบภายนอกที่มีปฏิสัมพันธ์กับระบบ วาดเป็นรูปคน</p></div>
+          <div class="card"><h4>Use Case</h4><p>หน้าที่ที่ระบบทำให้ Actor วาดเป็นวงรี ตั้งชื่อด้วยคำกริยา</p></div>
+          <div class="card"><h4>System Boundary</h4><p>กรอบสี่เหลี่ยมแสดงขอบเขตของระบบ</p></div>
+        </div>
+        <svg class="dg" viewBox="0 0 640 330" role="img" aria-label="Use Case Diagram ระบบทะเบียนนักเรียน">
+          <rect x="170" y="14" width="300" height="302" rx="4" class="ln"/><text x="320" y="38" text-anchor="middle" font-weight="700">ระบบทะเบียนนักเรียน</text>
+          <g class="ln"><circle cx="60" cy="130" r="13"/><path d="M60 143v40M32 156h56M60 183l-22 36M60 183l22 36"/>
+          <circle cx="580" cy="130" r="13"/><path d="M580 143v40M552 156h56M580 183l-22 36M580 183l22 36"/></g>
+          <text x="60" y="242" text-anchor="middle">นักเรียน</text><text x="580" y="242" text-anchor="middle">ผู้ดูแลระบบ</text>
+          <g class="ln" fill="#FFDE00"><ellipse cx="290" cy="76" rx="74" ry="22"/></g><text x="290" y="81" text-anchor="middle">เข้าสู่ระบบ</text>
+          <g class="ln" fill="#6FC2FF"><ellipse cx="270" cy="140" rx="84" ry="22"/><ellipse cx="270" cy="204" rx="84" ry="22"/></g>
+          <text x="270" y="145" text-anchor="middle">ลงทะเบียนรายวิชา</text><text x="270" y="209" text-anchor="middle">ดูผลการเรียน</text>
+          <g class="ln" fill="#16AA98"><ellipse cx="380" cy="268" rx="82" ry="22"/></g><text x="380" y="273" text-anchor="middle">จัดการข้อมูลนักเรียน</text>
+          <g class="ln"><path d="M74 140L186 140M74 160L196 204M566 160L420 262M270 118L290 98" stroke-dasharray="6 4"/></g>
+          <text x="320" y="116" font-size="12">&lt;&lt;include&gt;&gt;</text>
+        </svg>
+        <ul><li><b>Association:</b> เส้นตรงเชื่อม Actor กับ Use Case</li><li><b>Include:</b> Use Case หนึ่งต้องเรียกอีกอันเสมอ (เช่น ลงทะเบียนต้อง “เข้าสู่ระบบ” ก่อน)</li><li><b>Extend:</b> ส่วนเสริมที่เกิดขึ้นเมื่อเข้าเงื่อนไขเท่านั้น</li><li><b>Generalization:</b> การสืบทอดระหว่าง Actor หรือ Use Case</li></ul>
+      </div>
+      <div class="pn" id="u2">
+        <p>Use Case Description คือคำอธิบายรายละเอียดของแต่ละ Use Case เป็นลายลักษณ์อักษร</p>
+        <div class="tw"><table>
+          <tr><th style="width:30%">หัวข้อ</th><th>ตัวอย่าง: ลงทะเบียนรายวิชา</th></tr>
+          <tr><td>Actor</td><td>นักเรียน</td></tr>
+          <tr><td>Precondition</td><td>นักเรียนเข้าสู่ระบบแล้ว และอยู่ในช่วงเปิดลงทะเบียน</td></tr>
+          <tr><td>Main Flow</td><td>1) เลือกรายวิชา 2) ระบบตรวจสอบที่นั่งและวิชาบังคับก่อน 3) นักเรียนยืนยัน 4) ระบบบันทึกและแสดงผล</td></tr>
+          <tr><td>Alternative Flow</td><td>ที่นั่งเต็ม: ระบบแจ้งเตือนและให้เลือกวิชาอื่น</td></tr>
+          <tr><td>Postcondition</td><td>ข้อมูลการลงทะเบียนถูกบันทึกในฐานข้อมูล</td></tr>
+        </table></div>
+      </div>
+      <div class="pn" id="u3">
+        <p>User Story เป็นข้อความสั้น ๆ แสดงความต้องการจากมุมมองผู้ใช้ นิยมใช้ใน Agile/Scrum เก็บไว้ใน Product Backlog</p>
+        <div class="win"><div class="hd"><b></b><b></b><b></b><span>รูปแบบ User Story</span></div>
+<pre>As a   [บทบาทผู้ใช้]
+I want [สิ่งที่ต้องการทำ]
+So that [ประโยชน์ที่ได้รับ]
+
+ตัวอย่าง
+As a   นักเรียน
+I want ดูผลการเรียนผ่านมือถือ
+So that ตรวจสอบเกรดได้ทุกที่ทุกเวลา</pre></div>
+        <h4>หลัก INVEST สำหรับ User Story ที่ดี</h4>
+        <p><b>I</b>ndependent (อิสระต่อกัน) · <b>N</b>egotiable (เจรจาได้) · <b>V</b>aluable (มีคุณค่า) · <b>E</b>stimable (ประเมินได้) · <b>S</b>mall (เล็กพอ) · <b>T</b>estable (ทดสอบได้)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band b-teal" id="feasible">
+  <svg class="cloud" style="top:20px;right:5%;width:130px;animation-delay:-2s" viewBox="0 0 120 64" aria-hidden="true"><use href="#cl"/></svg>
+  <div class="wrap rv">
+    <span class="tag"><i class="fa-solid fa-scale-balanced"></i>หัวข้อที่ 5</span>
+    <h2>การศึกษาความเป็นไปได้ (Feasibility Study)</h2>
+    <p class="lead" style="color:var(--ink)">ศึกษาก่อนลงทุนว่าโครงการ “ควรทำหรือไม่” โดยประเมินจาก 4 ด้านต่อไปนี้ ผลลัพธ์คือเอกสารรายงานความเป็นไปได้เพื่อให้ผู้บริหารตัดสินใจ</p>
+    <div class="tg">
+      <div class="tabs" role="tablist">
+        <button class="btn on" role="tab" aria-selected="true" data-p="f1"><i class="fa-solid fa-microchip"></i>เทคนิค</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="f2"><i class="fa-solid fa-sack-dollar"></i>เศรษฐศาสตร์</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="f3"><i class="fa-solid fa-users-gear"></i>การปฏิบัติงาน</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="f4"><i class="fa-solid fa-calendar-days"></i>ตารางเวลา</button>
+      </div>
+      <div class="pn on card" id="f1"><h3>Technical Feasibility: ทำได้ทางเทคนิคหรือไม่</h3>
+        <ul><li>ฮาร์ดแวร์ ซอฟต์แวร์ และเครือข่ายที่มีอยู่รองรับหรือไม่ ต้องจัดหาเพิ่มอะไร</li><li>เทคโนโลยีที่เลือกมีความพร้อมและเป็นที่ยอมรับหรือไม่</li><li>ทีมพัฒนามีทักษะเพียงพอหรือต้องฝึกอบรม</li><li>ขนาดและความซับซ้อนของระบบอยู่ในระดับที่ทีมจัดการได้หรือไม่</li></ul></div>
+      <div class="pn card" id="f2"><h3>Economic Feasibility: คุ้มค่าทางการเงินหรือไม่</h3>
+        <ul><li>ประเมินต้นทุนทั้งหมดของโครงการ (พัฒนา ติดตั้ง ฝึกอบรม บำรุงรักษา)</li><li>ประเมินผลประโยชน์ที่คาดว่าจะได้รับ</li><li>เปรียบเทียบด้วย Cost-Benefit Analysis และ ROI (ดูหัวข้อถัดไป)</li></ul></div>
+      <div class="pn card" id="f3"><h3>Operational Feasibility: ใช้งานได้จริงในองค์กรหรือไม่</h3>
+        <ul><li>ผู้ใช้ยอมรับและพร้อมเปลี่ยนวิธีทำงานหรือไม่ (ความต้านทานต่อการเปลี่ยนแปลง)</li><li>ระบบแก้ปัญหาได้ตรงจุดและเข้ากับกระบวนการทำงานเดิมหรือไม่</li><li>ผู้บริหารสนับสนุนหรือไม่ และมีบุคลากรดูแลระบบหรือไม่</li></ul></div>
+      <div class="pn card" id="f4"><h3>Schedule Feasibility: เสร็จทันเวลาหรือไม่</h3>
+        <ul><li>ระยะเวลาที่กำหนดสมเหตุสมผลกับขอบเขตงานหรือไม่</li><li>มีกำหนดส่งมอบสำคัญที่ผูกกับเหตุการณ์ภายนอกหรือไม่ เช่น เปิดภาคเรียน</li><li>ทรัพยากรบุคคลว่างตามแผนหรือไม่ ใช้เครื่องมืออย่าง Gantt Chart วางแผน</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="band b-cream" id="cba">
+  <span class="sh" style="top:60px;right:7%;width:64px;height:64px;border-radius:50%;background:var(--yellow)" aria-hidden="true"></span>
+  <div class="wrap rv">
+    <span class="tag"><i class="fa-solid fa-coins"></i>หัวข้อที่ 6</span>
+    <h2>Cost-Benefit Analysis และ ROI</h2>
+    <p class="lead">เป็นเครื่องมือหลักของ Economic Feasibility ใช้เทียบ “สิ่งที่จ่ายไป” กับ “สิ่งที่ได้กลับมา” เพื่อตัดสินใจว่าควรลงทุนหรือไม่</p>
+    <div class="grid">
+      <div class="card"><div class="ic c4"><i class="fa-solid fa-arrow-trend-down"></i></div><h3>ต้นทุน (Cost)</h3>
+        <ul><li><b>ครั้งเดียว:</b> ซื้อเครื่อง ซอฟต์แวร์ พัฒนาระบบ ฝึกอบรม</li><li><b>ต่อเนื่อง:</b> บำรุงรักษา ค่าไฟ ค่าอินเทอร์เน็ต เงินเดือนผู้ดูแล</li></ul></div>
+      <div class="card"><div class="ic c3"><i class="fa-solid fa-arrow-trend-up"></i></div><h3>ผลประโยชน์ (Benefit)</h3>
+        <ul><li><b>จับต้องได้ (Tangible):</b> ลดค่าใช้จ่าย ประหยัดเวลา เพิ่มรายได้ วัดเป็นเงินได้</li><li><b>จับต้องไม่ได้ (Intangible):</b> ความพึงพอใจ ภาพลักษณ์ คุณภาพการตัดสินใจ</li></ul></div>
+    </div>
+    <div class="win"><div class="hd"><b></b><b></b><b></b><span>สูตรและตัวอย่างการคำนวณ</span></div>
+<pre>ผลประโยชน์สุทธิ = ผลประโยชน์รวม - ต้นทุนรวม
+ROI (%)        = (ผลประโยชน์สุทธิ / ต้นทุนรวม) x 100
+BCR            = ผลประโยชน์รวม / ต้นทุนรวม
+
+ตัวอย่าง  ต้นทุนรวม 500,000 บาท
+          ผลประโยชน์รวม 3 ปี 800,000 บาท
+สุทธิ = 800,000 - 500,000 = 300,000 บาท
+ROI   = (300,000 / 500,000) x 100 = 60%
+BCR   = 800,000 / 500,000 = 1.6</pre></div>
+    <div class="note"><b>การตัดสินใจ:</b> ผลประโยชน์สุทธิเป็นบวก ROI เป็นบวก และ BCR มากกว่า 1 แสดงว่าคุ้มค่าลงทุน ถ้า BCR น้อยกว่า 1 แสดงว่าต้นทุนสูงกว่าผลประโยชน์</div>
+  </div>
+</section>
+
+<section class="band b-blue" id="tools">
+  <svg class="cloud" style="top:24px;right:6%;width:120px" viewBox="0 0 120 64" aria-hidden="true"><use href="#cl"/></svg>
+  <div class="wrap rv">
+    <span class="tag"><i class="fa-solid fa-diagram-project"></i>หัวข้อที่ 7</span>
+    <h2>เครื่องมือวิเคราะห์ระบบ</h2>
+    <p class="lead">แบบจำลอง (Model) ช่วยให้เห็นภาพการทำงานและข้อมูลของระบบก่อนออกแบบจริง</p>
+    <div class="tg">
+      <div class="tabs" role="tablist">
+        <button class="btn on" role="tab" aria-selected="true" data-p="t1"><i class="fa-solid fa-circle-nodes"></i>Context Diagram</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="t2"><i class="fa-solid fa-right-left"></i>DFD</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="t3"><i class="fa-solid fa-database"></i>ER Diagram</button>
+        <button class="btn" role="tab" aria-selected="false" data-p="t4"><i class="fa-solid fa-shapes"></i>Flowchart</button>
+      </div>
+      <div class="pn on card" id="t1">
+        <h3>Context Diagram (DFD ระดับ 0)</h3>
+        <p>แสดงระบบทั้งหมดเป็น <b>กระบวนการเดียว</b> อยู่ตรงกลาง ล้อมด้วยหน่วยงานภายนอก (External Entity) พร้อมลูกศรข้อมูลเข้าและออก ไม่แสดงแหล่งเก็บข้อมูล</p>
+        <svg class="dg" viewBox="0 0 640 260" role="img" aria-label="Context Diagram ระบบทะเบียน">
+          <g class="ln" fill="#FFDE00"><circle cx="320" cy="130" r="62"/></g><text x="320" y="126" text-anchor="middle" font-weight="700">0</text><text x="320" y="146" text-anchor="middle">ระบบทะเบียน</text>
+          <g class="ln" fill="#fff"><rect x="30" y="100" width="110" height="60"/><rect x="500" y="100" width="110" height="60"/></g>
+          <text x="85" y="135" text-anchor="middle">นักเรียน</text><text x="555" y="135" text-anchor="middle">ครูผู้สอน</text>
+          <g class="ln" marker-end="url(#ar)"><path d="M140 118L260 118"/><path d="M262 144L142 144"/><path d="M500 118L380 118"/><path d="M382 144L502 144"/></g>
+          <text x="200" y="110" text-anchor="middle" font-size="12">ข้อมูลลงทะเบียน</text><text x="200" y="162" text-anchor="middle" font-size="12">ผลการเรียน</text>
+          <text x="440" y="110" text-anchor="middle" font-size="12">คะแนนสอบ</text><text x="440" y="162" text-anchor="middle" font-size="12">รายชื่อนักเรียน</text>
+        </svg>
+      </div>
+      <div class="pn card" id="t2">
+        <h3>DFD (Data Flow Diagram)</h3>
+        <p>แผนภาพกระแสข้อมูล แสดงว่าข้อมูลไหลจากไหนไปไหน ผ่านกระบวนการใด และเก็บที่ใด แตกรายละเอียดเป็นระดับ (Level 0, 1, 2) ได้</p>
+        <div class="tw"><table>
+          <tr><th>สัญลักษณ์</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr>
+          <tr><td><i class="fa-regular fa-circle"></i> วงกลม / สี่เหลี่ยมมุมมน</td><td>Process: กระบวนการแปลงข้อมูล</td><td>คำนวณเกรด</td></tr>
+          <tr><td><i class="fa-regular fa-square"></i> สี่เหลี่ยม</td><td>External Entity: ผู้ส่ง/ผู้รับข้อมูลภายนอก</td><td>นักเรียน</td></tr>
+          <tr><td><i class="fa-solid fa-grip-lines"></i> เส้นคู่ขนาน</td><td>Data Store: แหล่งเก็บข้อมูล</td><td>D1 ข้อมูลนักเรียน</td></tr>
+          <tr><td><i class="fa-solid fa-arrow-right"></i> ลูกศร</td><td>Data Flow: ทิศทางและชื่อข้อมูล</td><td>ใบลงทะเบียน</td></tr>
+        </table></div>
+        <div class="note"><b>กฎสำคัญ:</b> ข้อมูลต้องผ่านกระบวนการเสมอ ห้ามไหลตรงระหว่าง Entity กับ Entity หรือ Entity กับ Data Store ทุก Process ต้องมีข้อมูลเข้าและออก</div>
+      </div>
+      <div class="pn card" id="t3">
+        <h3>ER Diagram (Entity Relationship Diagram)</h3>
+        <p>แบบจำลองโครงสร้างข้อมูล แสดงสิ่งที่ต้องเก็บ คุณสมบัติ และความสัมพันธ์</p>
+        <ul><li><b>Entity:</b> สิ่งที่ต้องเก็บข้อมูล เช่น นักเรียน รายวิชา</li><li><b>Attribute:</b> คุณสมบัติ เช่น รหัสนักเรียน ชื่อ (<b>Primary Key</b> ใช้ระบุแถวไม่ซ้ำ)</li><li><b>Relationship:</b> ความสัมพันธ์ระหว่าง Entity</li></ul>
+        <div class="tw"><table>
+          <tr><th>Cardinality</th><th>ความหมาย</th><th>ตัวอย่าง</th></tr>
+          <tr><td>1 : 1</td><td>หนึ่งต่อหนึ่ง</td><td>ครู 1 คน มีบัญชีผู้ใช้ 1 บัญชี</td></tr>
+          <tr><td>1 : N</td><td>หนึ่งต่อหลาย</td><td>แผนก 1 แผนก มีนักเรียนหลายคน</td></tr>
+          <tr><td>M : N</td><td>หลายต่อหลาย</td><td>นักเรียนลงทะเบียนได้หลายวิชา วิชามีนักเรียนหลายคน</td></tr>
+        </table></div>
+        <p>ความสัมพันธ์ M:N ต้องแตกเป็นตารางเชื่อม เช่น <b>การลงทะเบียน</b>(รหัสนักเรียน FK, รหัสวิชา FK) เมื่อออกแบบฐานข้อมูลจริง</p>
+      </div>
+      <div class="pn card" id="t4">
+        <h3>Flowchart (ผังงาน)</h3>
+        <p>แผนภาพลำดับขั้นตอนการทำงานหรืออัลกอริทึมด้วยสัญลักษณ์มาตรฐาน อ่านจากบนลงล่าง</p>
+        <div class="tw"><table>
+          <tr><th>สัญลักษณ์</th><th>ความหมาย</th></tr>
+          <tr><td>วงรี</td><td>Terminator: จุดเริ่มต้นและสิ้นสุด</td></tr>
+          <tr><td>สี่เหลี่ยมผืนผ้า</td><td>Process: การประมวลผลหรือคำนวณ</td></tr>
+          <tr><td>สี่เหลี่ยมขนมเปียกปูน</td><td>Decision: การตัดสินใจ มีทางออกใช่/ไม่ใช่</td></tr>
+          <tr><td>สี่เหลี่ยมด้านขนาน</td><td>Input/Output: รับข้อมูลเข้าและแสดงผล</td></tr>
+          <tr><td>วงกลมเล็ก</td><td>Connector: จุดเชื่อมต่อ</td></tr>
+          <tr><td>ลูกศร</td><td>Flow Line: ทิศทางการทำงาน</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band b-cream" id="srs">
+  <span class="sh" style="top:50px;right:6%;width:56px;height:56px;border-radius:50%;background:var(--red)" aria-hidden="true"></span>
+  <div class="wrap rv">
+    <span class="tag"><i class="fa-solid fa-file-lines"></i>หัวข้อที่ 8</span>
+    <h2>เอกสาร SRS</h2>
+    <p class="lead">SRS (Software Requirements Specification) คือเอกสารข้อกำหนดความต้องการซอฟต์แวร์ เป็นข้อตกลงระหว่างผู้ใช้และทีมพัฒนาว่าระบบต้องทำอะไร และเป็นเกณฑ์ในการออกแบบ ทดสอบ และตรวจรับงาน</p>
+    <div class="grid">
+      <div class="card"><div class="ic c1"><i class="fa-solid fa-1"></i></div><h3>บทนำ</h3><ul><li>วัตถุประสงค์ของเอกสาร</li><li>ขอบเขตของระบบ</li><li>คำจำกัดความและคำย่อ</li></ul></div>
+      <div class="card"><div class="ic c2"><i class="fa-solid fa-2"></i></div><h3>ภาพรวมของระบบ</h3><ul><li>มุมมองผลิตภัณฑ์</li><li>ผู้ใช้และคุณสมบัติ</li><li>ข้อจำกัดและข้อสมมติฐาน</li></ul></div>
+      <div class="card"><div class="ic c3"><i class="fa-solid fa-3"></i></div><h3>ความต้องการเฉพาะ</h3><ul><li>Functional Requirements</li><li>Non-functional Requirements</li><li>ส่วนติดต่อภายนอก (UI, Hardware, Software)</li></ul></div>
+      <div class="card"><div class="ic c4"><i class="fa-solid fa-4"></i></div><h3>ภาคผนวก</h3><ul><li>แบบจำลอง (DFD, ER, Use Case)</li><li>ประวัติการแก้ไขเอกสาร</li></ul></div>
+    </div>
+    <h3 style="margin-top:26px">คุณสมบัติของ SRS ที่ดี</h3>
+    <p>ถูกต้อง (Correct) · ชัดเจนไม่กำกวม (Unambiguous) · ครบถ้วน (Complete) · สอดคล้องกัน (Consistent) · ตรวจสอบได้ (Verifiable) · ติดตามที่มาได้ (Traceable) · แก้ไขง่าย (Modifiable)</p>
+    <div class="note"><b>สรุปสำหรับทบทวน:</b> SDLC ขั้นวิเคราะห์ → เก็บความต้องการ 4 วิธี → แยก FR/NFR → จำลองด้วย Use Case, DFD, ER → ประเมินความเป็นไปได้ 4 ด้าน (เทคนิค เศรษฐศาสตร์ การปฏิบัติงาน ตารางเวลา) → คุ้มค่าด้วย CBA/ROI → บันทึกทั้งหมดเป็น SRS</div>
+  </div>
+</section>
+
+<footer>เอกสารประกอบการสอน: การวิเคราะห์ความต้องการ (Requirement Analysis &amp; Feasibility Study)</footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#383838"/></marker></defs></svg>
+
+<script>
+document.querySelectorAll('.tg').forEach(function(g){
+  var bs=g.querySelectorAll('[role=tab]'),ps=g.querySelectorAll('.pn');
+  bs.forEach(function(b){b.addEventListener('click',function(){
+    bs.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false')});
+    ps.forEach(function(p){p.classList.remove('on')});
+    b.classList.add('on');b.setAttribute('aria-selected','true');
+    document.getElementById(b.dataset.p).classList.add('on');
+  })});
+});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
