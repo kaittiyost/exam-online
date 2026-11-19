@@ -1512,5 +1512,4 @@ const Questions = [
 ]
 }
 ]
-if (typeof module !== 'undefined') module.exports = Questions;
-if (typeof window !== 'undefined') window.reactNativeQuestions = Questions;
+module.exports = Questions;
