@@ -23,7 +23,7 @@
 ให้แสดงผลลัพธ์ตามโครงสร้างด้านล่างนี้เท่านั้น ห้ามเพิ่มข้อความเกริ่นนำหรือสรุปท้าย:
 const Questions = [
   {
-    "type": "m",
+    "type": "ระบุหมวดหมู่ของโจทย์",
     "question": "โจทย์",
     "code": "",
     "answer": "JavaScript / TypeScript",
@@ -36,7 +36,7 @@ const Questions = [
     ]
   },
     {
-    "type": "m",
+    "type": "ระบุหมวดหมู่ของโจทย์",
     "question": "โจทย์",
     "code": "",
     "answer": "JavaScript / TypeScript",

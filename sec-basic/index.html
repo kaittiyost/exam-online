@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Online Exam System</title>
+<style>
+:root {
+  /* Palette inspired by reference design */
+  --bg-page: #f0f0ee;
+  --bg-card: #ffffff;
+  --bg-subtle: #f7f7f5;
+  --brand-sky: #5bc0eb;
+  --brand-sky-dark: #3da5d9;
+  --brand-sky-tint: #eef9fe;
+  --brand-yellow: #f9d423;
+  --brand-yellow-tint: #fef9e1;
+  --brand-mint: #3eb489;
+  --brand-mint-tint: #eaf8f2;
+  --brand-coral: #e85d56;
+  --brand-coral-tint: #fdeeed;
+  --ink-dark: #22252a;
+  --ink-body: #3d424a;
+  --ink-muted: #6c727f;
+  --border-light: #e2e2df;
+  --border-strong: #c8c8c4;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --shadow-card: 0 2px 0 rgba(34, 37, 42, 0.08);
+  --shadow-float: 0 -2px 12px rgba(34, 37, 42, 0.08);
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html {
+  background-color: var(--bg-page);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--ink-body);
+  font-family: "Sarabun", "Leelawadee UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top Navigation */
+nav {
+  background: var(--bg-card);
+  color: var(--ink-dark);
+  height: 58px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: 1120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink-dark);
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--brand-yellow);
+  border: 2px solid var(--ink-dark);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.nav-actions { display:flex; align-items:center; gap:10px; }
+.fullscreen-btn { border:1px solid var(--border-strong); background:var(--bg-card); color:var(--ink-dark); border-radius:var(--radius-sm); padding:7px 12px; font:inherit; font-size:13px; font-weight:700; cursor:pointer; white-space:nowrap; }
+.fullscreen-btn:hover { background:var(--brand-sky-tint); border-color:var(--brand-sky-dark); }
+.category-pill { display:inline-flex; align-items:center; margin:0 0 16px; padding:5px 11px; border-radius:20px; border:1px solid #b9dced; background:#eef9fe; color:#287ba6; font-size:13px; font-weight:700; }
+.report-question { border:1px solid #d9dfe3; border-radius:6px; padding:12px 14px; margin:12px 0; break-inside:avoid; }
+.report-question h3 { margin:0 0 7px; font-size:15px; }
+.report-question .report-category { color:#287ba6; font-size:12px; font-weight:700; margin-bottom:6px; }
+.report-question .report-choice { margin:4px 0; font-size:13px; }
+.report-question .report-choice.selected { font-weight:700; }
+.report-question .report-choice.correct { color:#16764f; }
+.report-question .report-choice.incorrect { color:#b42318; }
+.report-question .report-status { font-weight:700; margin-top:8px; font-size:13px; }
+.nav-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--brand-sky-tint);
+  color: var(--brand-sky-dark);
+  border: 1px solid var(--brand-sky);
+  white-space: nowrap;
+}
+
+/* Main Container */
+main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+.start-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Section Tag */
+.section-tag {
+  display: inline-block;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--ink-dark);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-card);
+}
+
+.section-tag.yellow {
+  background: var(--brand-yellow);
+  border-color: var(--brand-yellow);
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--ink-dark);
+  margin: 0 0 8px;
+}
+
+.lead {
+  font-size: 15px;
+  color: var(--ink-muted);
+  margin: 0 0 24px;
+}
+
+/* Card Component */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+}
+
+.card-accent-top {
+  border-top: 4px solid var(--brand-sky);
+}
+
+.f { margin-bottom: 22px; }
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-dark);
+  margin-bottom: 8px;
+}
+
+/* Avatar Selector Grid */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.avatar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 10px;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.avatar-card:hover {
+  border-color: var(--brand-sky);
+  transform: translateY(-2px);
+}
+
+.avatar-card.active {
+  background: var(--brand-sky-tint);
+  border-color: var(--brand-sky-dark);
+  box-shadow: inset 0 0 0 1px var(--brand-sky-dark);
+}
+
+.avatar-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border: 2px solid var(--ink-dark);
+  background: #fff;
+  overflow: hidden;
+  transition: transform 0.15s ease;
+}
+
+.avatar-card.active .avatar-img {
+  transform: scale(1.06);
+  box-shadow: 0 3px 0 var(--ink-dark);
+}
+
+.avatar-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-dark);
+  line-height: 1.3;
+}
+
+.avatar-role {
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.avatar-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--brand-sky-dark);
+  color: #fff;
+  font-size: 11px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.avatar-card.active .avatar-check {
+  display: flex;
+}
+
+/* Count Selector Grid */
+.count-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.count-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px 12px;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.count-card:hover {
+  border-color: var(--brand-sky);
+}
+
+.count-card.active {
+  background: var(--brand-sky-tint);
+  border-color: var(--brand-sky-dark);
+  box-shadow: inset 0 0 0 1px var(--brand-sky-dark);
+}
+
+.count-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink-dark);
+  line-height: 1.2;
+}
+
+.count-card.active .count-num {
+  color: var(--brand-sky-dark);
+}
+
+.count-desc {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+/* Mode Selector Cards */
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 14px 16px;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.mode-card:hover {
+  border-color: var(--brand-sky);
+}
+
+.mode-card.active {
+  background: var(--brand-sky-tint);
+  border-color: var(--brand-sky-dark);
+  box-shadow: inset 0 0 0 1px var(--brand-sky-dark);
+}
+
+.mode-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.mode-radio {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.mode-card.active .mode-radio {
+  border-color: var(--brand-sky-dark);
+}
+
+.mode-card.active .mode-radio::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-sky-dark);
+}
+
+.mode-card-desc {
+  font-size: 13px;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+/* Buttons */
+.btn {
+  background: var(--brand-sky);
+  color: #ffffff;
+  border: 1px solid var(--brand-sky-dark);
+  border-radius: var(--radius-sm);
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  box-shadow: 0 2px 0 var(--brand-sky-dark);
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.btn:hover:not([disabled]) {
+  background: var(--brand-sky-dark);
+}
+
+.btn:active:not([disabled]) {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.btn[disabled] {
+  background: #d5d7da;
+  border-color: #c5c7ca;
+  box-shadow: none;
+  color: #8c9199;
+  cursor: not-allowed;
+}
+
+.btn-yellow {
+  background: var(--brand-yellow);
+  border-color: #d9b611;
+  color: var(--ink-dark);
+  box-shadow: 0 2px 0 #d9b611;
+}
+.btn-yellow:hover:not([disabled]) { background: #ecc614; }
+
+.btn-mint {
+  background: var(--brand-mint);
+  border-color: #2d936e;
+  color: #ffffff;
+  box-shadow: 0 2px 0 #2d936e;
+}
+.btn-mint:hover:not([disabled]) { background: #339e77; }
+
+.lnk {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-strong);
+  color: var(--ink-dark);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 20px;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.lnk:hover:not([disabled]) {
+  background: var(--bg-subtle);
+}
+
+.lnk[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Progress Bar & Meta */
+.exam-topbar {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-card);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-dark);
+  margin-bottom: 10px;
+}
+
+.user-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-badge-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  overflow: hidden;
+}
+
+.tag-pill {
+  background: var(--brand-yellow);
+  color: var(--ink-dark);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.bar {
+  height: 8px;
+  background: var(--bg-page);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--brand-mint);
+  transition: width 0.25s ease;
+}
+
+/* Exam Layout */
+.exam-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  grid-template-areas: "question navigator";
+  align-items: start;
+  gap: 20px;
+}
+
+.exam-question { grid-area: question; }
+
+.q-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.q-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-sky-dark);
+}
+
+.q {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--ink-dark);
+  margin: 0 0 18px;
+}
+
+pre {
+  background: #22252a;
+  color: #f8f8f2;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  overflow-x: auto;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+/* Answer Choices */
+.opt {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: var(--bg-card);
+  color: var(--ink-dark);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  align-items: center;
+  transition: all 0.12s ease;
+}
+
+.opt:hover:not(:disabled) {
+  border-color: var(--brand-sky-dark);
+  background: var(--brand-sky-tint);
+}
+
+.opt:active:not(:disabled) {
+  transform: scale(0.995);
+}
+
+.opt-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-page);
+  color: var(--ink-dark);
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.opt span.opt-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+
+.opt.on {
+  border-color: var(--brand-sky-dark);
+  background: var(--brand-sky-tint);
+  box-shadow: inset 0 0 0 1px var(--brand-sky-dark);
+}
+.opt.on .opt-key {
+  background: var(--brand-sky-dark);
+  color: #ffffff;
+}
+
+.opt.correct {
+  border-color: var(--brand-mint);
+  background: var(--brand-mint-tint);
+  box-shadow: inset 0 0 0 1px var(--brand-mint);
+}
+.opt.correct .opt-key {
+  background: var(--brand-mint);
+  color: #ffffff;
+}
+
+.opt.wrong {
+  border-color: var(--brand-coral);
+  background: var(--brand-coral-tint);
+  box-shadow: inset 0 0 0 1px var(--brand-coral);
+}
+.opt.wrong .opt-key {
+  background: var(--brand-coral);
+  color: #ffffff;
+}
+
+.opt:disabled {
+  cursor: default;
+}
+
+.opt-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+.opt-badge.ok { background: var(--brand-mint); color: #fff; }
+.opt-badge.no { background: var(--brand-coral); color: #fff; }
+
+.feedback-box {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.feedback-box.ok {
+  background: var(--brand-mint-tint);
+  border: 1px solid var(--brand-mint);
+  color: #1f6e51;
+}
+.feedback-box.no {
+  background: var(--brand-coral-tint);
+  border: 1px solid var(--brand-coral);
+  color: #a62b25;
+}
+
+.nv-desktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-light);
+  gap: 12px;
+}
+
+.nv-desktop .btn {
+  width: auto;
+  min-width: 140px;
+}
+
+/* Question Navigator Sidebar */
+.question-nav {
+  grid-area: navigator;
+  position: sticky;
+  top: 76px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.question-nav h2 {
+  margin: 0;
+  color: var(--ink-dark);
+  font-size: 16px;
+}
+
+.question-nav-summary {
+  margin: 4px 0 14px;
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+.question-map {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  max-height: min(50vh, 420px);
+  overflow-y: auto;
+  padding: 2px;
+  margin-bottom: 16px;
+}
+
+.question-map button {
+  min-width: 0;
+  height: 38px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  color: var(--ink-dark);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.question-map button.answered {
+  border-color: var(--brand-sky-dark);
+  background: var(--brand-sky-tint);
+  color: var(--brand-sky-dark);
+}
+
+.question-map button.q-correct {
+  border-color: var(--brand-mint);
+  background: var(--brand-mint);
+  color: #ffffff;
+}
+
+.question-map button.q-wrong {
+  border-color: var(--brand-coral);
+  background: var(--brand-coral);
+  color: #ffffff;
+}
+
+.question-map button.current {
+  outline: 2.5px solid var(--ink-dark);
+  outline-offset: 1px;
+}
+
+.mobile-bottom-bar {
+  display: none;
+}
+
+/* Result Page */
+.tile {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  color: var(--ink-dark);
+  border: 1px solid var(--border-light);
+  border-top: 5px solid var(--brand-mint);
+  border-radius: var(--radius-md);
+  padding: 36px 28px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.tile.failed {
+  border-top-color: var(--brand-coral);
+}
+
+.result-avatar {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  border: 2.5px solid var(--ink-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  overflow: hidden;
+  box-shadow: 0 4px 0 var(--ink-dark);
+}
+
+.tile .big {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--ink-dark);
+  margin: 8px 0;
+}
+
+.pill {
+  display: inline-block;
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  background: var(--bg-subtle);
+  color: var(--ink-dark);
+  font-size: 14px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  border: 1px solid var(--border-light);
+}
+
+.result-summary {
+  max-width: 460px;
+  margin: 22px auto;
+  padding: 18px 20px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  text-align: left;
+}
+
+.result-summary h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: var(--ink-dark);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 8px;
+}
+
+.result-summary p {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.result-summary p span:first-child { color: var(--ink-muted); }
+.result-summary p span:last-child { font-weight: 700; text-align: right; }
+.result-status-passed { color: var(--brand-mint); }
+.result-status-failed { color: var(--brand-coral); }
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  max-width: 460px;
+  margin: 24px auto 12px;
+}
+
+.fine {
+  font-size: 13px;
+  color: var(--ink-muted);
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* Modal Popup */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(34, 37, 42, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+}
+
+.modal-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+}
+
+.modal-header {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+}
+
+.modal-title { font-size: 16px; font-weight: 700; }
+
+.modal-close {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--ink-dark);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body {
+  padding: 16px;
+  overflow-y: auto;
+  text-align: center;
+  background: var(--bg-page);
+}
+
+.modal-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+}
+
+.modal-frame {
+  width: 100%;
+  height: 70vh;
+  border: 0;
+}
+
+#print-container { display: none; }
+
+/* Print PDF Styling */
+@media print {
+  @page { size: A4 portrait; margin: 12mm 15mm; }
+  html, body { background: #ffffff !important; color: #000000 !important; }
+  nav, main, #app, .modal-overlay { display: none !important; }
+  #print-container { display: block !important; width: 100% !important; }
+  #report-template {
+    background: #ffffff !important;
+    color: #22252a !important;
+    padding: 28px !important;
+    max-width: 680px !important;
+    margin: 0 auto !important;
+    border-radius: 6px !important;
+    font-family: "Sarabun", sans-serif !important;
+  }
+  #report-template h2 { margin: 0 0 6px !important; font-size: 22px !important; color: #22252a !important; text-align: center !important; }
+  #report-template .sub { color: #6c727f !important; text-align: center !important; font-size: 13px !important; margin-bottom: 20px !important; }
+  #report-template .score-banner { background: #f0f0ee !important; border-radius: 6px !important; padding: 16px !important; text-align: center !important; margin: 16px 0 !important; }
+  #report-template .score-banner .val { font-size: 34px !important; font-weight: 800 !important; color: #3eb489 !important; }
+  #report-template .table-box { width: 100% !important; border-collapse: collapse !important; margin: 20px 0 !important; }
+  #report-template .table-box td { padding: 10px 12px !important; border-bottom: 1px solid #e2e2df !important; font-size: 14px !important; }
+  #report-template .table-box td.label { font-weight: 700 !important; color: #6c727f !important; width: 40% !important; }
+  #report-template .report-question { break-inside: avoid !important; }
+  #report-template .footer { text-align: center !important; font-size: 12px !important; color: #6c727f !important; margin-top: 24px !important; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  main { padding: 20px 16px 60px; }
+  .exam-layout {
+    grid-template-columns: minmax(0, 1fr) 235px;
+    gap: 16px;
+  }
+  .question-map {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  main { padding: 16px 14px 96px; }
+  h1 { font-size: 26px; }
+  .card { padding: 20px 16px; }
+
+  .exam-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "navigator"
+      "question";
+    gap: 12px;
+  }
+
+  .question-nav {
+    position: static;
+    padding: 12px 14px;
+  }
+
+  .question-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .question-nav h2 { font-size: 14px; }
+  .question-nav-summary { margin: 0; font-size: 12px; }
+
+  .question-map {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 8px;
+    max-height: none;
+    margin-bottom: 0;
+    padding: 4px 2px 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .question-map button {
+    flex: 0 0 42px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .submit-exam-desktop,
+  .nv-desktop {
+    display: none;
+  }
+
+  .q { font-size: 18px; }
+  .opt { padding: 13px 14px; min-height: 52px; }
+
+  .mobile-bottom-bar {
+    display: grid;
+    grid-template-columns: 92px 1fr 1fr;
+    gap: 8px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 95;
+    background: var(--bg-card);
+    border-top: 1.5px solid var(--border-light);
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    box-shadow: var(--shadow-float);
+  }
+
+  .mobile-bottom-bar .lnk,
+  .mobile-bottom-bar .btn {
+    padding: 10px 10px;
+    font-size: 14px;
+    min-height: 46px;
+  }
+}
+
+@media (max-width: 600px) {
+  .avatar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .mode-grid {
+    grid-template-columns: 1fr;
+  }
+  .tile { padding: 28px 18px; }
+  .tile .big { font-size: 42px; }
+  .nav-badge { display: none; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="nav-dot"></span>
+      <span id="nav-title">Online Exam</span>
+    </div>
+    <div class="nav-actions">
+      <span class="nav-badge" id="nav-mode-badge">ระบบสอบออนไลน์</span>
+      <button type="button" class="fullscreen-btn" id="fullscreen-toggle" aria-label="เปิดเต็มหน้าจอ">⛶ เต็มหน้าจอ</button>
+    </div>
+  </div>
+</nav>
+<main id="app"></main>
+<div id="modal-container"></div>
+<div id="print-container"></div>
+
+<script>var module = { exports: {} };</script>
+<script src="react_native_questions.js"></script>
+<script>
+document.addEventListener("contextmenu", event => event.preventDefault());
+document.addEventListener("keydown", event => {
+  if (event.key === "F12" || event.keyCode === 123) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+});
+
+/* ==========================================================================
+   CONFIG: ตั้งค่าชุดข้อสอบ ไฟล์ และเกณฑ์คะแนน
+   ========================================================================== */
+const examTitle       = "ข้อสอบความรู้เกี่ยวกับการรักษาความปลอดภัยระบบสารสนเทศ";
+const exam            = "react_native_questions.js";
+const examMode        = "single"; // "single" | "qualification-practical"
+const percentPass     = 90;
+const examPractice1   = "Exam1View.png";
+const examPractice2   = "Exam2View.png";
+const assetsFile      = "pic.zip";
+const QUESTION_COUNTS = [20, 50, 100];
+const defaultCount    = 50;
+
+/* ==========================================================================
+   AVATARS: ตัวละคร 4 แบบให้ผู้เข้าสอบเลือก
+   ========================================================================== */
+const AVATARS = [
+  {
+    id: "cyber-knight",
+    name: "Cyber Knight",
+    role: "ผู้พิทักษ์ระบบ",
+    bg: "#eef9fe",
+    svg: `<svg viewBox="0 0 64 64" width="100%" height="100%">
+      <circle cx="32" cy="32" r="32" fill="#5bc0eb"/>
+      <path d="M18 46c0-8 6-13 14-13s14 5 14 13v10H18V46z" fill="#22252a"/>
+      <circle cx="32" cy="25" r="10" fill="#ffe0bd"/>
+      <path d="M21 22c0-7 5-11 11-11s11 4 11 11v3H21v-3z" fill="#22252a"/>
+      <rect x="24" y="22" width="16" height="5" rx="2.5" fill="#f9d423"/>
+    </svg>`
+  },
+  {
+    id: "white-hat",
+    name: "White Hat",
+    role: "นักวิเคราะห์ข้อมูล",
+    bg: "#eaf8f2",
+    svg: `<svg viewBox="0 0 64 64" width="100%" height="100%">
+      <circle cx="32" cy="32" r="32" fill="#3eb489"/>
+      <path d="M18 46c0-8 6-13 14-13s14 5 14 13v10H18V46z" fill="#ffffff"/>
+      <circle cx="32" cy="26" r="10" fill="#ffd2a6"/>
+      <ellipse cx="32" cy="18" rx="15" ry="4" fill="#ffffff" stroke="#22252a" stroke-width="2"/>
+      <path d="M23 18c0-5 4-8 9-8s9 3 9 8" fill="#ffffff" stroke="#22252a" stroke-width="2"/>
+      <circle cx="28.5" cy="26" r="1.5" fill="#22252a"/>
+      <circle cx="35.5" cy="26" r="1.5" fill="#22252a"/>
+      <path d="M29 30q3 2.5 6 0" stroke="#22252a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </svg>`
+  },
+  {
+    id: "digital-fox",
+    name: "Digital Fox",
+    role: "สายลุยอัจฉริยะ",
+    bg: "#fef9e1",
+    svg: `<svg viewBox="0 0 64 64" width="100%" height="100%">
+      <circle cx="32" cy="32" r="32" fill="#f9d423"/>
+      <path d="M19 48c0-8 6-13 13-13s13 5 13 13v8H19v-8z" fill="#e85d56"/>
+      <polygon points="20,24 22,11 30,19" fill="#e85d56"/>
+      <polygon points="44,24 42,11 34,19" fill="#e85d56"/>
+      <circle cx="32" cy="27" r="11" fill="#e85d56"/>
+      <path d="M21 27c2 5 7 8 11 8s9-3 11-8c-4 1-7 1-11-2-4 3-7 3-11 2z" fill="#ffffff"/>
+      <circle cx="28" cy="26" r="1.6" fill="#22252a"/>
+      <circle cx="36" cy="26" r="1.6" fill="#22252a"/>
+      <circle cx="32" cy="30" r="2" fill="#22252a"/>
+    </svg>`
+  },
+  {
+    id: "robo-guard",
+    name: "Robo Guard",
+    role: "หุ่นยนต์ผู้เชี่ยวชาญ",
+    bg: "#fdeeed",
+    svg: `<svg viewBox="0 0 64 64" width="100%" height="100%">
+      <circle cx="32" cy="32" r="32" fill="#e85d56"/>
+      <line x1="32" y1="9" x2="32" y2="15" stroke="#22252a" stroke-width="3"/>
+      <circle cx="32" cy="8" r="3" fill="#f9d423"/>
+      <rect x="20" y="15" width="24" height="19" rx="5" fill="#ffffff" stroke="#22252a" stroke-width="2"/>
+      <rect x="23" y="20" width="18" height="8" rx="3" fill="#22252a"/>
+      <circle cx="28" cy="24" r="2.2" fill="#5bc0eb"/>
+      <circle cx="36" cy="24" r="2.2" fill="#5bc0eb"/>
+      <rect x="22" y="37" width="20" height="18" rx="4" fill="#ffffff" stroke="#22252a" stroke-width="2"/>
+    </svg>`
+  }
+];
+
+/* ==========================================================================
+   คลังข้อสอบสำรอง (Inline Fallback)
+   ========================================================================== */
+let Q = [
+  ["m","พระราชบัญญัติการปฏิบัติราชการทางอิเล็กทรอนิกส์ พ.ศ. 2565 ประกาศในราชกิจจานุเบกษาเมื่อวันที่เท่าใด","","12 ตุลาคม 2565","10 ตุลาคม 2565","11 ตุลาคม 2565","13 ตุลาคม 2565","15 ตุลาคม 2565"]
+];
+
+function normalizeQuestions(data) {
+  if (!Array.isArray(data) || data.length === 0) return null;
+  return data.map(item => {
+    if (Array.isArray(item)) return [...item.slice(0, 8), item[8] || ""];
+    const ans = String(item.answer || "").trim();
+    const choices = (item.choices || []).map(c => String(c).trim()).filter(Boolean);
+    const wrongs = choices.filter(c => c !== ans);
+    return [
+      item.type || "m",
+      item.question || "",
+      item.code || "",
+      ans,
+      wrongs[0] || "", wrongs[1] || "", wrongs[2] || "", wrongs[3] || "",
+      item.category || item.topic || item.subject || ""
+    ];
+  });
+}
+
+async function loadExamData() {
+  const jsData = (module && module.exports && module.exports.length)
+    ? module.exports
+    : (typeof Questions !== "undefined" ? Questions : (window.reactNativeQuestions || window.EXAM_DATA || null));
+
+  if (jsData) {
+    const parsed = normalizeQuestions(jsData);
+    if (parsed) {
+      Q = parsed;
+      return;
+    }
+  }
+
+  if (exam && exam.endsWith(".json")) {
+    try {
+      const res = await fetch(exam);
+      if (!res.ok) throw new Error("Fetch error: " + res.status);
+      const data = await res.json();
+      const parsed = normalizeQuestions(data);
+      if (parsed) Q = parsed;
+    } catch (err) {
+      console.warn("ใช้คลังข้อสอบสำรอง:", err.message);
+    }
+  }
+}
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const sh = a => {
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
+const L = "ก ข ค ง จ".split(" ");
+const $ = document.getElementById("app");
+
+// เสียงตอบถูก/ผิด สร้างด้วย Web Audio API ไม่ต้องใช้ไฟล์เสียงภายนอก
+let audioContext = null;
+function playAnswerSound(isCorrect) {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    audioContext = audioContext || new AudioCtx();
+    if (audioContext.state === "suspended") audioContext.resume();
+    const osc = audioContext.createOscillator(), gain = audioContext.createGain();
+    const now = audioContext.currentTime;
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(isCorrect ? 660 : 220, now);
+    if (isCorrect) osc.frequency.setValueAtTime(880, now + 0.11);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.16, now + 0.025);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + (isCorrect ? 0.28 : 0.22));
+    osc.connect(gain); gain.connect(audioContext.destination);
+    osc.start(now); osc.stop(now + (isCorrect ? 0.30 : 0.24));
+  } catch (e) { console.warn("ไม่สามารถเล่นเสียงได้", e); }
+}
+
+document.getElementById("fullscreen-toggle").addEventListener("click", async () => {
+  try {
+    if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+    else await document.exitFullscreen();
+  } catch (e) { console.warn("Fullscreen is not available", e); }
+});
+document.addEventListener("fullscreenchange", () => {
+  const b = document.getElementById("fullscreen-toggle");
+  if (b) b.textContent = document.fullscreenElement ? "⤢ ออกจากเต็มหน้าจอ" : "⛶ เต็มหน้าจอ";
+});
+let S = { avatar: AVATARS[0], qs: [], i: 0, set: null, checkMode: "submit", questionCount: defaultCount };
+
+function getLeadText() {
+  const actualCount = Math.min(S.questionCount, Q.length);
+  return `สุ่ม ${actualCount} ข้อจากคลัง ${Q.length} ข้อ · เกณฑ์ผ่าน ${percentPass}% ขึ้นไป`;
+}
+
+function start() {
+  document.getElementById("nav-title").textContent = examTitle;
+  document.getElementById("nav-mode-badge").textContent = "ระบบสอบออนไลน์";
+  document.title = examTitle;
+
+  const countLabels = {
+    20: "ชุดสั้น (ทบทวนไว)",
+    50: "ชุดมาตรฐาน",
+    100: "ชุดจัดเต็ม"
+  };
+
+  $.innerHTML = `
+  <div class="start-wrap">
+    <span class="section-tag yellow">ONLINE EXAMINATION</span>
+    <h1>${esc(examTitle)}</h1>
+    <p class="lead" id="lead-summary">${getLeadText()}</p>
+    <div class="card card-accent-top">
+      <div class="f">
+        <label>เลือกตัวละคร (Avatar) ของคุณ</label>
+        <div class="avatar-grid" role="radiogroup" aria-label="เลือกตัวละคร">
+          ${AVATARS.map(av => {
+            const isSelected = S.avatar && S.avatar.id === av.id;
+            return `
+            <button type="button" class="avatar-card ${isSelected ? "active" : ""}" data-avatar-id="${av.id}" aria-pressed="${isSelected}">
+              <span class="avatar-check">✓</span>
+              <div class="avatar-img" style="background:${av.bg}">${av.svg}</div>
+              <div class="avatar-name">${esc(av.name)}</div>
+              <div class="avatar-role">${esc(av.role)}</div>
+            </button>`;
+          }).join("")}
+        </div>
+      </div>
+
+      <div class="f">
+        <label>จำนวนข้อสอบที่ต้องการทำ</label>
+        <div class="count-grid" role="radiogroup" aria-label="เลือกจำนวนข้อสอบ">
+          ${QUESTION_COUNTS.map(cnt => {
+            const isActive = S.questionCount === cnt;
+            const capped = cnt > Q.length ? ` (คลังมี ${Q.length} ข้อ)` : "";
+            return `
+            <button type="button" class="count-card ${isActive ? "active" : ""}" data-count="${cnt}" aria-pressed="${isActive}">
+              <div class="count-num">${cnt} ข้อ</div>
+              <div class="count-desc">${countLabels[cnt] || ""}${capped}</div>
+            </button>`;
+          }).join("")}
+        </div>
+      </div>
+
+      <div class="f">
+        <label>รูปแบบการตรวจคำตอบ</label>
+        <div class="mode-grid" role="radiogroup" aria-label="เลือกรูปแบบการตรวจคำตอบ">
+          <button type="button" class="mode-card ${S.checkMode === "submit" ? "active" : ""}" data-mode="submit" aria-pressed="${S.checkMode === "submit"}">
+            <div class="mode-card-title"><span class="mode-radio"></span>ตรวจหลังส่งครบทุกข้อ</div>
+            <div class="mode-card-desc">ทำข้อสอบจนครบและแก้ไขคำตอบได้ ก่อนกดส่งเพื่อสรุปคะแนน</div>
+          </button>
+          <button type="button" class="mode-card ${S.checkMode === "instant" ? "active" : ""}" data-mode="instant" aria-pressed="${S.checkMode === "instant"}">
+            <div class="mode-card-title"><span class="mode-radio"></span>ตรวจทันทีหลังตอบ</div>
+            <div class="mode-card-desc">รู้ผลถูก-ผิดและเฉลยทันทีที่เลือกคำตอบในแต่ละข้อ</div>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn" id="go" ${S.avatar ? "" : "disabled"}>เริ่มทำข้อสอบ</button>
+    </div>
+    <p class="fine">สลับตัวเลือกและสุ่มโจทย์ใหม่ทุกครั้ง · รองรับการใช้งานบนมือถือ แท็บเล็ต และคอมพิวเตอร์</p>
+  </div>`;
+
+  $.querySelectorAll(".avatar-card").forEach(btn => {
+    btn.onclick = () => {
+      const selected = AVATARS.find(a => a.id === btn.dataset.avatarId);
+      if (selected) {
+        S.avatar = selected;
+        $.querySelectorAll(".avatar-card").forEach(c => {
+          const active = c.dataset.avatarId === S.avatar.id;
+          c.classList.toggle("active", active);
+          c.setAttribute("aria-pressed", String(active));
+        });
+        document.getElementById("go").disabled = false;
+      }
+    };
+  });
+
+  $.querySelectorAll(".count-card").forEach(btn => {
+    btn.onclick = () => {
+      S.questionCount = Number(btn.dataset.count);
+      $.querySelectorAll(".count-card").forEach(c => {
+        const isActive = Number(c.dataset.count) === S.questionCount;
+        c.classList.toggle("active", isActive);
+        c.setAttribute("aria-pressed", String(isActive));
+      });
+      const leadEl = document.getElementById("lead-summary");
+      if (leadEl) leadEl.textContent = getLeadText();
+    };
+  });
+
+  $.querySelectorAll(".mode-card").forEach(btn => {
+    btn.onclick = () => {
+      S.checkMode = btn.dataset.mode;
+      $.querySelectorAll(".mode-card").forEach(c => {
+        const isActive = c.dataset.mode === S.checkMode;
+        c.classList.toggle("active", isActive);
+        c.setAttribute("aria-pressed", String(isActive));
+      });
+    };
+  });
+
+  document.getElementById("go").onclick = () => {
+    if (!S.avatar) S.avatar = AVATARS[0];
+    begin();
+  };
+}
+
+function begin() {
+  const actualCount = Math.min(S.questionCount, Q.length);
+  S.seen = S.seen || new Set();
+  let ids = Q.map((_, k) => k);
+  let fresh = sh(ids.filter(k => !S.seen.has(k)));
+  if (fresh.length < actualCount) {
+    S.seen = new Set();
+    fresh = sh(ids);
+  }
+  fresh = fresh.slice(0, actualCount);
+  fresh.forEach(k => S.seen.add(k));
+  S.qs = fresh.map(k => {
+    const q = Q[k];
+    const choices = [q[3], q[4], q[5], q[6], q[7]]
+      .filter(c => c !== undefined && c !== null && String(c).trim() !== "")
+      .map((text, idx) => ({ text: String(text), isCorrect: idx === 0 }));
+    const oObj = sh(choices);
+    return {
+      t: q[0],
+      q: q[1],
+      c: q[2],
+      category: q[8] || "",
+      o: oObj.map(item => item.text),
+      a: oObj.findIndex(item => item.isCorrect),
+      s: -1
+    };
+  });
+  S.i = 0;
+  document.getElementById("nav-mode-badge").textContent =
+    S.checkMode === "instant" ? "โหมด: ตรวจทันที" : "โหมด: ตรวจเมื่อส่ง";
+  quiz();
+}
+
+function quiz() {
+  const q = S.qs[S.i], n = S.qs.length, last = S.i === n - 1;
+  const isInstant = S.checkMode === "instant";
+  const isAnswered = q.s >= 0;
+  const isLocked = isInstant && isAnswered;
+  const tag = { f: "เติมโค้ด", b: "จับจุดผิด", m: "ทฤษฎี" }[q.t] || "คำถาม";
+  const answeredCount = S.qs.filter(question => question.s >= 0).length;
+  const correctCount = S.qs.filter(question => question.s >= 0 && question.s === question.a).length;
+
+  const submitText = answeredCount < n
+    ? `ส่งข้อสอบ (${answeredCount}/${n})`
+    : `ส่งข้อสอบ · ครบ ${n} ข้อ`;
+
+  const navigator = `
+    <aside class="question-nav" aria-label="นำทางข้อสอบ">
+      <div class="question-nav-header">
+        <h2>เลือกข้อสอบ</h2>
+        <p class="question-nav-summary">ตอบแล้ว ${answeredCount}/${n} ข้อ${isInstant ? ` · ถูก ${correctCount}` : ""}</p>
+      </div>
+      <div class="question-map" id="q-map-scroll">
+        ${S.qs.map((question, index) => {
+          const answered = question.s >= 0;
+          const current = index === S.i;
+          let stateClass = "";
+          if (answered) {
+            if (isInstant) {
+              stateClass = question.s === question.a ? "q-correct" : "q-wrong";
+            } else {
+              stateClass = "answered";
+            }
+          }
+          return `<button type="button" class="${stateClass} ${current ? "current" : ""}"
+            data-question-index="${index}" aria-pressed="${current}"
+            aria-label="ข้อ ${index + 1}${answered ? " ตอบแล้ว" : " ยังไม่ได้ตอบ"}"
+            ${current ? 'aria-current="step"' : ""}>${index + 1}</button>`;
+        }).join("")}
+      </div>
+      <button type="button" class="btn btn-mint submit-exam-desktop">${submitText}</button>
+    </aside>`;
+
+  const optionsHtml = q.o.map((o, k) => {
+    let cls = "opt";
+    let badge = "";
+    if (isLocked) {
+      if (k === q.a) {
+        cls += " correct";
+        badge = `<span class="opt-badge ok">คำตอบที่ถูก</span>`;
+      } else if (k === q.s) {
+        cls += " wrong";
+        badge = `<span class="opt-badge no">คำตอบที่เลือก</span>`;
+      }
+    } else if (q.s === k) {
+      cls += " on";
+    }
+    return `<button type="button" class="${cls}" data-k="${k}" ${isLocked ? "disabled" : ""} aria-pressed="${q.s === k}">
+      <span class="opt-key">${L[k] || (k + 1)}</span>
+      <span class="opt-text">${esc(o)}</span>
+      ${badge}
+    </button>`;
+  }).join("");
+
+  const feedbackHtml = isLocked ? (
+    q.s === q.a
+      ? `<div class="feedback-box ok" role="status">✓ ถูกต้อง! คุณตอบถูกในข้อนี้</div>`
+      : `<div class="feedback-box no" role="status">✕ ไม่ถูกต้อง · คำตอบที่ถูกต้องคือข้อ ${L[q.a] || (q.a + 1)}. ${esc(q.o[q.a])}</div>`
+  ) : "";
+
+  $.innerHTML = `
+    <div class="exam-topbar">
+      <div class="meta">
+        <span class="user-badge">
+          <span class="user-badge-avatar">${S.avatar.svg}</span>
+          <span>${esc(S.avatar.name)} <small style="color:var(--ink-muted); font-weight:500;">(${esc(S.avatar.role)})</small></span>
+        </span>
+        <span class="tag-pill">${tag}</span>
+      </div>
+      <div class="bar"><i style="width: ${(answeredCount / n) * 100}%"></i></div>
+    </div>
+
+    <div class="exam-layout">
+      <section class="exam-question" aria-label="คำถามข้อที่ ${S.i + 1}">
+        <div class="card card-accent-top">
+          <div class="q-header">
+            <span class="q-num">ข้อที่ ${S.i + 1} จาก ${n}</span>
+            <span style="font-size: 13px; color: var(--ink-muted);">${isInstant ? "ตรวจคำตอบทันที" : "ตรวจหลังส่งข้อสอบ"}</span>
+          </div>
+          <p class="q">${esc(q.q)}</p>
+          <div class="category-pill">หมวดหมู่: ${esc(q.category && String(q.category).trim() ? q.category : "ไม่ได้ระบุ")}</div>
+          ${q.c ? `<pre>${esc(q.c)}</pre>` : ""}
+          ${optionsHtml}
+          ${feedbackHtml}
+          <div class="nv-desktop">
+            <button type="button" class="lnk" id="pv-dt" ${S.i ? "" : "disabled"}>← ย้อนกลับ</button>
+            <button type="button" class="btn ${last ? "btn-mint" : ""}" id="nx-dt" ${q.s < 0 ? "disabled" : ""}>${last ? "ส่งข้อสอบ" : "ข้อถัดไป →"}</button>
+          </div>
+        </div>
+      </section>
+      ${navigator}
+    </div>
+
+    <div class="mobile-bottom-bar">
+      <button type="button" class="lnk" id="pv-mb" ${S.i ? "" : "disabled"}>ก่อนหน้า</button>
+      <button type="button" class="btn" id="nx-mb" ${q.s < 0 ? "disabled" : ""}>${last ? "ข้อสุดท้าย" : "ถัดไป →"}</button>
+      <button type="button" class="btn btn-mint submit-exam-mobile">${answeredCount === n ? "ส่งข้อสอบ" : `ส่ง (${answeredCount}/${n})`}</button>
+    </div>`;
+
+  const mapEl = document.getElementById("q-map-scroll");
+  const curBtn = mapEl && mapEl.querySelector(".current");
+  if (mapEl && curBtn) {
+    const offset = curBtn.offsetLeft - mapEl.clientWidth / 2 + curBtn.clientWidth / 2;
+    mapEl.scrollTo({ left: Math.max(0, offset), behavior: "smooth" });
+  }
+
+  $.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    if (isLocked) return;
+    q.s = +b.dataset.k;
+    if (isInstant) playAnswerSound(q.s === q.a);
+    quiz();
+  });
+
+  $.querySelectorAll("[data-question-index]").forEach(b => b.onclick = () => {
+    S.i = Number(b.dataset.questionIndex);
+    quiz();
+  });
+
+  $.querySelectorAll(".submit-exam-desktop, .submit-exam-mobile").forEach(b => {
+    b.onclick = submitExam;
+  });
+
+  ["pv-dt", "pv-mb"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.onclick = () => { if (S.i > 0) { S.i--; quiz(); } };
+  });
+
+  ["nx-dt", "nx-mb"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.onclick = () => {
+      if (last) submitExam();
+      else { S.i++; quiz(); }
+    };
+  });
+}
+
+function submitExam() {
+  const unanswered = S.qs.filter(q => q.s < 0).length;
+  const message = unanswered
+    ? `ยังมีข้อที่ไม่ได้ตอบ ${unanswered} ข้อ หากส่งตอนนี้จะตรวจเฉพาะข้อที่ตอบแล้ว ยืนยันส่งข้อสอบหรือไม่?`
+    : "ยืนยันส่งข้อสอบทั้งหมดหรือไม่?";
+  if (window.confirm(message)) result();
+}
+
+async function result() {
+  document.getElementById("nav-mode-badge").textContent = "สรุปผลการสอบ";
+  const n = S.qs.filter(q => q.s === q.a).length;
+  const tot = S.qs.length;
+  const pass = (n / tot) * 100 >= percentPass;
+  const hasPracticalExam = examMode === "qualification-practical";
+  if (pass && hasPracticalExam && !S.set) {
+    S.set = Math.random() < 0.5 ? "ข้อสอบชุดที่ 1" : "ข้อสอบชุดที่ 2";
+  }
+  const pct = Math.round((n / tot) * 100);
+  const resultTitle = pass
+    ? (hasPracticalExam ? "ผ่านเกณฑ์การประเมิน" : "สอบผ่าน")
+    : "ยังไม่ผ่านเกณฑ์";
+  const scoreDescription = hasPracticalExam
+    ? "คะแนนสอบคัดเลือก (ยังไม่รวมคะแนนสอบปฏิบัติ)"
+    : "คะแนนสอบ";
+  const modeLabel = S.checkMode === "instant" ? "ตรวจทันทีหลังตอบ" : "ตรวจหลังส่งครบทุกข้อ";
+  const resultRecordedAt = new Date().toLocaleString("th-TH", { dateStyle: "long", timeStyle: "short" });
+  const reportButton = '<button class="btn btn-mint" id="btn-dl-report">พิมพ์รายงานผลการสอบ (PDF)</button>';
+
+  $.innerHTML = `<div class="tile ${pass ? "" : "failed"}">
+    <div class="result-avatar">${S.avatar.svg}</div>
+    <span class="pill">${esc(S.avatar.name)} · ${esc(S.avatar.role)}</span>
+    <div class="big">${n} / ${tot}</div>
+    <h1 style="margin-bottom: 6px;">${resultTitle}</h1>
+    <p style="color: var(--ink-muted); margin-top: 0;">${scoreDescription}: ${pct}% · เกณฑ์ขั้นต่ำ ${percentPass}%</p>
+    <section class="result-summary" aria-label="สรุปผลการสอบ">
+      <h2>รายละเอียดผลการสอบ</h2>
+      <p><span>ตัวละครผู้เข้าสอบ</span><span>${esc(S.avatar.name)}</span></p>
+      <p><span>คะแนนที่ได้</span><span>${n} / ${tot} ข้อ (${pct}%)</span></p>
+      <p><span>เกณฑ์ผ่าน</span><span>${percentPass}% (${Math.ceil(tot * percentPass / 100)} ข้อ)</span></p>
+      <p><span>รูปแบบการตรวจ</span><span>${modeLabel}</span></p>
+      <p><span>สถานะ</span><span class="${pass ? "result-status-passed" : "result-status-failed"}">${pass ? "ผ่านเกณฑ์" : "ไม่ผ่านเกณฑ์"}</span></p>
+      ${hasPracticalExam && pass ? `<p><span>สิทธิ์สอบปฏิบัติ</span><span>${esc(S.set)}</span></p>` : ""}
+      <p><span>วันที่บันทึกผล</span><span>${esc(resultRecordedAt)}</span></p>
+    </section>
+    ${pass ? `
+      ${hasPracticalExam ? `
+        <div style="margin: 20px 0 12px; font-size: 18px; font-weight: 700; color: var(--brand-sky-dark)">
+          คุณได้รับสิทธิ์เข้าสอบ: ${S.set}
+        </div>
+        <div class="actions">
+          <button class="btn" id="btn-view-exam">ดูข้อสอบปฏิบัติ (${S.set})</button>
+          <button class="btn btn-yellow" id="btn-dl-assets">ดาวน์โหลดรูปภาพ Assets (.zip)</button>
+          ${reportButton}
+        </div>
+        <p id="dm" style="font-size: 13px; color: var(--ink-muted); margin-top: 10px">
+          สามารถดูตัวอย่างโจทย์ ดาวน์โหลดรูปภาพเพื่อลงมือทำ และบันทึกคะแนนสอบคัดเลือกไว้ได้ทันที
+        </p>
+      ` : `
+        <div class="actions">${reportButton}</div>
+      `}
+    ` : `
+      <p style="color: var(--ink-body); margin: 20px 0;">คะแนนยังไม่ถึงเกณฑ์ ${percentPass}% สามารถทบทวนบทเรียนและทำข้อสอบใหม่อีกครั้ง</p>
+      <div class="actions">
+        <button class="btn btn-yellow" id="rt">ทำข้อสอบใหม่</button>
+        ${hasPracticalExam ? "" : reportButton}
+      </div>
+    `}
+    <p style="margin-top: 20px;"><button class="lnk" id="hm">กลับสู่หน้าแรก</button></p>
+  </div>`;
+
+  document.getElementById("hm").onclick = () => {
+    S.set = null;
+    S.seen = null;
+    start();
+  };
+
+  const rt = document.getElementById("rt");
+  if (rt) rt.onclick = () => {
+    S.set = null;
+    begin();
+  };
+
+  const btnViewExam = document.getElementById("btn-view-exam");
+  if (btnViewExam) btnViewExam.onclick = () => {
+    const modalArea = document.getElementById("modal-container");
+    const filePath = S.set === "ข้อสอบชุดที่ 1" ? examPractice1 : examPractice2;
+    const isPDF = filePath.toLowerCase().endsWith(".pdf");
+
+    modalArea.innerHTML = `
+    <div class="modal-overlay" id="modal-bg">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">เอกสารโจทย์ ${S.set} (${filePath})</div>
+          <button class="modal-close" id="modal-close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          ${isPDF
+            ? `<iframe src="${filePath}" class="modal-frame"></iframe>`
+            : `<img src="${filePath}" class="modal-img" alt="โจทย์ข้อสอบปฏิบัติ">`
+          }
+        </div>
+      </div>
+    </div>`;
+    const close = () => { modalArea.innerHTML = ""; };
+    document.getElementById("modal-close-btn").onclick = close;
+    document.getElementById("modal-bg").onclick = e => { if (e.target.id === "modal-bg") close(); };
+  };
+
+  const btnDlAssets = document.getElementById("btn-dl-assets");
+  if (btnDlAssets) btnDlAssets.onclick = () => {
+    const a = document.createElement("a");
+    a.href = assetsFile;
+    a.download = assetsFile;
+    a.click();
+    const dm = document.getElementById("dm");
+    if (dm) dm.textContent = `ดาวน์โหลดไฟล์ ${assetsFile} เรียบร้อยแล้ว`;
+  };
+
+  const btnDlReport = document.getElementById("btn-dl-report");
+  if (btnDlReport) btnDlReport.onclick = () => {
+    const printArea = document.getElementById("print-container");
+    const origTitle = document.title;
+    const now = new Date();
+    const pad2 = value => String(value).padStart(2, "0");
+    const datePart = `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}`;
+    const timePart = `${pad2(now.getHours())}-${pad2(now.getMinutes())}-${pad2(now.getSeconds())}`;
+    const statusFile = pass ? "ผ่าน" : "ไม่ผ่าน";
+    const safeExamTitle = examTitle.replace(/[\\/:*?"<>|]/g, "-").replace(/\s+/g, "_");
+    const pdfFileName = `ผลการสอบ(${statusFile})-${safeExamTitle}-${datePart}-${timePart}`;
+    document.title = pdfFileName;
+
+    const questionReviewHtml = S.qs.map((question, index) => {
+      const answered = question.s >= 0;
+      const correct = answered && question.s === question.a;
+      const statusText = !answered ? "ไม่ได้ตอบ" : (correct ? "ตอบถูก" : "ตอบผิด");
+      const choicesHtml = question.o.map((choice, choiceIndex) => {
+        const isSelected = question.s === choiceIndex;
+        const isCorrectChoice = question.a === choiceIndex;
+        const classes = ["report-choice", isSelected ? "selected" : "", isCorrectChoice ? "correct" : "", isSelected && !correct ? "incorrect" : ""].filter(Boolean).join(" ");
+        const markers = `${isSelected ? " [คำตอบที่เลือก]" : ""}${isCorrectChoice ? " [เฉลย]" : ""}`;
+        return `<div class="${classes}">${esc(L[choiceIndex] || choiceIndex + 1)}. ${esc(choice)}${markers}</div>`;
+      }).join("");
+      return `<section class="report-question">
+        <div class="report-category">หมวดหมู่: ${esc(question.category && String(question.category).trim() ? question.category : "ไม่ได้ระบุ")}</div>
+        <h3>ข้อ ${index + 1}. ${esc(question.q)}</h3>
+        ${question.c ? `<pre style="white-space:pre-wrap;background:#f3f4f6;color:#222;padding:8px">${esc(question.c)}</pre>` : ""}
+        ${choicesHtml}
+        <div class="report-status" style="color:${correct ? "#16764f" : (answered ? "#b42318" : "#6c727f")}">ผลการตอบ: ${statusText}${answered ? ` · คำตอบที่เลือก: ${esc(L[question.s] || question.s + 1)}` : ""}</div>
+      </section>`;
+    }).join("");
+
+    printArea.innerHTML = `
+    <div id="report-template">
+      <h2>ใบรายงานผลการสอบออนไลน์</h2>
+      <div class="sub">${esc(examTitle)} - Examination Completion Certificate</div>
+      <div class="score-banner">
+        <div style="font-size: 14px; color: #6c727f; margin-bottom: 4px">${scoreDescription}</div>
+        <div class="val">${n} / ${tot} (${pct}%)</div>
+        <div style="font-size: 15px; font-weight: 700; color: ${pass ? "#3eb489" : "#e85d56"}; margin-top: 6px">สถานะ: ${pass ? "ผ่านเกณฑ์ (Passed)" : "ไม่ผ่านเกณฑ์ (Not passed)"}</div>
+      </div>
+      <table class="table-box">
+        <tr><td class="label">ตัวละครผู้เข้าสอบ</td><td><b>${esc(S.avatar.name)} (${esc(S.avatar.role)})</b></td></tr>
+        ${hasPracticalExam && pass ? `<tr><td class="label">ชุดข้อสอบปฏิบัติที่ได้รับ</td><td><b style="color: #3da5d9; font-size: 16px">${esc(S.set)}</b></td></tr>` : ""}
+        <tr><td class="label">วิชา / ชุดข้อสอบ</td><td>${esc(examTitle)}</td></tr>
+        <tr><td class="label">รูปแบบการตรวจ</td><td>${modeLabel}</td></tr>
+        <tr><td class="label">วันที่และเวลาบันทึกผล</td><td>${esc(resultRecordedAt)} น.</td></tr>
+        <tr><td class="label">เกณฑ์การผ่าน</td><td>ไม่ต่ำกว่า ${percentPass}% (ตอบถูก ${Math.ceil(tot * percentPass / 100)} ข้อขึ้นไป)</td></tr>
+      </table>
+      <h2 style="margin-top:26px">รายละเอียดคำตอบรายข้อ</h2>
+      <div class="sub">แสดงโจทย์ ตัวเลือกทั้งหมด คำตอบที่เลือก และเฉลยของทุกข้อ</div>
+      ${questionReviewHtml}
+      <div class="footer">
+        เอกสารนี้ออกโดยระบบสอบออนไลน์ Online Examination System<br>
+        รหัสยืนยันผลการสอบ: EXAM-${Date.now().toString(36).toUpperCase()}
+      </div>
+    </div>`;
+
+    const restoreTitle = () => {
+      document.title = origTitle;
+      window.removeEventListener("afterprint", restoreTitle);
+    };
+    window.addEventListener("afterprint", restoreTitle);
+    window.print();
+  };
+}
+
+loadExamData().then(() => {
+  start();
+});
+</script>
+</body>
+</html>
