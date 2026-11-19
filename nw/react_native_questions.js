@@ -1,844 +1,1227 @@
 const Questions = [
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "แบบจำลองอ้างอิง OSI (Open Systems Interconnection) แบ่งการทำงานของระบบเครือข่ายออกเป็นกี่ชั้น",
+    "type": "m",
+    "question": "สถาปัตยกรรมเครือข่ายอินเทอร์เน็ตแบบ 5 ชั้น (5-layer Internet Protocol Stack) เรียงลำดับชั้นจากบนลงล่างได้อย่างถูกต้องตามหลักการของ Kurose & Ross คือข้อใด",
     "code": "",
-    "answer": "7 ชั้น",
+    "answer": "Application, Transport, Network, Link, Physical",
     "choices": [
-      "4 ชั้น",
-      "5 ชั้น",
-      "7 ชั้น",
-      "8 ชั้น"
+      "Application, Presentation, Session, Transport, Network",
+      "Application, Transport, Network, Link, Physical",
+      "Physical, Link, Network, Transport, Application",
+      "Application, Transport, Internet, Network Access, Physical"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "ชั้นสื่อสารใดในแบบจำลอง OSI ที่ทำหน้าที่กำหนดเส้นทาง (Routing) และจัดการหมายเลขที่อยู่เชิงตรรกะ (Logical Addressing)",
+    "type": "m",
+    "question": "กระบวนการ Encapsulation เมื่อข้อมูลถูกส่งออกจากโฮสต์ต้นทาง ลำดับการเรียกชื่อหน่วยข้อมูล (PDU) ในแต่ละชั้นโปรโตคอลคือข้อใด",
     "code": "",
-    "answer": "Network Layer",
+    "answer": "Message -> Segment -> Datagram -> Frame -> Bit",
     "choices": [
-      "Data Link Layer",
-      "Network Layer",
-      "Transport Layer",
-      "Session Layer"
+      "Message -> Segment -> Datagram -> Frame -> Bit",
+      "Packet -> Segment -> Message -> Frame -> Bit",
+      "Segment -> Message -> Datagram -> Bit -> Frame",
+      "Message -> Datagram -> Segment -> Frame -> Bit"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "หน่วยข้อมูลที่ถูกห่อหุ้ม (PDU) ในชั้น Data Link Layer ของแบบจำลอง OSI เรียกว่าอะไร",
+    "type": "m",
+    "question": "ความล่าช้าชนิดใดในเครือข่ายคอมพิวเตอร์ที่ขึ้นอยู่กับความยาวของแพ็กเก็ต (L) และอัตราความเร็วของลิงก์ (R) ตามสูตร L/R",
     "code": "",
-    "answer": "Frame",
+    "answer": "Transmission Delay",
     "choices": [
-      "Packet",
-      "Segment",
-      "Frame",
-      "Bit"
+      "Nodal Processing Delay",
+      "Queuing Delay",
+      "Transmission Delay",
+      "Propagation Delay"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "อุปกรณ์เครือข่ายชนิดใดที่ทำงานในระดับ Layer 2 และตัดสินใจส่งต่อข้อมูลโดยพิจารณาจากหมายเลข MAC Address",
+    "type": "m",
+    "question": "หากระยะทางระหว่างโหนดสองโหนดคือ d และความเร็วในการส่งสัญญาณในตัวกลางคือ s ค่า Propagation Delay คำนวณได้จากสูตรใด",
     "code": "",
-    "answer": "Switch",
+    "answer": "d / s",
     "choices": [
-      "Hub",
+      "L / R",
+      "d / s",
+      "s / d",
+      "(L + d) / R"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ข้อใดกล่าวถึงความแตกต่างระหว่าง Circuit Switching และ Packet Switching ได้อย่างถูกต้อง",
+    "code": "",
+    "answer": "Circuit Switching มีการจองทรัพยากรล่วงหน้าแน่นอน ส่วน Packet Switching ใช้ Statistical Multiplexing",
+    "choices": [
+      "Circuit Switching เหมาะสำหรับการรับส่งข้อมูลที่มีลักษณะเป็น Burst",
+      "Packet Switching มีความล่าช้าคงที่และรับประกันแบนด์วิดท์เสมอ",
+      "Circuit Switching มีการจองทรัพยากรล่วงหน้าแน่นอน ส่วน Packet Switching ใช้ Statistical Multiplexing",
+      "Packet Switching ต้องสร้างการเชื่อมต่อจริงทางกายภาพก่อนส่งข้อมูลเสมอ"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "สาเหตุหลักที่ทำให้เกิด Packet Loss ในเราเตอร์ของเครือข่าย Packet Switching คืออะไร",
+    "code": "",
+    "answer": "บัฟเฟอร์ของคิวในเราเตอร์เต็ม (Buffer Overflow) เนื่องจากอัตราการมาถึงของแพ็กเก็ตสูงกว่าความจุของลิงก์ขาออก",
+    "choices": [
+      "สัญญาณนาฬิกาของเราเตอร์ไม่ตรงกัน",
+      "บัฟเฟอร์ของคิวในเราเตอร์เต็ม (Buffer Overflow) เนื่องจากอัตราการมาถึงของแพ็กเก็ตสูงกว่าความจุของลิงก์ขาออก",
+      "การส่งข้อมูลผ่านสายสัญญาณเกินระยะทางที่กำหนด",
+      "โพรโทคอล IP ปฏิเสธการจัดส่งแพ็กเก็ตที่มีขนาดใหญ่เกินไป"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ในการคำนวณ End-to-End Throughput ของเส้นทางที่มีหลายลิงก์เชื่อมต่อกัน ค่า Throughput รวมจะถูกจำกัดโดยองค์ประกอบใด",
+    "code": "",
+    "answer": "ค่าน้อยที่สุดของอัตราความเร็วลิงก์ตลอดเส้นทาง (Bottleneck Link)",
+    "choices": [
+      "ค่าเฉลี่ยความเร็วของทุกลิงก์ในเส้นทาง",
+      "ผลรวมอัตราความเร็วของทุกลิงก์ในเส้นทาง",
+      "ค่าน้อยที่สุดของอัตราความเร็วลิงก์ตลอดเส้นทาง (Bottleneck Link)",
+      "ค่าความเร็วของลิงก์สุดท้ายที่เชื่อมเข้าสู่เครื่องรับเท่านั้น"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "อุปกรณ์เครือข่ายประเภทใดที่ทำงานครอบคลุมถึงชั้น Network Layer (Layer 3) ในการส่งต่อแพ็กเก็ต",
+    "code": "",
+    "answer": "Router",
+    "choices": [
       "Repeater",
-      "Switch",
-      "Router"
+      "Link-Layer Switch",
+      "Router",
+      "Network Interface Card (NIC)"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "โปรโตคอล TCP และ UDP ทำงานอยู่ในชั้นสื่อสารใดของแบบจำลอง TCP/IP",
+    "type": "m",
+    "question": "หากต้องการส่งแพ็กเก็ตขนาด L = 10,000 bits ผ่านลิงก์ที่มีอัตราความเร็ว R = 2 Mbps ค่า Transmission Delay ของแพ็กเก็ตนี้คือเท่าใด",
     "code": "",
-    "answer": "Transport Layer",
+    "answer": "5 มิลลิวินาที (ms)",
     "choices": [
-      "Application Layer",
+      "0.5 มิลลิวินาที (ms)",
+      "5 มิลลิวินาที (ms)",
+      "50 มิลลิวินาที (ms)",
+      "5 วินาที (s)"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ข้อใดอธิบายหลักการทำงานแบบ Store-and-Forward ในเราเตอร์ได้ถูกต้องที่สุด",
+    "code": "",
+    "answer": "เราเตอร์ต้องได้รับบิตทั้งหมดของแพ็กเก็ตเข้ามาก่อน จึงจะเริ่มส่งบิตแรกของแพ็กเก็ตนั้นออกไปบนลิงก์ขาออกได้",
+    "choices": [
+      "เราเตอร์จะเริ่มส่งบิตแรกออกทันทีที่อ่านส่วนหัว (Header) เสร็จสิ้น",
+      "เราเตอร์ต้องได้รับบิตทั้งหมดของแพ็กเก็ตเข้ามาก่อน จึงจะเริ่มส่งบิตแรกของแพ็กเก็ตนั้นออกไปบนลิงก์ขาออกได้",
+      "เราเตอร์ทำการจัดเก็บแพ็กเก็ตไว้ในฮาร์ดดิสก์ก่อนส่งต่อเสมอ",
+      "เราเตอร์จะส่งเฉพาะแพ็กเก็ตที่ไม่มีข้อผิดพลาดในชั้น Physical เท่านั้น"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "สถาปัตยกรรมเครือข่ายแบบ Peer-to-Peer (P2P) มีลักษณะเด่นอย่างไรเมื่อเปรียบเทียบกับ Client-Server",
+    "code": "",
+    "answer": "มีความสามารถในการขยายระบบ (Self-scalability) โดยโฮสต์ที่เข้ามาใหม่จะร่วมแบ่งปันทรัพยากรและให้บริการแก่โฮสต์อื่น",
+    "choices": [
+      "ต้องมีเครื่องเซิร์ฟเวอร์ส่วนกลางคอยให้บริการตลอดเวลา 24 ชั่วโมง",
+      "มีความสามารถในการขยายระบบ (Self-scalability) โดยโฮสต์ที่เข้ามาใหม่จะร่วมแบ่งปันทรัพยากรและให้บริการแก่โฮสต์อื่น",
+      "จัดการดูแลรักษาความปลอดภัยได้ง่ายกว่าสถาปัตยกรรมแบบ Client-Server",
+      "มีความล่าช้า (Latency) ต่ำกว่าการเชื่อมต่อผ่านเซิร์ฟเวอร์เสมอ"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ซ็อกเก็ต (Socket) ในระบบเครือข่ายคอมพิวเตอร์ ทำหน้าที่เปรียบเสมือนสิ่งใด",
+    "code": "",
+    "answer": "ประตู (Door) เชื่อมต่อระหว่างโปรเซสในชั้น Application กับโพรโทคอลในชั้น Transport",
+    "choices": [
+      "สายสัญญาณทางกายภาพระหว่างสองเครื่อง",
+      "ประตู (Door) เชื่อมต่อระหว่างโปรเซสในชั้น Application กับโพรโทคอลในชั้น Transport",
+      "หน่วยความจำแคชบนการ์ดแลน",
+      "ตัวแปลงที่อยู่อิเล็กทรอนิกส์จาก IP เป็น MAC Address"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "องค์กรใดเป็นผู้ออกเอกสารมาตรฐานอ้างอิงสำหรับโพรโทคอลในอินเทอร์เน็ตที่เรียกว่า RFC (Request for Comments)",
+    "code": "",
+    "answer": "IETF (Internet Engineering Task Force)",
+    "choices": [
+      "IEEE",
+      "ISO",
+      "IETF (Internet Engineering Task Force)",
+      "ITU-T"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ชั้นโปรโทคอล Presentation Layer และ Session Layer ใน OSI 7-Layer Model ถูกรวมไว้ในชั้นใดของ Internet 5-Layer Stack",
+    "code": "",
+    "answer": "Application Layer",
+    "choices": [
       "Transport Layer",
-      "Internet Layer",
-      "Network Access Layer"
+      "Application Layer",
+      "Network Layer",
+      "Link Layer"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "ความแตกต่างที่สำคัญระหว่างโปรโตคอล TCP และ UDP คือข้อใด",
+    "type": "m",
+    "question": "ข้อใดไม่ใช่บริการพื้นฐานที่โพรโทคอลในชั้น Transport Layer สามารถจัดสรรให้กับชั้น Application Layer ได้",
     "code": "",
-    "answer": "TCP มีการสร้างการเชื่อมต่อและตรวจสอบความถูกต้องของข้อมูล แต่ UDP ไม่มีการสร้างการเชื่อมต่อ",
+    "answer": "การรับประกันการส่งแพ็กเก็ตด้วยความล่าช้าขั้นต่ำสุดที่แน่นอน (Delay-free Guarantee)",
     "choices": [
-      "TCP ทำงานในระดับ Network Layer ส่วน UDP ทำงานในระดับ Transport Layer",
-      "TCP มีการสร้างการเชื่อมต่อและตรวจสอบความถูกต้องของข้อมูล แต่ UDP ไม่มีการสร้างการเชื่อมต่อ",
-      "TCP ส่งข้อมูลได้รวดเร็วกว่า UDP เนื่องจากมีขนาดส่วนหัว (Header) ที่เล็กกว่า",
-      "TCP เหมาะสำหรับการสตรีมวิดีโอสด ส่วน UDP เหมาะสำหรับการดาวน์โหลดไฟล์ขนาดใหญ่"
+      "การส่งข้อมูลอย่างน่าเชื่อถือ (Reliable Data Transfer)",
+      "การควบคุมอัตราการส่งข้อมูลเพื่อป้องกันการแออัด (Congestion Control)",
+      "การรักษาความปลอดภัยและการเข้ารหัส (Security/Encryption)",
+      "การรับประกันการส่งแพ็กเก็ตด้วยความล่าช้าขั้นต่ำสุดที่แน่นอน (Delay-free Guarantee)"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "หมายเลข IPv4 Address มีขนาดกี่บิต และนิยมเขียนแทนด้วยเลขฐานสิบจำนวนกี่ชุด",
+    "type": "m",
+    "question": "โพรโทคอล HTTP/1.1 ใช้การเชื่อมต่อชั้น Transport แบบใดในการดึงข้อมูลเว็บเพจที่มีรูปภาพหลายรูป",
     "code": "",
-    "answer": "32 บิต เขียนแทนด้วยเลขฐานสิบ 4 ชุด",
+    "answer": "Persistent TCP Connection (อาจใช้แบบ Pipelining หรือ Non-pipelining)",
     "choices": [
-      "32 บิต เขียนแทนด้วยเลขฐานสิบ 4 ชุด",
-      "32 บิต เขียนแทนด้วยเลขฐานสิบหก 4 ชุด",
-      "64 บิต เขียนแทนด้วยเลขฐานสิบ 8 ชุด",
-      "128 บิต เขียนแทนด้วยเลขฐานสิบหก 8 ชุด"
+      "Non-persistent TCP Connection โดยเปิด/ปิดซ็อกเก็ตใหม่ทุกวัตถุ",
+      "Persistent TCP Connection (อาจใช้แบบ Pipelining หรือ Non-pipelining)",
+      "UDP Connection เพื่อความรวดเร็วในการส่งข้อมูลรูปภาพ",
+      "QUIC Connection บน UDP"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "หมายเลข IP Address ในข้อใดจัดอยู่ในกลุ่ม Private IP Address ตามมาตรฐาน RFC 1918",
+    "type": "m",
+    "question": "รหัสสถานะตอบกลับของ HTTP (HTTP Response Status Code) หมายเลข 301 มีความหมายตรงกับข้อใด",
     "code": "",
-    "answer": "172.20.15.40",
+    "answer": "Moved Permanently (ทรัพยากรถูกย้ายไปยัง URL ใหม่ถาวร)",
     "choices": [
-      "11.0.0.1",
-      "172.20.15.40",
-      "192.169.1.10",
-      "172.32.0.5"
+      "OK (คำขอสำเร็จ)",
+      "Moved Permanently (ทรัพยากรถูกย้ายไปยัง URL ใหม่ถาวร)",
+      "Bad Request (คำขอไม่ถูกต้อง)",
+      "Not Found (ไม่พบทรัพยากรที่ร้องขอ)"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "โปรโตคอล ARP (Address Resolution Protocol) มีหน้าที่หลักในการทำงานอย่างไร",
+    "type": "m",
+    "question": "คุณลักษณะเด่นสำคัญที่ถูกเพิ่มเข้ามาใน HTTP/2 เพื่อแก้ปัญหา Head-of-Line (HOL) Blocking ในระดับ HTTP คืออะไร",
     "code": "",
-    "answer": "แปลงหมายเลข IP Address ให้เป็นหมายเลข MAC Address",
+    "answer": "การแบ่งข้อความเป็นเฟรมและทำ Multiplexing หลายสตรีมบนการเชื่อมต่อ TCP เดียวกัน",
     "choices": [
-      "แปลงชื่อโดเมนให้เป็นหมายเลข IP Address",
-      "แปลงหมายเลข IP Address ให้เป็นหมายเลข MAC Address",
-      "แจกจ่ายหมายเลข IP Address ให้กับเครื่องลูกข่ายอัตโนมัติ",
-      "แปลงหมายเลข Private IP ให้เป็น Public IP เพื่อออกสู่อินเทอร์เน็ต"
+      "การเปลี่ยนไปใช้ UDP แทน TCP เป็นโพรโทคอลหลัก",
+      "การแบ่งข้อความเป็นเฟรมและทำ Multiplexing หลายสตรีมบนการเชื่อมต่อ TCP เดียวกัน",
+      "การยกเลิกการใช้ Header ในข้อความร้องขอ",
+      "การใช้คุกกี้ในการส่งข้อมูลแทนการส่งใน Body"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "หมายเลขพอร์ตมาตรฐาน (Well-known Port) ของโปรโตคอล HTTPS คือหมายเลขใด",
+    "type": "m",
+    "question": "โพรโทคอล HTTP/3 ถูกออกแบบมาให้ทำงานบนโพรโทคอลชั้น Transport ใด",
     "code": "",
-    "answer": "443",
+    "answer": "QUIC (ซึ่งทำงานอยู่บน UDP)",
     "choices": [
-      "22",
-      "80",
-      "443",
-      "8080"
+      "TCP แบบดั้งเดิม",
+      "SCTP",
+      "QUIC (ซึ่งทำงานอยู่บน UDP)",
+      "TLS บน TCP"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "สายสัญญาณคู่บิดเกลียวแบบไม่มีฉนวนหุ้ม (UTP) มาตรฐาน Cat 6 รองรับความเร็วสูงสุดในการส่งข้อมูลได้เท่าใดที่ระยะทาง 100 เมตร",
+    "type": "m",
+    "question": "ข้อใดกล่าวถึงการทำงานของ HTTP Cookies ได้อย่างถูกต้อง",
     "code": "",
-    "answer": "1 Gbps",
+    "answer": "เซิร์ฟเวอร์ส่งคุกกี้ผ่าน Header 'Set-Cookie:' และไคลเอนต์ส่งกลับผ่าน Header 'Cookie:' ในคำขอถัดไป",
     "choices": [
-      "100 Mbps",
-      "1 Gbps",
-      "10 Gbps",
-      "40 Gbps"
+      "คุกกี้ทำให้โพรโทคอล HTTP กลายเป็น State-full protocol โดยสมบูรณ์ที่ระดับชั้น Transport",
+      "เซิร์ฟเวอร์ส่งคุกกี้ผ่าน Header 'Set-Cookie:' และไคลเอนต์ส่งกลับผ่าน Header 'Cookie:' ในคำขอถัดไป",
+      "คุกกี้ถูกเก็บบันทึกไว้ที่เซิร์ฟเวอร์เท่านั้น โดยไคลเอนต์ไม่ต้องถือข้อมูลใดๆ",
+      "คุกกี้ช่วยป้องกันการโจมตีประเภท Man-in-the-Middle บนช่องทาง HTTP โดยไม่ต้องใช้ Encryption"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "โครงสร้างการเชื่อมต่อเครือข่าย (Network Topology) แบบใดที่มีความทนทานต่อความเสียหายของสายสัญญาณสูงที่สุด แต่มีค่าใช้จ่ายในการติดตั้งสูงที่สุดเช่นกัน",
+    "type": "m",
+    "question": "กลไก Conditional GET ใน HTTP ใช้ Header ใดในการตรวจสอบว่าวัตถุใน Web Cache ยังคงเป็นปัจจุบันหรือไม่",
     "code": "",
-    "answer": "Mesh Topology",
+    "answer": "If-Modified-Since",
     "choices": [
-      "Bus Topology",
-      "Ring Topology",
-      "Star Topology",
-      "Mesh Topology"
+      "If-Match-All",
+      "If-Modified-Since",
+      "Cache-Control-Validate",
+      "Expires-Immediately"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "โปรโตคอลใดทำหน้าที่ตรวจสอบสถานะการเชื่อมต่อและรายงานข้อผิดพลาดในการส่งข้อมูลระดับเครือข่าย เช่น การทำงานของคำสั่ง ping",
+    "type": "m",
+    "question": "หากเครื่องเซิร์ฟเวอร์มีวัตถุใน Web Cache ที่ยังไม่อัปเดตเมื่อได้รับ Conditional GET เซิร์ฟเวอร์จะตอบกลับด้วย รหัสสถานะ (Status Code) ใด",
     "code": "",
-    "answer": "ICMP",
+    "answer": "304 Not Modified",
     "choices": [
-      "IGMP",
-      "ICMP",
-      "SNMP",
-      "SMTP"
+      "200 OK",
+      "301 Moved Permanently",
+      "304 Not Modified",
+      "404 Not Found"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "หมายเลข MAC Address มีขนาดความยาวกี่บิต",
+    "type": "m",
+    "question": "DNS Resource Record ประเภท 'MX' ใช้สำหรับจัดเก็บข้อมูลใดในระบบ DNS",
     "code": "",
-    "answer": "48 บิต",
+    "answer": "ชื่อโดเมนของ Mail Server ที่รับผิดชอบโดเมนนั้นๆ",
     "choices": [
-      "32 บิต",
-      "48 บิต",
-      "64 บิต",
-      "128 บิต"
+      "IPv4 Address ของโฮสต์",
+      "IPv6 Address ของโฮสต์",
+      "ชื่อโดเมนของ Mail Server ที่รับผิดชอบโดเมนนั้นๆ",
+      "ชื่อ Canonical Name สำหรับโดเมนแฝง (Alias)"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "การส่งข้อมูลแบบใดที่เป็นการส่งข้อมูลจากผู้ส่งเพียงหนึ่งรายไปยังผู้รับเฉพาะกลุ่มที่ลงทะเบียนสนใจรับข้อมูลนั้น",
+    "type": "m",
+    "question": "โครงสร้างการสอบถามข้อมูล DNS แบบ Iterative Query มีลักษณะการทำงานอย่างไร",
     "code": "",
-    "answer": "Multicast",
+    "answer": "DNS Server ที่ถูกถามจะส่งคืนชื่อของ DNS Server เครื่องถัดไปที่ผู้ถามต้องไปสอบถามต่อเอง",
     "choices": [
-      "Unicast",
-      "Broadcast",
-      "Multicast",
-      "Anycast"
+      "DNS Server ที่ถูกถามจะไปค้นหาคำตอบแทนผู้ถามจนกว่าจะได้ IP Address กลับมา",
+      "DNS Server ที่ถูกถามจะส่งคืนชื่อของ DNS Server เครื่องถัดไปที่ผู้ถามต้องไปสอบถามต่อเอง",
+      "ผู้ถามจะส่งคำขอไปยัง Root Server เพียงเครื่องเดียวเพื่อรับคำตอบทันที",
+      "เป็นการสอบถามข้อมูลระหว่าง Local DNS Server กับไฟล์ Hosts บนเครื่องไคลเอนต์เท่านั้น"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "ขั้นตอนการเชื่อมต่อของโปรโตคอล TCP (Three-way Handshake) มีลำดับการส่งแฟล็ก (Flag) อย่างไร",
+    "type": "m",
+    "question": "โพรโทคอล SMTP ที่ใช้ในการส่งอีเมลระหว่าง Mail Server มีลักษณะสำคัญอย่างไร",
+    "code": "",
+    "answer": "เป็น Push Protocol ทำงานบน TCP พอร์ต 25 และส่งข้อมูลในรูปแบบ 7-bit ASCII",
+    "choices": [
+      "เป็น Pull Protocol ทำงานบน UDP พอร์ต 110",
+      "เป็น Push Protocol ทำงานบน TCP พอร์ต 25 และส่งข้อมูลในรูปแบบ 7-bit ASCII",
+      "ใช้ในการดึงอีเมลจากเซิร์ฟเวอร์มายังเครื่องไคลเอนต์",
+      "ทำงานบนโพรโทคอล QUIC เพื่อความรวดเร็วในการจัดส่ง"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ข้อใดอธิบายความแตกต่างระหว่างโพรโทคอล POP3 และ IMAP ในการรับอีเมลได้ถูกต้อง",
+    "code": "",
+    "answer": "IMAP ช่วยให้ผู้ใช้สามารถจัดหมวดหมู่และจัดการโฟลเดอร์อีเมลบนเซิร์ฟเวอร์ได้โดยตรง ส่วน POP3 นิยมดาวน์โหลดมาเก็บไว้ที่เครื่องไคลเอนต์",
+    "choices": [
+      "POP3 อนุญาตให้เปิดอ่านอีเมลพร้อมกันจากหลายอุปกรณ์โดยซิงค์สถานะกันตลอดเวลา",
+      "IMAP ช่วยให้ผู้ใช้สามารถจัดหมวดหมู่และจัดการโฟลเดอร์อีเมลบนเซิร์ฟเวอร์ได้โดยตรง ส่วน POP3 นิยมดาวน์โหลดมาเก็บไว้ที่เครื่องไคลเอนต์",
+      "POP3 ทำงานบนโปรโทคอล UDP ส่วน IMAP ทำงานบน TCP",
+      "IMAP ลบอีเมลออกจากเซิร์ฟเวอร์ทันทีหลังจากดาวน์โหลดเสร็จสิ้น"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ในระบบสตรีมมิงวิดีโอ เทคโนโลยี DASH (Dynamic Adaptive Streaming over HTTP) มีหลักการทำงานอย่างไร",
+    "code": "",
+    "answer": "ไฟล์วิดีโอถูกแบ่งเป็นชิ้นเล็กๆ หลายอัตราบิตเรต และไคลเอนต์จะเลือกปรับระดับคุณภาพวิดีโอตามแบนด์วิดท์ที่มี ณ ขณะนั้น",
+    "choices": [
+      "เซิร์ฟเวอร์จะปรับเปลี่ยนความละเอียดวิดีโอโดยบังคับส่งข้อมูลผ่าน UDP Socket",
+      "ไฟล์วิดีโอถูกแบ่งเป็นชิ้นเล็กๆ หลายอัตราบิตเรต และไคลเอนต์จะเลือกปรับระดับคุณภาพวิดีโอตามแบนด์วิดท์ที่มี ณ ขณะนั้น",
+      "ใช้เฉพาะในเครือข่ายภายใน LAN โดยไม่ต้องผ่านระบบ Web Server",
+      "ไคลเอนต์ต้องทำการดาวน์โหลดไฟล์วิดีโอเต็มไฟล์ให้เสร็จสมบูรณ์ก่อนเริ่มเล่น"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "คำสั่งใน Python Socket Programming สำหรับ TCP Server ข้อใดที่ทำหน้าที่รับการเชื่อมต่อจากไคลเอนต์และสร้างซ็อกเก็ตใหม่ (Connection Socket) ขึ้นมา",
+    "code": "",
+    "answer": "serverSocket.accept()",
+    "choices": [
+      "serverSocket.bind()",
+      "serverSocket.listen()",
+      "serverSocket.accept()",
+      "serverSocket.connect()"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ความแตกต่างสำคัญในการสร้างซ็อกเก็ตระหว่าง UDP และ TCP ใน Python Socket Programming คืออะไร",
+    "code": "",
+    "answer": "UDP ใช้ SOCK_DGRAM และไม่ต้องทำการ Handshake ส่วน TCP ใช้ SOCK_STREAM และต้องสร้างการเชื่อมต่อก่อนส่งข้อมูล",
+    "choices": [
+      "UDP ใช้ SOCK_STREAM ส่วน TCP ใช้ SOCK_DGRAM",
+      "UDP ใช้ SOCK_DGRAM และไม่ต้องทำการ Handshake ส่วน TCP ใช้ SOCK_STREAM และต้องสร้างการเชื่อมต่อก่อนส่งข้อมูล",
+      "UDP ต้องเรียกใช้ฟังก์ชัน listen() เสมอ",
+      "TCP ใช้ฟังก์ชัน sendto() ในการส่งข้อมูลไปยังที่อยู่ IP และพอร์ตปลายทาง"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "หมายเลขพอร์ตมาตรฐาน (Well-known Port) สำหรับโพรโทคอล HTTPS และ SSH คือหมายเลขใดตามลำดับ",
+    "code": "",
+    "answer": "443 และ 22",
+    "choices": [
+      "80 และ 21",
+      "443 และ 22",
+      "8080 และ 23",
+      "53 และ 25"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "โครงสร้างข้อมูล 4-Tuple ที่ใช้ในการระบุซ็อกเก็ตของ TCP Connection อย่างเฉพาะเจาะจงประกอบด้วยอะไรบ้าง",
+    "code": "",
+    "answer": "Source IP, Source Port, Destination IP, Destination Port",
+    "choices": [
+      "Source MAC, Destination MAC, Source IP, Destination IP",
+      "Source IP, Source Port, Destination IP, Destination Port",
+      "Source IP, Destination IP, Protocol Number, Sequence Number",
+      "Source Port, Destination Port, Window Size, Checksum"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "บทบาทหลักของ Content Distribution Network (CDN) ในการให้บริการเนื้อหาเว็บหรือวิดีโอคืออะไร",
+    "code": "",
+    "answer": "กระจายเครื่องเซิร์ฟเวอร์เก็บบันทึกข้อมูล (Replicated Servers) ไปยังตำแหน่งใกล้ผู้ใช้เพื่อลด Delay และยกระดับ Throughput",
+    "choices": [
+      "เปลี่ยนโพรโทคอลการส่งข้อมูลในชั้น Transport ให้เป็น UDP ทั้งหมด",
+      "กระจายเครื่องเซิร์ฟเวอร์เก็บบันทึกข้อมูล (Replicated Servers) ไปยังตำแหน่งใกล้ผู้ใช้เพื่อลด Delay และยกระดับ Throughput",
+      "ทำหน้าที่เป็น Authoritative DNS Server หลักเพียงแห่งเดียวในโลก",
+      "ทำการเข้าและถอดรหัสข้อมูลไฟล์สื่อในชั้น Physical Layer"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ข้อใดคือความแตกต่างระหว่างกระบวนการ Multiplexing และ Demultiplexing ในชั้น Transport Layer",
+    "code": "",
+    "answer": "Multiplexing รวบรวมข้อมูลจากหลายซ็อกเก็ตติด Header แล้วส่งลงชั้น Network ส่วน Demultiplexing ส่งข้อมูลจาก Segment ไปยังซ็อกเก็ตที่ถูกต้อง",
+    "choices": [
+      "Multiplexing เกิดขึ้นที่ฝั่งผู้รับ ส่วน Demultiplexing เกิดขึ้นที่ฝั่งผู้ส่ง",
+      "Multiplexing รวบรวมข้อมูลจากหลายซ็อกเก็ตติด Header แล้วส่งลงชั้น Network ส่วน Demultiplexing ส่งข้อมูลจาก Segment ไปยังซ็อกเก็ตที่ถูกต้อง",
+      "Multiplexing ใช้เฉพาะกับโพรโทคอล TCP ส่วน Demultiplexing ใช้เฉพาะกับ UDP",
+      "Multiplexing คือการคำนวณ Checksum ส่วน Demultiplexing คือการตรวจสอบความถูกต้อง"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "พอร์ตของ UDP Demultiplexing ใช้สิ่งใดเป็นหลักในการเลือกซ็อกเก็ตเป้าหมายปลายทาง",
+    "code": "",
+    "answer": "Destination IP Address และ Destination Port Number",
+    "choices": [
+      "Destination IP Address และ Destination Port Number",
+      "Source IP Address และ Source Port Number",
+      "Source IP Address, Source Port, Destination IP, Destination Port",
+      "MAC Address ปลายทาง และ Sequence Number"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ขนาดของส่วนหัว (Header Size) ต่ำสุดของโพรโทคอล UDP มีขนาดกี่ไบต์ (Bytes)",
+    "code": "",
+    "answer": "8 ไบต์",
+    "choices": [
+      "4 ไบต์",
+      "8 ไบต์",
+      "20 ไบต์",
+      "32 ไบต์"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ฟีลด์ใดต่อไปนี้ *ไม่มี* อยู่ในส่วนหัวของโพรโทคอล UDP Segment",
+    "code": "",
+    "answer": "Sequence Number",
+    "choices": [
+      "Source Port",
+      "Length",
+      "Checksum",
+      "Sequence Number"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "การคำนวณ UDP Checksum ใช้หลักการทางคณิตศาสตร์แบบใดในการตรวจจับความผิดพลาดของข้อมูล",
+    "code": "",
+    "answer": "1's Complement Sum ของคำขนาด 16 บิต",
+    "choices": [
+      "2's Complement Sum ของคำขนาด 8 บิต",
+      "1's Complement Sum ของคำขนาด 16 บิต",
+      "CRC-32 Polynomial Division",
+      "MD5 Hashing Algorithm"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ในหลักการ Reliable Data Transfer (rdt 2.0) หากแพ็กเก็ตที่ส่งไปเกิดการสูญหายหรือเสียหาย ฝั่งรับจะตอบกลับด้วยข้อความใดเพื่อขอให้ส่งใหม่",
+    "code": "",
+    "answer": "NAK (Negative Acknowledgment)",
+    "choices": [
+      "ACK (Positive Acknowledgment)",
+      "NAK (Negative Acknowledgment)",
+      "SYN-ACK",
+      "FIN"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ข้อผิดพลาดร้ายแรงของโพรโทคอล rdt 2.0 ที่นำไปสู่การพัฒนา rdt 2.1 คืออะไร",
+    "code": "",
+    "answer": "ข้อความ ACK หรือ NAK เองอาจเกิดการสูญหายหรือเสียหายในช่องทางสื่อสารได้",
+    "choices": [
+      "ไม่สามารถส่งข้อมูลขนาดใหญ่กว่า 1,000 บิตได้",
+      "ข้อความ ACK หรือ NAK เองอาจเกิดการสูญหายหรือเสียหายในช่องทางสื่อสารได้",
+      "ตัวส่งส่งข้อมูลเร็วกว่าตัวรับเกินไป",
+      "ไม่รองรับการส่งแบบทิศทางคู่ (Full-duplex)"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "โพรโทคอล rdt 3.0 เพิ่มกลไกใดเข้ามาเพื่อรับมือกับกรณีแพ็กเก็ตข้อมูลสูญหาย (Packet Loss) ในช่องทางสื่อสาร",
+    "code": "",
+    "answer": "Countdown Timer (การตั้งเวลาถอยหลังเพื่อจับเวลาหมดอายุแล้วส่งใหม่)",
+    "choices": [
+      "การขยายขนาด Sequence Number เป็น 32 บิต",
+      "Countdown Timer (การตั้งเวลาถอยหลังเพื่อจับเวลาหมดอายุแล้วส่งใหม่)",
+      "การเพิ่มสายส่งข้อมูลสำรอง",
+      "การใช้โพรโทคอล Forward Error Correction (FEC)"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ประสิทธิภาพการใช้งานลิงก์ (Utilization: U_sender) ของโพรโทคอลแบบ Stop-and-Wait คำนวณได้จากสูตรใด",
+    "code": "",
+    "answer": "(L / R) / (RTT + L / R)",
+    "choices": [
+      "(RTT + L / R) / (L / R)",
+      "(L / R) / (RTT + L / R)",
+      "RTT / (L / R)",
+      "N * (L / R) / RTT"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ข้อใดอธิบายความแตกต่างหลักระหว่าง Pipelined Protocols แบบ Go-Back-N (GBN) และ Selective Repeat (SR) ได้ถูกต้อง",
+    "code": "",
+    "answer": "GBN ใช้ Cumulative ACK และหากเกิด Timeout จะส่งใหม่ตั้งแต่แพ็กเก็ตที่เสียเป็นต้นไป ส่วน SR ส่งใหม่เฉพาะแพ็กเก็ตที่เสียจริง",
+    "choices": [
+      "GBN มีขนาดหน้าต่างฝั่งรับ (Receiver Window) ใหญ่กว่าฝั่งส่ง",
+      "GBN ใช้ Cumulative ACK และหากเกิด Timeout จะส่งใหม่ตั้งแต่แพ็กเก็ตที่เสียเป็นต้นไป ส่วน SR ส่งใหม่เฉพาะแพ็กเก็ตที่เสียจริง",
+      "SR ไม่จำเป็นต้องใช้บัฟเฟอร์ที่ฝั่งรับในการเก็บบันทึกแพ็กเก็ตที่มาสลับลำดับ",
+      "GBN ใช้เวลาในการส่งข้อมูลช้ากว่า Stop-and-Wait"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ในการออกแบบโพรโทคอล Selective Repeat (SR) เพื่อป้องกันความสับสนของลำดับแพ็กเก็ต ขนาดของ Window Size (N) ต้องสัมพันธ์กับขนาดของ Sequence Number Space อย่างไร",
+    "code": "",
+    "answer": "Window Size ต้องน้อยกว่าหรือเท่ากับครึ่งหนึ่งของ Sequence Number Space (N <= 2^(k-1))",
+    "choices": [
+      "Window Size ต้องเท่ากับ Sequence Number Space พอดี",
+      "Window Size ต้องน้อยกว่าหรือเท่ากับครึ่งหนึ่งของ Sequence Number Space (N <= 2^(k-1))",
+      "Window Size ต้องใหญ่กว่า Sequence Number Space อย่างน้อย 2 เท่า",
+      "ไม่จำกัดขนาด ขึ้นอยู่กับหน่วยความจำแรมของฝั่งส่ง"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ขนาดขั้นต่ำของส่วนหัว (Header Size) ของ TCP Segment แบบไม่มี Options มีขนาดเท่าใด",
+    "code": "",
+    "answer": "20 ไบต์",
+    "choices": [
+      "8 ไบต์",
+      "16 ไบต์",
+      "20 ไบต์",
+      "40 ไบต์"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "หมายเลข Sequence Number ใน TCP Segment หมายถึงอะไร",
+    "code": "",
+    "answer": "ลำดับหมายเลขไบต์แรกของข้อมูล (Stream of Bytes) ที่ส่งไปใน Segment นั้น",
+    "choices": [
+      "ลำดับนับจำนวนแพ็กเก็ต (1, 2, 3, ...)",
+      "ลำดับหมายเลขไบต์แรกของข้อมูล (Stream of Bytes) ที่ส่งไปใน Segment นั้น",
+      "หมายเลขพอร์ตต้นทางบวกด้วยขนาดของข้อมูล",
+      "ค่าแฮชของข้อมูลเพย์โหลด"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "หมายเลข Acknowledgment Number ที่ฝั่งรับตอบกลับไปยังฝั่งส่งใน TCP หมายถึงสิ่งใด",
+    "code": "",
+    "answer": "หมายเลขไบต์ถัดไปที่ฝั่งรับคาดว่าจะได้รับจากฝั่งส่ง (Cumulative ACK)",
+    "choices": [
+      "หมายเลขไบต์สุดท้ายที่ได้รับสำเร็จแล้ว",
+      "หมายเลขไบต์ถัดไปที่ฝั่งรับคาดว่าจะได้รับจากฝั่งส่ง (Cumulative ACK)",
+      "จำนวนไบต์ทั้งหมดที่รับได้ในหน้าต่างการส่ง",
+      "หมายเลขเซกเมนต์ที่ตรวจพบข้อผิดพลาด"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "การคำนวณ Timeout Interval ของ TCP ใช้สูตรตามมาตรฐาน EWMA โดยคำนวณจากค่าน้ำหนักใดบ้าง",
+    "code": "",
+    "answer": "EstimatedRTT และ DevRTT",
+    "choices": [
+      "SampleRTT และ Transmission Delay",
+      "EstimatedRTT และ DevRTT",
+      "Propagation Delay และ Bandwidth",
+      "Congestion Window (cwnd) และ Receive Window (rwnd)"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "เหตุการณ์ Fast Retransmit ใน TCP จะถูกกระตุ้นให้ทำงานเมื่อเกิดสถานการณ์ใดขึ้นที่ฝั่งส่ง",
+    "code": "",
+    "answer": "เมื่อได้รับ Duplicate ACK ซ้ำกันเป็นจำนวน 3 ครั้ง (รวมเป็น 4 ACKs ที่เหมือนกัน)",
+    "choices": [
+      "เมื่อตัวจับเวลา (Timer) หมดเวลาลงพอดี",
+      "เมื่อได้รับ Duplicate ACK ซ้ำกันเป็นจำนวน 3 ครั้ง (รวมเป็น 4 ACKs ที่เหมือนกัน)",
+      "เมื่อขนาดของ Congestion Window ลดลงเหลือ 1 MSS",
+      "เมื่อได้รับสัญญาณ ICMP Source Quench จากเราเตอร์"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ฟังก์ชัน Flow Control ใน TCP มีวัตถุประสงค์เพื่ออะไร และใช้วาริเอเบิลใดในการควบคุม",
+    "code": "",
+    "answer": "ป้องกันไม่ให้ตัวส่ง ส่งข้อมูลเร็วเกินกว่าที่บัฟเฟอร์ของตัวรับจะรับไหว โดยใช้ค่า rwnd (Receive Window)",
+    "choices": [
+      "ป้องกันการแออัดของเครือข่ายเราเตอร์ โดยใช้ค่า cwnd (Congestion Window)",
+      "ป้องกันไม่ให้ตัวส่ง ส่งข้อมูลเร็วเกินกว่าที่บัฟเฟอร์ของตัวรับจะรับไหว โดยใช้ค่า rwnd (Receive Window)",
+      "ปรับความเร็วตามสายสัญญาณ โดยใช้ค่า RTT",
+      "ควบคุมจำนวนการเชื่อมต่อซ็อกเก็ตพร้อมกัน โดยใช้ค่า ssthresh"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "กระบวนการทรีเวย์แฮนด์เชก (3-Way Handshake) ในการสร้างการเชื่อมต่อ TCP มีลำดับการส่ง Flag Bit อย่างไร",
     "code": "",
     "answer": "SYN -> SYN-ACK -> ACK",
     "choices": [
       "SYN -> ACK -> SYN-ACK",
       "SYN -> SYN-ACK -> ACK",
-      "ACK -> SYN -> SYN-ACK",
-      "SYN-ACK -> SYN -> ACK"
+      "FIN -> FIN-ACK -> ACK",
+      "RST -> SYN -> ACK"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "มาตรฐานเครือข่ายไร้สาย IEEE 802.11ax มีชื่อเรียกทางการค้าว่าอะไร",
+    "type": "m",
+    "question": "สถานะการปิดการเชื่อมต่อ TCP ฝั่งที่เริ่มส่งคำขอปิดการเชื่อมต่อ (Active Close) จะต้องรออยู่ในสถานะใดเป็นเวลา 2*MSL ก่อนจะปิดสมบูรณ์",
     "code": "",
-    "answer": "Wi-Fi 6",
+    "answer": "TIME_WAIT",
     "choices": [
-      "Wi-Fi 4",
-      "Wi-Fi 5",
-      "Wi-Fi 6",
-      "Wi-Fi 7"
+      "FIN_WAIT_1",
+      "CLOSE_WAIT",
+      "LAST_ACK",
+      "TIME_WAIT"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "โปรโตคอลใดใช้สำหรับการเข้าถึงและจัดการอุปกรณ์เครือข่ายระยะไกลอย่างปลอดภัยโดยมีการเข้ารหัสข้อมูลทั้งหมด",
+    "type": "m",
+    "question": "ในช่วง Slow Start ของ TCP Congestion Control ค่าขนาดหน้าต่างการแออัด (cwnd) จะมีอัตราการเติบโตอย่างไรเมื่อได้รับ ACK ที่ถูกต้องในแต่ละ RTT",
     "code": "",
-    "answer": "SSH",
+    "answer": "เติบโตแบบทวีคูณ (Exponential Growth) โดยเพิ่มขึ้นเท่าตัวทุกๆ RTT",
     "choices": [
-      "Telnet",
-      "FTP",
-      "SSH",
-      "HTTP"
+      "เติบโตแบบเชิงเส้น (Linear Growth) โดยเพิ่มขึ้นทีละ 1 MSS ทุก RTT",
+      "เติบโตแบบทวีคูณ (Exponential Growth) โดยเพิ่มขึ้นเท่าตัวทุกๆ RTT",
+      "คงที่ไม่มีการเปลี่ยนแปลง",
+      "ลดลงครึ่งหนึ่งทุกครั้งที่ได้รับ ACK"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "ข้อใดคือหน้าที่ของ Default Gateway ในระบบเครือข่ายคอมพิวเตอร์",
+    "type": "m",
+    "question": "เมื่อ TCP Congestion Control เข้าสู่โหมด Congestion Avoidance อัตราการปรับเพิ่มค่า cwnd จะเป็นไปตามหลักการใด",
     "code": "",
-    "answer": "เป็นจุดเชื่อมต่อสำหรับส่งข้อมูลออกไปยังเครือข่ายอื่นที่อยู่นอกเหนือจากวงแลนปัจจุบัน",
+    "answer": "Additive Increase (เพิ่มขึ้น 1 MSS ต่อ 1 RTT)",
     "choices": [
-      "ทำหน้าที่แปลงชื่อเว็บไซต์ให้เป็นหมายเลข IP Address",
-      "เป็นจุดเชื่อมต่อสำหรับส่งข้อมูลออกไปยังเครือข่ายอื่นที่อยู่นอกเหนือจากวงแลนปัจจุบัน",
-      "ทำหน้าที่แจกจ่ายหมายเลข IP Address ให้กับเครื่องคอมพิวเตอร์ภายในองค์กร",
-      "เป็นตัวกลางในการกรองไวรัสและมัลแวร์ก่อนเข้าสู่เครื่องคอมพิวเตอร์ลูกข่าย"
+      "Additive Increase (เพิ่มขึ้น 1 MSS ต่อ 1 RTT)",
+      "Multiplicative Increase (เพิ่มขึ้นเป็น 2 เท่าต่อ 1 RTT)",
+      "Exponential Increase",
+      "Slow Decrease"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "เทคโนโลยี VLAN (Virtual Local Area Network) ช่วยแก้ปัญหาใดในระบบเครือข่ายขนาดใหญ่ได้อย่างมีประสิทธิภาพ",
+    "type": "m",
+    "question": "ความแตกต่างสำคัญระหว่าง TCP Tahoe และ TCP Reno เมื่อเกิดเหตุการณ์ Triple Duplicate ACKs คืออะไร",
     "code": "",
-    "answer": "แบ่งแยก Broadcast Domain เพื่อลดปริมาณทราฟฟิกที่ไม่จำเป็นและเพิ่มความปลอดภัย",
+    "answer": "Tahoe จะปรับ cwnd ลดลงเหลือ 1 MSS เสมอ ส่วน Reno จะปรับ cwnd ลดลงเหลือครึ่งหนึ่ง (cwnd/2 + 3 MSS) และเข้าสู่ Fast Recovery",
     "choices": [
-      "เพิ่มความเร็วในการส่งข้อมูลของพอร์ต Switch จาก 1 Gbps เป็น 10 Gbps",
-      "แบ่งแยก Broadcast Domain เพื่อลดปริมาณทราฟฟิกที่ไม่จำเป็นและเพิ่มความปลอดภัย",
-      "เชื่อมต่อเครือข่ายไร้สายระยะไกลข้ามจังหวัดโดยไม่ต้องใช้สายเคเบิล",
-      "แปลงสัญญาณดิจิทัลให้เป็นสัญญาณอนาล็อกเพื่อส่งผ่านสายโทรศัพท์"
+      "Tahoe เข้าสู่ Fast Recovery ส่วน Reno จะเริ่มต้นทำงานใหม่ที่ Slow Start",
+      "Tahoe จะปรับ cwnd ลดลงเหลือ 1 MSS เสมอ ส่วน Reno จะปรับ cwnd ลดลงเหลือครึ่งหนึ่ง (cwnd/2 + 3 MSS) และเข้าสู่ Fast Recovery",
+      "Tahoe ใช้กับ UDP ส่วน Reno ใช้กับ TCP",
+      "Tahoe ไม่มีการกำหนดค่า ssthresh"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "หมายเลข IPv6 Address มีขนาดความยาวกี่บิต และเขียนแทนด้วยเลขฐานใด",
+    "type": "m",
+    "question": "หลักการควบคุมการแออัดแบบ AIMD (Additive-Increase Multiplicative-Decrease) ใน TCP ส่งผลให้ลักษณะกราฟของ cwnd เมื่อเวลาผ่านไปมีรูปร่างอย่างไร",
     "code": "",
-    "answer": "128 บิต เขียนแทนด้วยเลขฐานสิบหก",
+    "answer": "ฟันเลื่อย (Sawtooth Pattern)",
     "choices": [
-      "64 บิต เขียนแทนด้วยเลขฐานสิบ",
-      "64 บิต เขียนแทนด้วยเลขฐานสิบหก",
-      "128 บิต เขียนแทนด้วยเลขฐานสิบ",
-      "128 บิต เขียนแทนด้วยเลขฐานสิบหก"
+      "เส้นตรงแนวระนาบคงที่",
+      "บันไดขั้นบันไดเพิ่มขึ้นเรื่อยๆ",
+      "ฟันเลื่อย (Sawtooth Pattern)",
+      "รูปคลื่นไซน์ (Sine Wave)"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "โปรโตคอล Spanning Tree Protocol (STP) ถูกออกแบบมาเพื่อป้องกันปัญหาใดในระบบเครือข่าย",
+    "type": "m",
+    "question": "หน้าที่หลักสำคัญของ Network Layer ในสถาปัตยกรรมเครือข่ายคอมพิวเตอร์คือข้อใด",
     "code": "",
-    "answer": "การเกิดลูปในระดับ Layer 2 (Switching Loop)",
+    "answer": "การส่งต่อแพ็กเก็ตข้ามเครือข่ายจากโฮสต์ต้นทางไปยังโฮสต์ปลายทาง (Host-to-Host Delivery)",
     "choices": [
-      "การชนกันของหมายเลข IP Address (IP Conflict)",
-      "การเกิดลูปในระดับ Layer 2 (Switching Loop)",
-      "การดักฟังข้อมูลผ่านเครือข่ายไร้สาย (Eavesdropping)",
-      "การส่งข้อมูลซ้ำซ้อนในระดับ Transport Layer"
+      "การจัดส่งข้อมูลระหว่างโปรเซสแอปพลิเคชัน (Process-to-Process Delivery)",
+      "การส่งต่อแพ็กเก็ตข้ามเครือข่ายจากโฮสต์ต้นทางไปยังโฮสต์ปลายทาง (Host-to-Host Delivery)",
+      "การแปลงสัญญาณดิจิทัลเป็นสัญญาณแอนะล็อกบนสายส่ง",
+      "การจัดลำดับเฟรมในระดับการเชื่อมต่อทางกายภาพ"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "ระบบ DNS (Domain Name System) ใช้โปรโตคอลใดในชั้น Transport Layer เป็นหลักสำหรับการสอบถามชื่อโดเมนทั่วไป (DNS Query)",
+    "type": "m",
+    "question": "ข้อใดอธิบายความแตกต่างระหว่างบทบาทของ Forwarding และ Routing ใน Network Layer ได้ถูกต้อง",
     "code": "",
-    "answer": "UDP พอร์ต 53",
+    "answer": "Forwarding เป็นการย้ายแพ็กเก็ตจากพอร์ตขาเข้า ไปยังพอร์ตขาออกภายในเราเตอร์ตัวเดียว ส่วน Routing คือการคำนวณเส้นทางภาพรวมทั้งเครือข่าย",
     "choices": [
-      "TCP พอร์ต 53",
-      "UDP พอร์ต 53",
-      "TCP พอร์ต 80",
-      "UDP พอร์ต 67"
+      "Forwarding ทำงานใน Control Plane ส่วน Routing ทำงานใน Data Plane",
+      "Forwarding เป็นการย้ายแพ็กเก็ตจากพอร์ตขาเข้า ไปยังพอร์ตขาออกภายในเราเตอร์ตัวเดียว ส่วน Routing คือการคำนวณเส้นทางภาพรวมทั้งเครือข่าย",
+      "Forwarding ใช้ MAC Address ส่วน Routing ใช้ IP Address",
+      "Forwarding ทำงานช้ากว่า Routing เนื่องจากต้องประสานงานกับเราเตอร์อื่น"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "ข้อใดคือความหมายของค่า Latency ในระบบเครือข่าย",
+    "type": "m",
+    "question": "ตาราง Forwarding Table ในเราเตอร์ถูกค้นหาข้อมูลโดยใช้อัลกอริทึมใดตามมาตรฐาน IPv4 Destination-based Forwarding",
     "code": "",
-    "answer": "ระยะเวลาหน่วงที่ข้อมูลใช้ในการเดินทางจากต้นทางไปยังปลายทาง",
+    "answer": "Longest Prefix Matching (การจับคู่บิตส่วนหัวเครือข่ายที่ยาวที่สุด)",
     "choices": [
-      "ปริมาณข้อมูลสูงสุดที่สามารถส่งผ่านช่องทางสื่อสารได้ในหนึ่งวินาที",
-      "ระยะเวลาหน่วงที่ข้อมูลใช้ในการเดินทางจากต้นทางไปยังปลายทาง",
-      "ความแปรปรวนของระยะเวลาหน่วงในการรับส่งแพ็กเก็ตข้อมูล",
-      "อัตราส่วนของแพ็กเก็ตข้อมูลที่สูญหายระหว่างการส่งผ่านเครือข่าย"
+      "First Match Filtering",
+      "Longest Prefix Matching (การจับคู่บิตส่วนหัวเครือข่ายที่ยาวที่สุด)",
+      "Shortest Exact Match",
+      "Random Selection Routing"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "สายใยแก้วนำแสงชนิดใดที่เหมาะสมสำหรับการส่งข้อมูลระยะไกลหลายสิบกิโลเมตรเนื่องจากมีการลดทอนสัญญาณต่ำ",
+    "type": "m",
+    "question": "ปรากฏการณ์ Head-of-Line (HOL) Blocking ภายใน Switching Fabric ของเราเตอร์เกิดขึ้นเนื่องจากสาเหตุใด",
     "code": "",
-    "answer": "Single-mode Fiber (SMF)",
+    "answer": "แพ็กเก็ตที่อยู่ด้านหน้าสุดของคิวขาเข้ากำลังรอแย่งชิงพอร์ตขาออก ส่งผลให้แพ็กเก็ตด้านหลังที่แม้พอร์ตขาออกจะว่างอยู่ต้องติดขัดไปด้วย",
     "choices": [
-      "Multi-mode Fiber (MMF)",
-      "Single-mode Fiber (SMF)",
-      "Shielded Twisted Pair (STP)",
-      "Coaxial Cable (RG-6)"
+      "หน่วยความจำแรมของเราเตอร์ชำรุด",
+      "แพ็กเก็ตที่อยู่ด้านหน้าสุดของคิวขาเข้ากำลังรอแย่งชิงพอร์ตขาออก ส่งผลให้แพ็กเก็ตด้านหลังที่แม้พอร์ตขาออกจะว่างอยู่ต้องติดขัดไปด้วย",
+      "ความเร็วของบัสช้ากว่าความเร็วของสายแลน",
+      "ตาราง Routing Table เกิดการวนลูป (Routing Loop)"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "ในกระบวนการขอรับหมายเลข IP Address อัตโนมัติผ่าน DHCP (DORA Process) ขั้นตอนแรกสุดคือข้อความใด",
+    "type": "m",
+    "question": "ส่วนหัวของ IPv4 Datagram แบบไม่มีการเพิ่ม Options มีขนาดกี่ไบต์",
     "code": "",
-    "answer": "DHCP Discover",
+    "answer": "20 ไบต์",
     "choices": [
-      "DHCP Discover",
-      "DHCP Offer",
-      "DHCP Request",
-      "DHCP Acknowledge"
+      "8 ไบต์",
+      "20 ไบต์",
+      "32 ไบต์",
+      "40 ไบต์"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "หมายเลข IP Address 127.0.0.1 ถูกสงวนไว้ใช้งานเพื่อวัตถุประสงค์ใด",
+    "type": "m",
+    "question": "ฟีลด์ Time to Live (TTL) ใน IPv4 Datagram Header มีไว้เพื่อวัตถุประสงค์ใด",
     "code": "",
-    "answer": "ใช้ทดสอบการทำงานของโปรโตคอลเครือข่ายภายในเครื่องตนเอง (Loopback)",
+    "answer": "ป้องกันไม่ให้แพ็กเก็ตหมุนวนในเครือข่ายโดยไม่มีวันสิ้นสุด (Looping) โดยจะถูกลดค่าลงทีละ 1 ทุกครั้งที่ผ่านเราเตอร์",
     "choices": [
-      "ใช้เป็นหมายเลข Broadcast สำหรับส่งข้อมูลถึงทุกเครื่องในเครือข่าย",
-      "ใช้ทดสอบการทำงานของโปรโตคอลเครือข่ายภายในเครื่องตนเอง (Loopback)",
-      "ใช้กำหนดเมื่อเครื่องลูกข่ายไม่สามารถติดต่อเครื่องแม่ข่าย DHCP ได้",
-      "ใช้สำหรับเชื่อมต่อกับเครื่องแม่ข่าย DNS หลักของโลก"
+      "จับเวลาความล่าช้า End-to-End เพื่อคำนวณ RTT",
+      "ป้องกันไม่ให้แพ็กเก็ตหมุนวนในเครือข่ายโดยไม่มีวันสิ้นสุด (Looping) โดยจะถูกลดค่าลงทีละ 1 ทุกครั้งที่ผ่านเราเตอร์",
+      "กำหนดอายุความคงอยู่ของไฟล์ในเว็บแคช",
+      "เป็นตัวระบุเวลาการหมดอายุของ IP Address ที่ได้รับจาก DHCP"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "โปรโตคอลใดทำหน้าที่เป็นโปรโตคอลค้นหาเส้นทางแบบ Link-State Routing Protocol",
+    "type": "m",
+    "question": "ในการทำ IP Fragmentation ฟีลด์ Fragment Offset ในส่วนหัวของ IPv4 มีหน่วยในการนับอย่างไร",
     "code": "",
-    "answer": "OSPF",
+    "answer": "นับเป็นจำนวนบล็อก บล็อกละ 8 ไบต์ (8-byte chunks)",
     "choices": [
-      "RIPv1",
-      "RIPv2",
-      "OSPF",
-      "BGP"
+      "นับเป็นจำนวนบิต (Bits)",
+      "นับเป็นจำนวนไบต์ (Bytes)",
+      "นับเป็นจำนวนบล็อก บล็อกละ 8 ไบต์ (8-byte chunks)",
+      "นับเป็นจำนวนแพ็กเก็ตย่อย"
     ]
   },
   {
-    "type": "ความจำและเข้าใจ",
-    "question": "การเข้ารหัสความปลอดภัยบนเครือข่ายไร้สายมาตรฐานใดที่มีความปลอดภัยสูงสุดและป้องกันการโจมตีแบบ Brute-force ได้ดีกว่ามาตรฐานเดิม",
+    "type": "m",
+    "question": "หมายเลขอินเทอร์เน็ตโปรโตคอลตามแบบ CIDR Notation: 192.168.10.0/26 มี Subnet Mask ตรงกับข้อใด",
     "code": "",
-    "answer": "WPA3",
+    "answer": "255.255.255.192",
     "choices": [
-      "WEP",
-      "WPA",
-      "WPA2",
-      "WPA3"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "ฟังก์ชัน NAT (Network Address Translation) บนเราเตอร์มีประโยชน์หลักในด้านใด",
-    "code": "",
-    "answer": "ช่วยให้เครื่องในเครือข่ายส่วนตัวหลายเครื่องสามารถใช้ Public IP เดียวกันในการออกอินเทอร์เน็ตได้",
-    "choices": [
-      "ช่วยเพิ่มความเร็วในการดาวน์โหลดไฟล์จากเซิร์ฟเวอร์ต่างประเทศ",
-      "ช่วยให้เครื่องในเครือข่ายส่วนตัวหลายเครื่องสามารถใช้ Public IP เดียวกันในการออกอินเทอร์เน็ตได้",
-      "ช่วยเข้ารหัสข้อมูลระหว่างเครื่องลูกข่ายและเราเตอร์เพื่อป้องกันการดักฟัง",
-      "ช่วยจัดลำดับความสำคัญของข้อมูลเสียงและวิดีโอให้ทำงานได้ไม่สะดุด"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "ชั้น Presentation Layer ในแบบจำลอง OSI มีหน้าที่รับผิดชอบหลักในเรื่องใด",
-    "code": "",
-    "answer": "การเข้ารหัสข้อมูล การบีบอัดข้อมูล และการแปลงรูปแบบข้อมูล",
-    "choices": [
-      "การควบคุมการไหลของข้อมูลและการแก้ไขข้อผิดพลาด",
-      "การเปิด ปิด และรักษาสถานะการเชื่อมต่อระหว่างแอปพลิเคชัน",
-      "การเข้ารหัสข้อมูล การบีบอัดข้อมูล และการแปลงรูปแบบข้อมูล",
-      "การกำหนดเส้นทางที่ดีที่สุดในการส่งแพ็กเก็ตข้ามเครือข่าย"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "ข้อใดคือความหมายของค่า Jitter ในการสื่อสารข้อมูล",
-    "code": "",
-    "answer": "ความไม่สม่ำเสมอหรือความแปรปรวนของเวลาที่แพ็กเก็ตเดินทางถึงปลายทาง",
-    "choices": [
-      "ปริมาณข้อมูลสูงสุดที่สายสัญญาณสามารถรองรับได้",
-      "ความไม่สม่ำเสมอหรือความแปรปรวนของเวลาที่แพ็กเก็ตเดินทางถึงปลายทาง",
-      "สัญญาณรบกวนทางแม่เหล็กไฟฟ้าที่เกิดจากสายไฟข้างเคียง",
-      "ระยะเวลาที่ใช้ในการประมวลผลแพ็กเก็ตภายในตัวเราเตอร์"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "มาตรฐาน PoE (Power over Ethernet) IEEE 802.3at (PoE+) สามารถจ่ายกำลังไฟฟ้าสูงสุดได้เท่าใด",
-    "code": "",
-    "answer": "30 วัตต์",
-    "choices": [
-      "15.4 วัตต์",
-      "30 วัตต์",
-      "60 วัตต์",
-      "100 วัตต์"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "โปรโตคอล SNMP (Simple Network Management Protocol) ถูกนำมาใช้งานเพื่อวัตถุประสงค์ใด",
-    "code": "",
-    "answer": "ตรวจสอบสถานะ เก็บข้อมูล และบริหารจัดการอุปกรณ์ในระบบเครือข่าย",
-    "choices": [
-      "ซิงโครไนซ์เวลาของอุปกรณ์เครือข่ายให้ตรงกับเซิร์ฟเวอร์เวลามาตรฐาน",
-      "ตรวจสอบสถานะ เก็บข้อมูล และบริหารจัดการอุปกรณ์ในระบบเครือข่าย",
-      "ส่งจดหมายอิเล็กทรอนิกส์ระหว่างเซิร์ฟเวอร์อีเมล",
-      "ถ่ายโอนไฟล์ขนาดใหญ่ระหว่างเครื่องแม่ข่ายและเครื่องลูกข่าย"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "หากเครื่องคอมพิวเตอร์ตั้งค่าให้รับ IP อัตโนมัติ แต่ไม่สามารถติดต่อ DHCP Server ได้ ระบบปฏิบัติการ Windows จะกำหนดหมายเลข IP ในช่วงใดให้โดยอัตโนมัติ (APIPA)",
-    "code": "",
-    "answer": "169.254.0.1 ถึง 169.254.255.254",
-    "choices": [
-      "127.0.0.1 ถึง 127.255.255.254",
-      "169.254.0.1 ถึง 169.254.255.254",
-      "192.168.0.1 ถึง 192.168.255.254",
-      "172.16.0.1 ถึง 172.31.255.254"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "ข้อใดคือความแตกต่างระหว่าง Hub และ Switch ในแง่ของการจัดการ Collision Domain",
-    "code": "",
-    "answer": "ทุกพอร์ตของ Hub อยู่ภายใต้ Collision Domain เดียวกัน แต่แต่ละพอร์ตของ Switch แยก Collision Domain ออกจากกัน",
-    "choices": [
-      "ทุกพอร์ตของ Hub อยู่ภายใต้ Collision Domain เดียวกัน แต่แต่ละพอร์ตของ Switch แยก Collision Domain ออกจากกัน",
-      "Hub แยก Broadcast Domain ทุกพอร์ต แต่ Switch รวมทุกพอร์ตเป็น Broadcast Domain เดียวกัน",
-      "Hub ทำงานแบบ Full-Duplex ได้ทุกพอร์ต แต่ Switch ทำงานได้เฉพาะแบบ Half-Duplex",
-      "Hub ใช้ MAC Address Table ในการส่งข้อมูล แต่ Switch ส่งข้อมูลออกทุกพอร์ตเสมอ"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "โปรโตคอลใดทำหน้าที่ซิงโครไนซ์เวลาของอุปกรณ์เครือข่ายและเครื่องแม่ข่ายให้ตรงกันอย่างแม่นยำ",
-    "code": "",
-    "answer": "NTP",
-    "choices": [
-      "NNTP",
-      "NTP",
-      "FTP",
-      "TFTP"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "ค่า Administrative Distance (AD) ในการทำงานของ Router มีความหมายว่าอย่างไร",
-    "code": "",
-    "answer": "ค่าความน่าเชื่อถือของแหล่งที่มาของเส้นทาง โดยค่ายิ่งน้อยหมายถึงยิ่งน่าเชื่อถือมาก",
-    "choices": [
-      "จำนวนเราเตอร์สูงสุดที่แพ็กเก็ตสามารถเดินทางผ่านได้ก่อนถูกทิ้ง",
-      "ค่าความน่าเชื่อถือของแหล่งที่มาของเส้นทาง โดยค่ายิ่งน้อยหมายถึงยิ่งน่าเชื่อถือมาก",
-      "ระยะทางทางกายภาพเป็นกิโลเมตรระหว่างเราเตอร์ต้นทางและปลายทาง",
-      "ค่าความหน่วงเวลาสะสมของลิงก์ทั้งหมดในเส้นทางนั้น"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "ย่านความถี่ 2.4 GHz ในเครือข่าย Wi-Fi มีช่องสัญญาณ (Channel) ที่ไม่ทับซ้อนกัน (Non-overlapping Channels) จำนวนกี่ช่อง",
-    "code": "",
-    "answer": "3 ช่อง (ช่อง 1, 6 และ 11)",
-    "choices": [
-      "2 ช่อง (ช่อง 1 และ 11)",
-      "3 ช่อง (ช่อง 1, 6 และ 11)",
-      "4 ช่อง (ช่อง 1, 4, 8 และ 11)",
-      "11 ช่อง (ช่อง 1 ถึง 11)"
-    ]
-  },
-  {
-    "type": "ความจำและเข้าใจ",
-    "question": "การเชื่อมต่อเครือข่ายแบบ Point-to-Point Tunneling เพื่อสร้างเครือข่ายส่วนตัวเสมือนผ่านอินเทอร์เน็ตสาธารณะ เรียกว่าเทคโนโลยีใด",
-    "code": "",
-    "answer": "VPN",
-    "choices": [
-      "VLAN",
-      "VPN",
-      "VPLS",
-      "VoIP"
-    ]
-  },
-  {
-    "type": "การนำไปใช้",
-    "question": "หากเครือข่ายของหน่วยงานมีหมายเลข IP Address คือ 192.168.10.0/26 เครือข่ายนี้จะสามารถรองรับเครื่องลูกข่าย (Usable Hosts) ได้สูงสุดกี่เครื่อง",
-    "code": "",
-    "answer": "62 เครื่อง",
-    "choices": [
-      "30 เครื่อง",
-      "62 เครื่อง",
-      "64 เครื่อง",
-      "126 เครื่อง"
-    ]
-  },
-  {
-    "type": "การนำไปใช้",
-    "question": "ข้อใดคือหมายเลข Network Address และ Broadcast Address ของเครื่องคอมพิวเตอร์ที่มีหมายเลข IP คือ 172.16.45.130/25",
-    "code": "",
-    "answer": "Network: 172.16.45.128, Broadcast: 172.16.45.255",
-    "choices": [
-      "Network: 172.16.45.0, Broadcast: 172.16.45.255",
-      "Network: 172.16.45.128, Broadcast: 172.16.45.255",
-      "Network: 172.16.45.128, Broadcast: 172.16.45.191",
-      "Network: 172.16.0.0, Broadcast: 172.16.255.255"
-    ]
-  },
-  {
-    "type": "การนำไปใช้",
-    "question": "ฝ่ายไอทีต้องการแบ่งเครือข่ายย่อยจากวง 10.0.0.0/24 ออกเป็น 8 เครือข่ายย่อยที่มีขนาดเท่ากัน จะต้องใช้ Subnet Mask ค่าใด",
-    "code": "",
-    "answer": "255.255.255.224",
-    "choices": [
+      "255.255.255.0",
+      "255.255.255.128",
       "255.255.255.192",
-      "255.255.255.224",
-      "255.255.255.240",
-      "255.255.255.248"
+      "255.255.255.224"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "สำหรับการเชื่อมต่อแบบ Point-to-Point ระหว่างเราเตอร์สองตัวที่ต้องการประหยัดหมายเลข IPv4 Address ให้มากที่สุด ควรกำหนด Subnet Mask เป็นค่าใด",
+    "type": "m",
+    "question": "จำนวน Host IP Address ที่ใช้งานได้จริง (Usable Hosts) ในบล็อกเครือข่าย 172.16.0.0/22 มีกี่หมายเลข",
     "code": "",
-    "answer": "/30 หรือ 255.255.255.252",
+    "answer": "1022 หมายเลข",
     "choices": [
-      "/28 หรือ 255.255.255.240",
-      "/29 หรือ 255.255.255.248",
-      "/30 หรือ 255.255.255.252",
-      "/32 หรือ 255.255.255.255"
+      "254 หมายเลข",
+      "510 หมายเลข",
+      "1022 หมายเลข",
+      "2046 หมายเลข"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ผู้ดูแลระบบต้องการเข้าหัวสาย UTP แบบ Straight-through (สายตรง) ตามมาตรฐาน TIA/EIA-568B สายคู่สีใดจะอยู่ที่ตำแหน่งขาที่ 1 และ 2 ของหัว RJ45",
+    "type": "m",
+    "question": "กระบวนการขอรับหมายเลข IP Address อัตโนมัติผ่านโพรโทคอล DHCP (DORA Process) มีลำดับขั้นตอนการแลกเปลี่ยนข้อความอย่างไร",
     "code": "",
-    "answer": "ขาว-ส้ม และ ส้ม",
+    "answer": "DHCP Discover -> DHCP Offer -> DHCP Request -> DHCP ACK",
     "choices": [
-      "ขาว-เขียว และ เขียว",
-      "ขาว-ส้ม และ ส้ม",
-      "ขาว-น้ำเงิน และ น้ำเงิน",
-      "ขาว-น้ำตาล และ น้ำตาล"
+      "DHCP Discover -> DHCP Request -> DHCP Offer -> DHCP ACK",
+      "DHCP Discover -> DHCP Offer -> DHCP Request -> DHCP ACK",
+      "DHCP Request -> DHCP Offer -> DHCP Discover -> DHCP ACK",
+      "DHCP Offer -> DHCP Discover -> DHCP ACK -> DHCP Request"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "เมื่อต้องการเชื่อมต่อสาย UTP ระหว่างอาคารสองหลังที่มีระยะห่างกัน 250 เมตรโดยไม่ใช้อุปกรณ์ทวนสัญญาณ ควรเลือกเปลี่ยนไปใช้สื่อนำสัญญาณชนิดใดแทนจึงจะเหมาะสมที่สุด",
+    "type": "m",
+    "question": "ข้อใดอธิบายบทบาทการทำงานของ NAT (Network Address Translation) ได้อย่างถูกต้อง",
     "code": "",
-    "answer": "สายใยแก้วนำแสง (Fiber Optic Cable)",
+    "answer": "แปลงหมายเลข Private IP ในเครือข่ายภายใน ให้เป็น Public IP เพื่อติดต่อกับอินเทอร์เน็ตภายนอกผ่าน NAT Translation Table",
     "choices": [
-      "สาย UTP มาตรฐาน Cat 6A",
-      "สาย STP มาตรฐาน Cat 7",
-      "สายใยแก้วนำแสง (Fiber Optic Cable)",
-      "สาย Coaxial มาตรฐาน RG-58"
+      "ทำการจัดหาและแจกจ่าย IP Address ให้อุปกรณ์ปลายทางภายใน LAN",
+      "แปลงหมายเลข Private IP ในเครือข่ายภายใน ให้เป็น Public IP เพื่อติดต่อกับอินเทอร์เน็ตภายนอกผ่าน NAT Translation Table",
+      "แปลงชื่อโดเมนให้เป็น IP Address",
+      "ตรวจสอบและกรองไวรัสคอมพิวเตอร์ในระดับไฟล์"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หากผู้ดูแลระบบต้องการตรวจสอบเส้นทางและจำนวน Hop ที่แพ็กเก็ตเดินทางจากเครื่องต้นทางไปยังเซิร์ฟเวอร์ปลายทางบนระบบปฏิบัติการ Windows ควรใช้คำสั่งใด",
+    "type": "m",
+    "question": "ข้อใดคือการเปลี่ยนแปลงสำคัญในโครงสร้างส่วนหัวของ IPv6 เมื่อเปรียบเทียบกับ IPv4",
     "code": "",
-    "answer": "tracert",
+    "answer": "ส่วนหัวมีขนาดคงที่ 40 ไบต์ และตัดฟีลด์ Checksum กับ Hop-by-Hop Fragmentation ออกเพื่อความรวดเร็วในการประมวลผลของเราเตอร์",
     "choices": [
-      "netstat",
-      "tracert",
-      "nslookup",
-      "arp -a"
+      "ขยายส่วนหัวจาก 20 ไบต์เป็น 60 ไบต์และเพิ่มฟีลด์ Checksum ให้มีความซับซ้อนมากขึ้น",
+      "ส่วนหัวมีขนาดคงที่ 40 ไบต์ และตัดฟีลด์ Checksum กับ Hop-by-Hop Fragmentation ออกเพื่อความรวดเร็วในการประมวลผลของเราเตอร์",
+      "ยกเลิกการใช้ฟีลด์ Hop Limit",
+      "เปลี่ยนการส่งข้อมูลทั้งหมดในชั้นนี้ให้เป็นแบบการยิงสัญญาณบรอดคาสต์"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หากต้องการตรวจสอบว่าเครื่องคอมพิวเตอร์กำลังเปิดพอร์ตใดรับการเชื่อมต่ออยู่ หรือมีโปรแกรมใดกำลังเชื่อมต่อกับไอพีภายนอกบ้าง ควรใช้คำสั่งใด",
+    "type": "m",
+    "question": "กลไกในการส่งผ่าน IPv6 Datagram ผ่านโครงข่าย IPv4 ที่ยังไม่รองรับ IPv6 เรียกว่าอะไร",
     "code": "",
-    "answer": "netstat -ano",
+    "answer": "Tunneling (การแคปซูลแพ็กเก็ต IPv6 ซ้อนไว้ภายใน IPv4 Datagram)",
     "choices": [
-      "ipconfig /all",
-      "netstat -ano",
-      "ping -t",
-      "route print"
+      "Dual-Stack Switching",
+      "Tunneling (การแคปซูลแพ็กเก็ต IPv6 ซ้อนไว้ภายใน IPv4 Datagram)",
+      "NAT-PT Mapping",
+      "Flow Labeling"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ผู้ดูแลระบบต้องการตรวจสอบระเบียนข้อมูล (DNS Records) เช่น A Record หรือ MX Record ของโดเมนหน่วยงาน ควรใช้เครื่องมือคำสั่งใด",
+    "type": "m",
+    "question": "ตามสถาปัตยกรรม OpenFlow ในแนวคิด Generalized Forwarding โครงสร้างของตาราง Flow Table ประกอบด้วยองค์ประกอบหลัก 3 ส่วนใดบ้าง",
     "code": "",
-    "answer": "nslookup",
+    "answer": "Match Fields, Counters, Actions",
     "choices": [
-      "nslookup",
-      "nbstat",
-      "netsh",
-      "pathping"
+      "IP Address, MAC Address, Port Number",
+      "Match Fields, Counters, Actions",
+      "Routing Policy, Cost, Metric",
+      "Header, Payload, Checksum"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "เมื่อต้องการให้เครื่องคอมพิวเตอร์ใน VLAN 10 สามารถสื่อสารข้ามไปยังเครื่องคอมพิวเตอร์ใน VLAN 20 ได้ จำเป็นต้องใช้อุปกรณ์หรือฟีเจอร์ใดเพิ่มเติม",
+    "type": "m",
+    "question": "โพรโทคอล ICMP (Internet Control Message Protocol) ทำงานอยู่เหนือโพรโทคอลใด และถูกใช้เพื่อประโยชน์อะไร",
     "code": "",
-    "answer": "Router หรือ Layer 3 Switch เพื่อทำ Inter-VLAN Routing",
+    "answer": "ทำงานซ้อนอยู่ใน IP Datagram ใช้สำหรับรายงานข้อผิดพลาดและส่งข้อมูลควบคุมในชั้น Network Layer",
     "choices": [
-      "Access Point เพื่อกระจายสัญญาณข้าม VLAN",
-      "Layer 2 Switch ตัวที่สองเพื่อเชื่อมต่อสายแบบ Trunk",
-      "Router หรือ Layer 3 Switch เพื่อทำ Inter-VLAN Routing",
-      "Repeater เพื่อขยายสัญญาณระหว่างทั้งสอง VLAN"
+      "ทำงานอยู่บน TCP ใช้สำหรับรับส่งไฟล์ข้อความ",
+      "ทำงานซ้อนอยู่ใน IP Datagram ใช้สำหรับรายงานข้อผิดพลาดและส่งข้อมูลควบคุมในชั้น Network Layer",
+      "ทำงานในชั้น Link Layer ใช้สำหรับขอ MAC Address",
+      "ทำงานอยู่เหนือ UDP ใช้สำหรับแปลงชื่อโฮสต์"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ในการตั้งค่าพอร์ตของ Switch เพื่อเชื่อมต่อระหว่าง Switch 2 ตัวที่ต้องส่งข้อมูลของหลาย VLAN ผ่านสายเส้นเดียวกัน จะต้องกำหนดโหมดของพอร์ตเป็นแบบใด",
+    "type": "m",
+    "question": "คำสั่ง Ping และ Traceroute อาศัยการทำงานของข้อความตอบกลับแบบใดในโพรโทคอล ICMP ตามลำดับ",
     "code": "",
-    "answer": "Trunk Mode (802.1Q)",
+    "answer": "ICMP Echo Request/Reply และ ICMP Time Exceeded (TTL หมดอายุ)",
     "choices": [
-      "Access Mode",
-      "Trunk Mode (802.1Q)",
-      "PortFast Mode",
-      "Loopback Mode"
+      "ICMP Echo Request/Reply และ ICMP Time Exceeded (TTL หมดอายุ)",
+      "ICMP Destination Unreachable และ ICMP Redirect",
+      "ICMP Router Discovery และ ICMP Source Quench",
+      "ICMP Port Unreachable และ ICMP Parameter Problem"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หน่วยงานต้องการให้เครื่องพิมพ์เครือข่าย (Network Printer) ได้รับหมายเลข IP เดิมเสมอทุกครั้งที่เปิดเครื่อง โดยยังคงใช้ระบบแจก IP จาก DHCP Server ควรตั้งค่าฟีเจอร์ใด",
+    "type": "m",
+    "question": "สูตรคำนวณขนาด Maximum Segment Size (MSS) ของ TCP ที่สัมพันธ์กับขนาด Maximum Transmission Unit (MTU) ของชั้น Link Layer คือข้อใด",
     "code": "",
-    "answer": "DHCP Reservation โดยผูกกับ MAC Address ของเครื่องพิมพ์",
+    "answer": "MSS = MTU - (IP Header Length + TCP Header Length)",
     "choices": [
-      "DHCP Exclusion โดยตัดช่วง IP ของเครื่องพิมพ์ออก",
-      "DHCP Reservation โดยผูกกับ MAC Address ของเครื่องพิมพ์",
-      "ลดค่า DHCP Lease Time ให้เหลือ 1 ชั่วโมง",
-      "เปิดใช้งาน DHCP Relay Agent บนเราเตอร์หลัก"
+      "MSS = MTU + 40 ไบต์",
+      "MSS = MTU - (IP Header Length + TCP Header Length)",
+      "MSS = MTU / 2",
+      "MSS = MTU - Ethernet Header Length"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ผู้ดูแลระบบต้องการอนุญาตให้เฉพาะเครื่องคอมพิวเตอร์ผู้ดูแลระบบ (IP: 192.168.1.50) เท่านั้นที่สามารถเข้าถึงหน้าจัดการเราเตอร์ผ่าน HTTPS ได้ ควรตั้งค่ากฎ Firewall (ACL) อย่างไร",
+    "type": "m",
+    "question": "อัลกอริทึมจัดคิวแพ็กเก็ตในเราเตอร์แบบใดที่แบ่งแยกแพ็กเก็ตออกตามประเภทคลาส แล้วส่งแพ็กเก็ตวนสลับไปมาตามลำดับอย่างเท่าเทียมกัน",
     "code": "",
-    "answer": "Permit TCP from 192.168.1.50 to Router_IP eq 443",
+    "answer": "Round Robin (RR) / Weighted Fair Queueing (WFQ)",
     "choices": [
-      "Permit UDP from 192.168.1.50 to Router_IP eq 443",
-      "Permit TCP from 192.168.1.50 to Router_IP eq 443",
-      "Permit TCP from 192.168.1.50 to Router_IP eq 80",
-      "Permit ICMP from 192.168.1.50 to Router_IP eq 443"
+      "FIFO (First-In, First-Out)",
+      "Priority Queueing (PQ) แบบเด็ดขาด",
+      "Round Robin (RR) / Weighted Fair Queueing (WFQ)",
+      "Random Early Detection (RED)"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หากต้องการรวมพอร์ต Gigabit Ethernet จำนวน 2 พอร์ตระหว่าง Switch หลักกับ File Server ให้ทำงานเสมือนเป็นลิงก์เดียวกันเพื่อเพิ่มแบนด์วิดท์เป็น 2 Gbps และทำ Failover ได้ ควรใช้เทคโนโลยีใด",
+    "type": "m",
+    "question": "ข้อใดเป็นสถาปัตยกรรมที่แยก Control Plane ออกจาก Data Plane โดยใช้ Controller ส่วนกลางมาคุมอุปกรณ์สวิตช์",
     "code": "",
-    "answer": "Link Aggregation (LACP / EtherChannel)",
+    "answer": "Software-Defined Networking (SDN)",
     "choices": [
-      "Spanning Tree Protocol (STP)",
-      "Link Aggregation (LACP / EtherChannel)",
-      "Port Mirroring (SPAN)",
-      "Port Security"
+      "Traditional Per-Router Control Architecture",
+      "Software-Defined Networking (SDN)",
+      "Autonomous System Border Gateway Routing",
+      "Peer-to-Peer Mesh Forwarding Architecture"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ในการออกแบบเครือข่ายไร้สายสำหรับห้องประชุมขนาดใหญ่ที่มีผู้ใช้งานพร้อมกันจำนวนมาก ควรวางแผนติดตั้ง Access Point อย่างไรเพื่อลดการรบกวนของสัญญาณ",
+    "type": "m",
+    "question": "อัลกอริทึมค้นหาเส้นทางประเภท Link-State (เช่น Dijkstra's Algorithm) มีลักษณะเด่นอย่างไร",
     "code": "",
-    "answer": "ใช้ย่านความถี่ 5 GHz ลดกำลังส่งของแต่ละ AP ลง และกำหนดช่องสัญญาณไม่ให้ซ้ำกันในพื้นที่ใกล้เคียง",
+    "answer": "ทุกโหนดมีข้อมูลโครงสร้างโทโพโลยีและค่าใช้จ่ายลิงก์ (Link Costs) ครบถ้วนสมบูรณ์ทั่วทั้งเครือข่ายก่อนประมวลผล",
     "choices": [
-      "ใช้ย่านความถี่ 2.4 GHz และปรับกำลังส่งของ AP ทุกตัวให้สูงสุดเพื่อความครอบคลุม",
-      "ใช้ย่านความถี่ 5 GHz ลดกำลังส่งของแต่ละ AP ลง และกำหนดช่องสัญญาณไม่ให้ซ้ำกันในพื้นที่ใกล้เคียง",
-      "ตั้งชื่อ SSID ของ AP ทุกตัวให้แตกต่างกันและใช้ช่องสัญญาณเดียวกันทั้งหมด",
-      "ปิดการใช้งานย่านความถี่ 5 GHz เพื่อให้เครื่องลูกข่ายเชื่อมต่อผ่าน 2.4 GHz ได้ไกลขึ้น"
+      "เป็นอัลกอริทึมแบบกระจาย (Iterative & Distributed) โหนดคุยเฉพาะกับเพื่อนบ้าน",
+      "ทุกโหนดมีข้อมูลโครงสร้างโทโพโลยีและค่าใช้จ่ายลิงก์ (Link Costs) ครบถ้วนสมบูรณ์ทั่วทั้งเครือข่ายก่อนประมวลผล",
+      "เกิดปัญหา Count-to-Infinity ได้ง่าย",
+      "อาศัยสมการ Bellman-Ford ในการคำนวณระยะทาง"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หากต้องการดักจับแพ็กเก็ตข้อมูลที่วิ่งเข้าออกพอร์ตของเซิร์ฟเวอร์บน Switch เพื่อนำไปวิเคราะห์ด้วยโปรแกรม Wireshark ควรตั้งค่าฟีเจอร์ใดบน Switch",
+    "type": "m",
+    "question": "อัลกอริทึม Distance-Vector (DV) คำนวณเส้นทางสั้นที่สุดโดยอาศัยสมการทางคณิตศาสตร์ใด",
     "code": "",
-    "answer": "Port Mirroring (SPAN)",
+    "answer": "Bellman-Ford Equation: d_x(y) = min_v { c(x,v) + d_v(y) }",
     "choices": [
-      "Port Security",
-      "Port Mirroring (SPAN)",
-      "Storm Control",
-      "BPDU Guard"
+      "Dijkstra's Shortest Path Formula",
+      "Bellman-Ford Equation: d_x(y) = min_v { c(x,v) + d_v(y) }",
+      "Spanning Tree Protocol Metric Formula",
+      "Kruskal's Minimum Spanning Tree Algorithm"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หน่วยงานมีเว็บเซิร์ฟเวอร์ภายใน (IP: 10.10.10.5) ที่ให้บริการพอร์ต 80 และต้องการให้ผู้ใช้งานจากอินเทอร์เน็ตภายนอกเรียกใช้งานผ่าน Public IP ของเราเตอร์ได้ ควรตั้งค่าฟีเจอร์ใดบนเราเตอร์",
+    "type": "m",
+    "question": "เทคนิค Poisoned Reverse ถูกออกแบบมาเพื่อช่วยบรรเทาปัญหาใดใน Distance-Vector Routing",
     "code": "",
-    "answer": "Port Forwarding (Static NAT / DNAT)",
+    "answer": "Count-to-Infinity Problem (เมื่อเส้นทางสั้นระหว่างโหนดเพื่อนบ้านเกิดความเสียหาย)",
     "choices": [
-      "Dynamic NAT",
-      "Port Address Translation (PAT)",
-      "Port Forwarding (Static NAT / DNAT)",
-      "Split Horizon"
+      "Subnet Mask Mismatch",
+      "Count-to-Infinity Problem (เมื่อเส้นทางสั้นระหว่างโหนดเพื่อนบ้านเกิดความเสียหาย)",
+      "Buffer Overflow ในเราเตอร์",
+      "การซ้ำกันของ IP Address"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "เมื่อต้องการเขียนหมายเลข IPv6 แบบย่อ (Compressed Format) จากรูปแบบเต็ม 2001:0db8:0000:0000:0000:ff00:0042:8329 ข้อใดเขียนได้ถูกต้องตามมาตรฐาน",
+    "type": "m",
+    "question": "โพรโทคอล OSPF (Open Shortest Path First) จัดเป็นโพรโทคอลหาเส้นทางประเภทใด และทำงานอยู่ในขอบเขตใด",
     "code": "",
-    "answer": "2001:db8::ff00:42:8329",
+    "answer": "Intra-AS Routing Protocol (Interior Gateway Protocol) แบบ Link-State",
     "choices": [
-      "2001:db8::ff00:42:8329",
-      "2001:db8:0:0:0:ff:42:8329",
-      "2001:db8:::ff00:42:8329",
-      "2001:0db8::ff00:0042:8329"
+      "Inter-AS Routing Protocol แบบ Distance-Vector",
+      "Intra-AS Routing Protocol (Interior Gateway Protocol) แบบ Link-State",
+      "Inter-AS Routing Protocol แบบ Path-Vector",
+      "Data Link Layer Broadcast Protocol"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ในการตั้งค่าความปลอดภัยบนพอร์ตของ Switch เพื่อป้องกันไม่ให้บุคคลภายนอกนำอุปกรณ์อื่นมาเสียบแทนที่เครื่องคอมพิวเตอร์พนักงาน ควรเปิดใช้งานฟีเจอร์ใด",
+    "type": "m",
+    "question": "ในโครงสร้าง OSPF แบบลำดับชั้น (Hierarchical OSPF) พื้นที่ใดทำหน้าที่เป็นพื้นที่แกนหลัก (Backbone Area) ในการรับส่งข้อมูลระหว่าง Area",
     "code": "",
-    "answer": "Switch Port Security โดยจำกัดจำนวนและจดจำ MAC Address",
+    "answer": "Area 0 (Area 0.0.0.0)",
     "choices": [
-      "DHCP Snooping",
-      "Switch Port Security โดยจำกัดจำนวนและจดจำ MAC Address",
-      "Dynamic ARP Inspection",
-      "IGMP Snooping"
+      "Area 1",
+      "Area 0 (Area 0.0.0.0)",
+      "Stub Area",
+      "NSSA (Not-So-Stubby Area)"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หน่วยงานต้องการให้ระบบโทรศัพท์ผ่านอินเทอร์เน็ต (VoIP) ได้รับการจัดส่งข้อมูลก่อนข้อมูลการดาวน์โหลดไฟล์ทั่วไป เพื่อไม่ให้เสียงสนทนาขาดหาย ควรนำกลไกใดมาประยุกต์ใช้",
+    "type": "m",
+    "question": "โพรโทคอล BGP (Border Gateway Protocol) มีความสำคัญสูงสุดในอินเทอร์เน็ตอย่างไร",
     "code": "",
-    "answer": "Quality of Service (QoS)",
+    "answer": "เป็น Inter-AS Routing Protocol ที่ใช้สำหรับการแลกเปลี่ยนข้อมูลเส้นทางระหว่าง Autonomous Systems (ISPs)",
     "choices": [
-      "Load Balancing",
-      "Quality of Service (QoS)",
-      "Network Access Control (NAC)",
-      "High Availability (HA)"
+      "ทำหน้าที่เป็นโพรโทคอลภายในองค์กรเพื่อจัดสรร IP Address ให้กับเครื่องลูกข่าย",
+      "เป็น Inter-AS Routing Protocol ที่ใช้สำหรับการแลกเปลี่ยนข้อมูลเส้นทางระหว่าง Autonomous Systems (ISPs)",
+      "ทำหน้าที่คำนวณเส้นทางสั้นที่สุดด้วยอัลกอริทึม Dijkstra ภายใน LAN",
+      "ใช้ในการเข้าและถอดรหัสแพ็กเก็ตที่ส่งผ่านสายไฟเบอร์ออปติก"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หากต้องการเชื่อมโยงเครือข่ายระหว่างสำนักงานใหญ่และสาขาต่างจังหวัดผ่านเครือข่ายสาธารณะ โดยให้ข้อมูลทั้งหมดถูกเข้ารหัสและส่งผ่านเสมือนอยู่ในวง LAN เดียวกัน ควรเลือกใช้โซลูชันใด",
+    "type": "m",
+    "question": "ข้อความโพรโทคอล BGP ทำงานอยู่บนโพรโทคอลชั้น Transport ใด และใช้หมายเลขพอร์ตใด",
     "code": "",
-    "answer": "Site-to-Site IPSec VPN",
+    "answer": "TCP พอร์ต 179",
     "choices": [
-      "Remote Access SSL VPN",
-      "Site-to-Site IPSec VPN",
-      "VLAN Trunking Protocol (VTP)",
-      "Proxy Server"
+      "UDP พอร์ต 520",
+      "TCP พอร์ต 179",
+      "UDP พอร์ต 161",
+      "TCP พอร์ต 80"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ในการกำหนดเส้นทางแบบ Static Route บนเราเตอร์เพื่อส่งทราฟฟิกทั้งหมดที่ไม่รู้จักปลายทางไปยังเราเตอร์ของผู้ให้บริการอินเทอร์เน็ต (Next-hop: 203.150.10.1) ควรกำหนดค่าปลายทางเป็นอย่างไร",
+    "type": "m",
+    "question": "แอททริบิวต์ AS-PATH ในโพรโทคอล BGP มีประโยชน์สำคัญอย่างยิ่งในเรื่องใด",
     "code": "",
-    "answer": "Destination: 0.0.0.0 Mask: 0.0.0.0 Next-hop: 203.150.10.1",
+    "answer": "ป้องกันการเกิด Routing Loop ระหว่าง Autonomous Systems",
     "choices": [
-      "Destination: 255.255.255.255 Mask: 0.0.0.0 Next-hop: 203.150.10.1",
-      "Destination: 0.0.0.0 Mask: 0.0.0.0 Next-hop: 203.150.10.1",
-      "Destination: 127.0.0.0 Mask: 255.0.0.0 Next-hop: 203.150.10.1",
-      "Destination: 203.150.10.0 Mask: 255.255.255.0 Next-hop: 203.150.10.1"
+      "ใช้คำนวณความเร็วแบนด์วิดท์ของลิงก์",
+      "ป้องกันการเกิด Routing Loop ระหว่าง Autonomous Systems",
+      "ระบุหมายเลข MAC Address ของ BGP Router",
+      "กำหนดระดับการบีบอัดข้อมูลแพ็กเก็ต"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "แผนกบัญชีมีพนักงาน 25 คน แผนกบุคคลมี 12 คน และแผนกไอทีมี 6 คน หากต้องการแบ่งซับเน็ตแบบ VLSM จากวง 192.168.50.0/24 เพื่อให้ประหยัด IP มากที่สุด ควรกำหนด Prefix Length ให้แต่ละแผนกตามลำดับอย่างไร",
+    "type": "m",
+    "question": "อินเทอร์เฟซโปรแกรมที่เชื่อมต่อระหว่าง SDN Controller กับแอปพลิเคชันควบคุมเครือข่ายด้านบน เรียกว่าอะไร",
     "code": "",
-    "answer": "บัญชี /27, บุคคล /28, ไอที /29",
+    "answer": "Northbound API (เช่น RESTful API)",
     "choices": [
-      "บัญชี /27, บุคคล /28, ไอที /29",
-      "บัญชี /26, บุคคล /28, ไอที /29",
-      "บัญชี /27, บุคคล /27, ไอที /28",
-      "บัญชี /28, บุคคล /29, ไอที /30"
+      "Southbound API (เช่น OpenFlow)",
+      "Northbound API (เช่น RESTful API)",
+      "East-West Gateway API",
+      "Socket API"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ผู้ดูแลระบบต้องการบังคับให้ผู้ใช้งานในเครือข่ายไร้สายขององค์กรต้องยืนยันตัวตนด้วยบัญชีผู้ใช้งาน (Username/Password) ของ Active Directory ก่อนเข้าใช้งาน Wi-Fi ควรเลือกใช้มาตรฐานความปลอดภัยใด",
+    "type": "m",
+    "question": "โพรโทคอล SNMP (Simple Network Management Protocol) ใช้องค์ประกอบโครงสร้างข้อมูลใดในการจัดเก็บและระบุคุณลักษณะอุปกรณ์เครือข่าย",
     "code": "",
-    "answer": "WPA2/WPA3-Enterprise ร่วมกับ RADIUS Server (802.1X)",
+    "answer": "MIB (Management Information Base) และ OID (Object Identifier)",
     "choices": [
-      "WPA2-Personal (PSK) ร่วมกับ MAC Filtering",
-      "WPA2/WPA3-Enterprise ร่วมกับ RADIUS Server (802.1X)",
-      "Captive Portal ร่วมกับการซ่อนชื่อ SSID",
-      "WPA3-Personal ร่วมกับการเข้ารหัสแบบ TKIP"
+      "DNS Record Table",
+      "MIB (Management Information Base) และ OID (Object Identifier)",
+      "NAT Translation Matrix",
+      "OpenFlow Match Table"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "เมื่อต้องการย้ายเครื่องเซิร์ฟเวอร์ในศูนย์ข้อมูลและต้องการล้างค่าแคช ARP เดิมบนเครื่องลูกข่าย Windows เพื่อให้เรียนรู้ MAC Address ใหม่ทันที ควรใช้คำสั่งใด",
+    "type": "m",
+    "question": "บริการหลักของชั้น Link Layer คือการเคลื่อนย้ายข้อมูลประเภทใดผ่านสื่อกลางการสื่อสารเดี่ยว (Single Communication Link)",
     "code": "",
-    "answer": "arp -d *",
+    "answer": "Datagram (แคปซูลลงใน เฟรม)",
     "choices": [
-      "ipconfig /flushdns",
-      "arp -d *",
-      "nbtstat -R",
-      "route -f"
+      "Segment",
+      "Datagram (แคปซูลลงใน เฟรม)",
+      "Bit Stream ทางไฟฟ้า",
+      "Application Message"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "เมื่อผู้ใช้งานแจ้งว่าไม่สามารถเข้าเว็บไซต์ใหม่ที่เพิ่งย้ายเซิร์ฟเวอร์ได้ แต่เครื่องอื่นเข้าได้ปกติ สันนิษฐานว่าเครื่องผู้ใช้งานยังจำค่า IP เดิมของโดเมนไว้ ควรแก้ไขเบื้องต้นด้วยคำสั่งใด",
+    "type": "m",
+    "question": "เทคนิคการตรวจจับข้อผิดพลาดแบบ CRC (Cyclic Redundancy Check) อาศัยการคำนวณทางคณิตศาสตร์ในลักษณะใด",
     "code": "",
-    "answer": "ipconfig /flushdns",
+    "answer": "การหารพหุนามด้วยมอดูโล-2 (Modulo-2 Arithmetic / Polynomial Division)",
     "choices": [
-      "ipconfig /release",
-      "ipconfig /flushdns",
-      "netsh winsock reset",
-      "arp -a"
+      "การบวกตัวเลขฐานสิบหก",
+      "การหารพหุนามด้วยมอดูโล-2 (Modulo-2 Arithmetic / Polynomial Division)",
+      "การคำนวณค่าเบี่ยงเบนมาตรฐาน",
+      "การใช้ฟังก์ชันแฮช SHA-1"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ในการเชื่อมต่อพอร์ต Uplink ระยะสั้น (3 เมตร) ระหว่าง Switch 2 ตัวในตู้แร็คเดียวกันที่ความเร็ว 10 Gbps เพื่อให้ประหยัดงบประมาณและใช้พลังงานต่ำที่สุด ควรเลือกใช้สายชนิดใด",
+    "type": "m",
+    "question": "อัลกอริทึมการเข้าถึงช่องสัญญาณร่วมแบบ Random Access ชนิดใดที่มีการตรวจสอบการชนกันของสัญญาณในขณะส่งแพ็กเก็ต (Collision Detection)",
     "code": "",
-    "answer": "สาย DAC (Direct Attach Copper) SFP+",
+    "answer": "CSMA/CD (ใช้ใน Ethernet)",
     "choices": [
-      "สาย Single-mode Fiber พร้อมโมดูล SFP+ LR",
-      "สาย DAC (Direct Attach Copper) SFP+",
-      "สาย UTP Cat 5e",
-      "สาย Coaxial RG-59"
+      "CSMA/CA (ใช้ใน Wi-Fi)",
+      "CSMA/CD (ใช้ใน Ethernet)",
+      "TDMA (Time Division Multiple Access)",
+      "Polling Protocol"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "หากองค์กรมีลิงก์อินเทอร์เน็ตจากผู้ให้บริการ 2 ราย (ISP A และ ISP B) และต้องการให้ทราฟฟิกออกอินเทอร์เน็ตกระจายใช้งานทั้งสองลิงก์พร้อมกันเพื่อเพิ่มประสิทธิภาพ ควรใช้คุณสมบัติใดบนอุปกรณ์ Firewall/Router",
+    "type": "m",
+    "question": "ในระบบ Ethernet แบบ CSMA/CD หากเกิดการชนกันของสัญญาณ (Collision) โหนดจะทำการสุ่มเวลารอคอยก่อนส่งใหม่โดยใช้เทคนิคใด",
     "code": "",
-    "answer": "Dual-WAN Load Balancing",
+    "answer": "Binary Exponential Backoff Algorithm",
     "choices": [
-      "Dual-WAN Active-Passive Failover",
-      "Dual-WAN Load Balancing",
-      "Port Mirroring",
-      "Split Tunneling"
+      "Fixed Time Delay",
+      "Binary Exponential Backoff Algorithm",
+      "Linear Incremental Backoff",
+      "Random Round Robin"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ในการวางระบบเครือข่ายสำหรับเซิร์ฟเวอร์ที่ต้องให้บริการสาธารณะ เช่น Web Server และ Mail Server ควรจัดวางเซิร์ฟเวอร์เหล่านี้ไว้ในโซนเครือข่ายใดเพื่อความปลอดภัยของเครือข่ายภายใน",
+    "type": "m",
+    "question": "หมายเลข MAC Address มีขนาดความยาวกี่บิต และถูกกำหนดโดยองค์กรใดส่วนหน้า (OUI)",
     "code": "",
-    "answer": "DMZ (Demilitarized Zone)",
+    "answer": "48 บิต (6 ไบต์) โดย 24 บิตแรกกำหนดโดย IEEE",
     "choices": [
-      "Intranet Zone",
-      "DMZ (Demilitarized Zone)",
-      "Management VLAN",
-      "Guest Network"
+      "32 บิต (4 ไบต์) กำหนดโดย IANA",
+      "48 บิต (6 ไบต์) โดย 24 บิตแรกกำหนดโดย IEEE",
+      "64 บิต (8 ไบต์) กำหนดโดย ISO",
+      "128 บิต (16 ไบต์) กำหนดโดย IETF"
     ]
   },
   {
-    "type": "การนำไปใช้",
-    "question": "ผู้ดูแลระบบต้องการป้องกันไม่ให้มีการนำเราเตอร์ไร้สายส่วนตัว (Rogue DHCP Server) มาเสียบเข้ากับพอร์ต Switch ภายในสำนักงานแล้วแจก IP ผิดพลาดให้เครื่องอื่น ควรเปิดใช้งานฟีเจอร์ใด",
+    "type": "m",
+    "question": "โพรโทคอล ARP (Address Resolution Protocol) มีบทบาทหน้าที่อย่างไรในเครือข่าย LAN",
     "code": "",
-    "answer": "DHCP Snooping",
+    "answer": "ค้นหาหมายเลข MAC Address ของโฮสต์เป้าหมายจากหมายเลข IP Address ที่ทราบใน Subnet เดียวกัน",
     "choices": [
-      "DHCP Relay",
-      "DHCP Snooping",
-      "ARP Inspection",
-      "Root Guard"
+      "ค้นหาหมายเลข IP Address จากชื่อ Hostname",
+      "ค้นหาหมายเลข MAC Address ของโฮสต์เป้าหมายจากหมายเลข IP Address ที่ทราบใน Subnet เดียวกัน",
+      "แปลง MAC Address ให้เป็น พอร์ต TCP",
+      "กระจายสัญญาณบรอดคาสต์เพื่อหาเราเตอร์ทางออก"
     ]
   },
+  {
+    "type": "m",
+    "question": "ข้อความ ARP Request ถูกส่งออกไปในเครือข่าย LAN ด้วยที่อยู่ MAC Address ปลายทางแบบใด",
+    "code": "",
+    "answer": "Broadcast MAC Address (FF:FF:FF:FF:FF:FF)",
+    "choices": [
+      "Unicast MAC Address ของ Gateway",
+      "Broadcast MAC Address (FF:FF:FF:FF:FF:FF)",
+      "Multicast MAC Address (01:00:5E:00:00:00)",
+      "Null MAC Address (00:00:00:00:00:00)"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "สวิตช์ในชั้น Data Link Layer (Layer 2 Switch) เรียนรู้ตาราง Switch Table (MAC Address Table) ได้อย่างไร",
+    "code": "",
+    "answer": "Self-learning โดยบันทึก MAC Address ต้นทางและอินเทอร์เฟซขาเข้าจากเฟรมที่ส่งเข้ามา",
+    "choices": [
+      "ผู้ดูแลระบบต้องพิมพ์ป้อนข้อมูล MAC Address ทั้งหมดด้วยตนเอง",
+      "Self-learning โดยบันทึก MAC Address ต้นทางและอินเทอร์เฟซขาเข้าจากเฟรมที่ส่งเข้ามา",
+      "ส่งคำขอไปยัง DHCP Server เพื่อรับตาราง MAC Address",
+      "แลกเปลี่ยนตารางด้วยโพรโทคอล OSPF"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ความแตกต่างพื้นฐานที่สำคัญที่สุดระหว่าง Layer 2 Switch และ Router คืออะไร",
+    "code": "",
+    "answer": "Switch สลับส่งเฟรมโดยอ้างอิง MAC Address ส่วน Router สลับส่งแพ็กเก็ตโดยอ้างอิง IP Address",
+    "choices": [
+      "Switch ทำงานใน Layer 3 ส่วน Router ทำงานใน Layer 2",
+      "Switch สลับส่งเฟรมโดยอ้างอิง MAC Address ส่วน Router สลับส่งแพ็กเก็ตโดยอ้างอิง IP Address",
+      "Switch ใช้สายไฟเบอร์ออปติกเท่านั้น ส่วน Router ใช้สายทองแดง",
+      "Router ไม่มีการใช้บัฟเฟอร์ในการกักเก็บแพ็กเก็ต"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "มาตรฐาน IEEE 802.1Q ถูกใช้เพื่อวัตถุประสงค์ใดในระบบเครือข่ายสวิตชิ่ง",
+    "code": "",
+    "answer": "การเพิ่ม Header Tag (VLAN Tagging) ขนาด 4 ไบต์สำหรับส่งข้อมูลข้ามลิงก์ Trunk ของ Virtual LAN",
+    "choices": [
+      "การควบคุมการรับส่งข้อมูลผ่านไร้สาย",
+      "การเพิ่ม Header Tag (VLAN Tagging) ขนาด 4 ไบต์สำหรับส่งข้อมูลข้ามลิงก์ Trunk ของ Virtual LAN",
+      "การเข้าและถอดรหัสผ่านสายแลน",
+      "การกำหนดพอร์ตสวิตช์ให้เป็น Power over Ethernet (PoE)"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "เหตุใดโพรโทคอล IEEE 802.11 Wireless LAN (Wi-Fi) จึงเลือกใช้ CSMA/CA แทนที่จะเป็น CSMA/CD เหมือน Ethernet",
+    "code": "",
+    "answer": "การตรวจจับการชนกันของสัญญาณ (Collision Detection) ทำได้ยากบนตัวกลางไร้สาย และมีปัญหา Hidden Terminal Problem",
+    "choices": [
+      "เนื่องจากเครือข่ายไร้สายไม่มีการเกิดการชนกันของสัญญาณเลย",
+      "การตรวจจับการชนกันของสัญญาณ (Collision Detection) ทำได้ยากบนตัวกลางไร้สาย และมีปัญหา Hidden Terminal Problem",
+      "CSMA/CA ส่งข้อมูลได้เร็วกว่า CSMA/CD 10 เท่า",
+      "โพรโทคอล CSMA/CD ไม่รองรับการเข้ารหัสข้อมูล"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "กลไกการแลกเปลี่ยนเฟรม RTS/CTS ใน 802.11 CSMA/CA มีไว้เพื่อแก้ปัญหาใดเป็นหลัก",
+    "code": "",
+    "answer": "ปัญหาโหนดซ่อนเร้น (Hidden Terminal Problem)",
+    "choices": [
+      "ปัญหาการกระจายบรอดคาสต์มากเกินไป",
+      "ปัญหาโหนดซ่อนเร้น (Hidden Terminal Problem)",
+      "ปัญหาการสูญเสียรหัสผ่าน WPA2",
+      "ปัญหาความล่าช้าจากตัวกระจายสัญญาณ (AP) หลายตัว"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "โครงสร้างส่วนหัวของเฟรม IEEE 802.11 มีฟีลด์ Address ทั้งหมดกี่ฟีลด์",
+    "code": "",
+    "answer": "4 ฟีลด์ (Address 1 ถึง Address 4)",
+    "choices": [
+      "2 ฟีลด์",
+      "3 ฟีลด์",
+      "4 ฟีลด์ (Address 1 ถึง Address 4)",
+      "6 ฟีลด์"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "การเข้ารหัสแบบสมมาตร (Symmetric Key Cryptography) เช่น AES มีคุณลักษณะเด่นตรงกับข้อใด",
+    "code": "",
+    "answer": "ผู้ส่งและผู้รับใช้คีย์ลับเดียวกัน (Shared Secret Key) ในการเข้าและถอดรหัสข้อมูล",
+    "choices": [
+      "ผู้ส่งและผู้รับใช้คีย์คู่ Public Key และ Private Key คนละดอกกัน",
+      "ผู้ส่งและผู้รับใช้คีย์ลับเดียวกัน (Shared Secret Key) ในการเข้าและถอดรหัสข้อมูล",
+      "ไม่จำเป็นต้องใช้คีย์ในการถอดรหัส",
+      "ประมวลผลได้ช้ากว่า Asymmetric Key มาก"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "กระบวนการสร้างลายมือชื่อดิจิทัล (Digital Signature) เพื่อรับประกันความถูกต้องและยืนยันตัวตนผู้ส่ง อาศัยคีย์ใดในการเข้ารหัสค่าแฮช (Hash Value) ของข้อความ",
+    "code": "",
+    "answer": "Private Key ของผู้ส่ง",
+    "choices": [
+      "Public Key ของผู้รับ",
+      "Private Key ของผู้ส่ง",
+      "Public Key ของผู้ส่ง",
+      "Symmetric Shared Key"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "ในโพรโทคอลการยืนยันตัวตน (Authentication Protocol) การใช้ค่าตัวแปรสุ่ม Nonce มีวัตถุประสงค์สำคัญเพื่อป้องกันการโจมตีประเภทใด",
+    "code": "",
+    "answer": "Replay Attack (การนำข้อความยืนยันตัวตนเดิมมาส่งซ้ำ)",
+    "choices": [
+      "Denial of Service (DoS)",
+      "Replay Attack (การนำข้อความยืนยันตัวตนเดิมมาส่งซ้ำ)",
+      "SQL Injection",
+      "Buffer Overflow"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "โพรโทคอล TLS (Transport Layer Security) ทำงานอยู่ในระดับใดและทำหน้าที่อย่างไร",
+    "code": "",
+    "answer": "ทำงานอยู่เหนือ TCP ในชั้น Application โดยให้บริการเข้ารหัสและรักษาความปลอดภัยแก่แอปพลิเคชัน เช่น HTTP (HTTPS)",
+    "choices": [
+      "ทำงานในชั้น Network Layer เพื่อเข้ารหัสแพ็กเก็ต IP ทั้งหมด",
+      "ทำงานอยู่เหนือ TCP ในชั้น Application โดยให้บริการเข้ารหัสและรักษาความปลอดภัยแก่แอปพลิเคชัน เช่น HTTP (HTTPS)",
+      "ทำงานในชั้น Link Layer เพื่อเข้าและถอดรหัสบนสายไฟเบอร์",
+      "เป็นโพรโทคอลควบคุมเราเตอร์แทน OSPF"
+    ]
+  },
+  {
+    "type": "m",
+    "question": "โพรโทคอล IPsec ที่ทำงานในโหมด Tunnel Mode มีลักษณะการทำงานอย่างไร",
+    "code": "",
+    "answer": "เข้ารหัสทั้งส่วนหัว (Header) และเพย์โหลดของแพ็กเก็ต IP เดิม แล้วแคปซูลซ้อนไว้ในแพ็กเก็ต IPsec ใหม่",
+    "choices": [
+      "เข้ารหัสเฉพาะข้อมูลเพย์โหลด โดยคงส่วนหัว IP เดิมไว้",
+      "เข้ารหัสทั้งส่วนหัว (Header) และเพย์โหลดของแพ็กเก็ต IP เดิม แล้วแคปซูลซ้อนไว้ในแพ็กเก็ต IPsec ใหม่",
+      "ทำงานเฉพาะบนเครือข่าย Wi-Fi ไร้สายเท่านั้น",
+      "ใช้เฉพาะการยืนยันตัวตนระดับ MAC Address"
+    ]
   }
-
+];
   module.exports = Questions;
